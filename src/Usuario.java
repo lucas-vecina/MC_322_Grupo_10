@@ -13,8 +13,9 @@ public class Usuario {
 	private ArrayList<Conversas> conversas;		// Conterá mensagens enviadas e recebidas pelo Usuário
 	private ArrayList<Notificacoes> notificacoes;	// Conterá mensagens pré-definidas que avisam sobre uma nova ação
 	private Permissoes permissao;	// Restringe o nível de visualização e interação do Usuário
+	/*Ideias
 	//private String descricao;
-	//private boolean status;
+	private boolean status;*/
 	
 	public Usuario(String nome, Sexo sexo, String email, String senha, Permissoes permissao) {
 		numeroUsuarios ++;
@@ -101,6 +102,7 @@ public class Usuario {
 		out+= "| Email: " + getEmail()+ "\n";
 		out+= "| Nome: " + getNome()+ "\n";
 		out+= "| Senha: " + getSenha()+ "\n";
+		// Necessário complementar
 
 		
 		return out;
