@@ -4,8 +4,9 @@
 * Seguindo intruções do PED, comente o máximo possível no seu código. Pode ser uma boa dar uma revisada na aula de conveções para fazer isso;
 * Dê sempre curtos commits individuais indicando o que alterou no código;
 * O Git funciona através de Merges e Rebases. Então a cada Push, o código será “fundido” com o anterior. Por isso é importante manter uma coesão na declaração dos nomes dos atributos e métodos;
-* Se você subir uma versão errada do seu código, você pode obter a anterior clicando no código → blame → history;
+* Se você subir uma versão errada do seu código, você pode obter a anterior aqui na página do Git clicando no código → blame → history;
 * A branch de desenvolvimento será a Trabalho. Através dela que deverão ser feitos os commits, push e pull. Periodicamente, estando funcional, realizaremos o merge dessa branch para com a master.
+* Lembre-se de regularmente dar 'Pull' no seu repositório para trazer atualizações de outros coloaboradores!
 
 ![Uml projeto MC322](https://user-images.githubusercontent.com/62612977/101107104-5a463980-35b0-11eb-9fea-54e157d079fe.jpeg)
 
@@ -23,7 +24,7 @@
 
 6) Verifique se o Pull está funcionando. Ele importa todas as novas adições feitas ao git e as insere na sua workspace. Right Click no projeto e selecione 'Pull'.
 
-7) Feitos todos os passos, seu Eclipse deve estar funcional. Lembre-se de regularmente dar 'Pull' no seu repositório para trazer atualizações de outros coloaboradores!
+7) Feitos todos os passos, seu Eclipse deve estar funcional
 
 
 ->Data de entrega: 13/12
