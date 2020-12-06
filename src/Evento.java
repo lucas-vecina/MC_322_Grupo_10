@@ -1,19 +1,26 @@
+import java.util.GregorianCalendar;
 import java.util.Calendar;
 
 public class Evento {
+	
+	/* A classe Evento tem por obejtivo organizar a entrega de atividades disponibilizadas na plataforma EAD.
+	 * Ela é fundamentada através de Labels que indicam o tipo de atividade, a disciplina e o horário de entrega da mesma. 
+	 * A representação dos Labels é simbólica por meio do método toString() */
+	
 	private Labels label;
 	private String descricao;
 	private boolean repeticao;
 	private String sigla;
 	private Cor cor;
-	private Calendar data;
+	private Calendar data = new GregorianCalendar();
 	
-	public Evento(Labels label, String descricao, String sigla, Cor cor, Calendar data) {
+	public Evento(Labels label, String descricao, String sigla, Cor cor, GregorianCalendar data, boolean repeticao) {
 		this.label = label;
 		this.descricao = descricao;
 		this.sigla = sigla;
 		this.cor = cor;
 		this.data = data;
+		this.repeticao = repeticao;
 	}
 
 	public Labels getLabel() {
@@ -66,10 +73,10 @@ public class Evento {
 	
 	public String toString() {
 		String out = "\n";
-		out+= "# (" + label.getDescricao() + ", " + label.getCor() + ") , ";
-		out+= "(" + getSigla() + "," + getCor() + ") ; ";
+		out+= "# (" + label.getDescricao() + ", " + label.getCor() + ") ; ";
+		out+= "(" + getSigla() + ", " + getCor() + ") ; ";
 		out+= "(" + getData().get(Calendar.DAY_OF_MONTH) + "/" + getData().get(Calendar.MONTH)
-				+ " " + getData().get(Calendar.HOUR) + ":" + getData().get(Calendar.MINUTE) + ") \n";
+				+ " " + getData().get(Calendar.HOUR_OF_DAY) + ":" + getData().get(Calendar.MINUTE) + ") \n";
 		out+= "# Descrição: " + getDescricao()+ "\n";
 		out+= "# Repete? " + (isRepeticao() ? "Sim" : "Não") + "\n";
 				
