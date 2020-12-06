@@ -17,7 +17,7 @@ public class Evento {
 	/* Como Reuniao é uma classe que se relaciona com duas outras classes distintas, então se optou por fazer uma
 	 * sobrecarga de seu Construtor. */
 	
-	// Esse construtor é refernte ao atributo agenda de Usuario
+	// Esse construtor é referente ao atributo agenda de Usuario
 	public Evento(Labels label, String descricao, String sigla, Cor cor, GregorianCalendar data, boolean repeticao) {
 		this.label = label;
 		this.descricao = descricao;
@@ -27,7 +27,7 @@ public class Evento {
 		this.repeticao = repeticao;
 	}
 	
-	// Esse construtor é refernte ao atributo agenda de Turma
+	// Esse construtor é referente ao atributo agenda de Turma
 	public Evento(Labels label, String descricao, GregorianCalendar data, boolean repeticao) {
 		this.label = label;
 		this.descricao = descricao;
