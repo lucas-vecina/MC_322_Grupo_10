@@ -4,39 +4,48 @@ import java.util.Calendar;
 public class Usuario {
 	private static int numeroUsuarios = 0;
 	private final int id;
-	private Sexo sexo;
+	private Genero genero;
 	private String nome;
 	private String email;
 	private String senha;
+	private ArrayList<Grupo> grupos;	// Contem os grupos em que o usuario esta
 	private ArrayList<Evento> agenda;	// Conterá informações e datas de atividades
 	private ArrayList<Turma> turmas;	// Conterá as turmas as quais o Usuário (Professor ou Aluno) participa
-	private ArrayList<Conversas> conversas;		// Conterá mensagens enviadas e recebidas pelo Usuário
+	private ArrayList<Conversa> conversas;		// Conterá mensagens enviadas e recebidas pelo Usuário
 	private ArrayList<Notificacoes> notificacoes;	// Conterá mensagens pré-definidas que avisam sobre uma nova ação
 	private Permissoes permissao;	// Restringe o nível de visualização e interação do Usuário
 	/*Ideias
 	//private String descricao;
 	private boolean status;*/
 	
-	public Usuario(String nome, Sexo sexo, String email, String senha, Permissoes permissao) {
+	public Usuario(String nome, Genero genero, String email, String senha, Permissoes permissao) {
 		numeroUsuarios ++;
 		this.id = numeroUsuarios;
-		this.sexo = sexo;
+		this.genero = genero;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		agenda = new ArrayList<Evento>();
 		turmas = new ArrayList<Turma>();
-		conversas = new ArrayList<Conversas>();
+		conversas = new ArrayList<Conversa>();
 		notificacoes = new ArrayList<Notificacoes>();
 		this.permissao = permissao;
 	}
 
-	public Sexo getSexo() {
-		return sexo;
+	public ArrayList<Grupo> getGrupos() {
+		return grupos;
 	}
 
-	public void setSexo(Sexo sexo) {
-		this.sexo = sexo;
+	public void setGrupos(ArrayList<Grupo> grupos) {
+		this.grupos = grupos;
+	}
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setSexo(Genero genero) {
+		this.genero = genero;
 	}
 
 	public String getNome() {
@@ -87,7 +96,7 @@ public class Usuario {
 		return turmas;
 	}
 
-	public ArrayList<Conversas> getConversas() {
+	public ArrayList<Conversa> getConversas() {
 		return conversas;
 	}
 

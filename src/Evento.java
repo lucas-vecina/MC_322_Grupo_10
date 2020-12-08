@@ -14,10 +14,10 @@ public class Evento {
 	private Cor cor;
 	private Calendar data = new GregorianCalendar();
 	
-	/* Como Reuniao é uma classe que se relaciona com duas outras classes distintas, então se optou por fazer uma
+	/* Como Reuniao e uma classe que se relaciona com duas outras classes distintas, então se optou por fazer uma
 	 * sobrecarga de seu Construtor. */
 	
-	// Esse construtor é referente ao atributo agenda de Usuario
+	// Esse construtor e referente ao atributo agenda de Usuario
 	public Evento(Labels label, String descricao, String sigla, Cor cor, GregorianCalendar data, boolean repeticao) {
 		this.label = label;
 		this.descricao = descricao;
@@ -27,7 +27,7 @@ public class Evento {
 		this.repeticao = repeticao;
 	}
 	
-	// Esse construtor é referente ao atributo agenda de Turma
+	// Esse construtor e referente ao atributo agenda de Turma
 	public Evento(Labels label, String descricao, GregorianCalendar data, boolean repeticao) {
 		this.label = label;
 		this.descricao = descricao;
@@ -90,8 +90,8 @@ public class Evento {
 		out+= (getSigla() != null ? "(" + getSigla() + ", " + getCor() + ") ; " : "");
 		out+= "(" + getData().get(Calendar.DAY_OF_MONTH) + "/" + getData().get(Calendar.MONTH)
 				+ " " + getData().get(Calendar.HOUR_OF_DAY) + ":" + getData().get(Calendar.MINUTE) + ") \n";
-		out+= "# Descrição: " + getDescricao()+ "\n";
-		out+= "# Repete? " + (isRepeticao() ? "Sim" : "Não") + "\n";
+		out+= "# Descricao: " + getDescricao()+ "\n";
+		out+= "# Repete? " + (isRepeticao() ? "Sim" : "Nao") + "\n";
 				
 		return out;
 	}
