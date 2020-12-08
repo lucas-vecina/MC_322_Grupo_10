@@ -46,14 +46,18 @@ public class Grupo {
 	
 	public void adicionarUsuario(Usuario integrante, Usuario forasteiro) {
 		if(grupo.contains(integrante)) {
-			grupo.add(forasteiro); 
-			forasteiro.getGrupos().add(this);
+			if(!grupo.contains(forasteiro)) {
+				grupo.add(forasteiro); 
+				forasteiro.getGrupos().add(this);
+			}
 		}
 	}
 	
 	public void removerUsuario(Usuario integrante, Usuario removido) {
 		if(grupo.contains(integrante)) {
-			grupo.remove(removido); 
+			if(grupo.contains(removido)) {
+				grupo.remove(removido); 
+			}
 		}
 	}
 	
@@ -70,9 +74,8 @@ public class Grupo {
 	public String toString() {
 		String out = "Nome do grupo:" + nomeGrupo;
 		out = out + "\nPessoas:";
-		for(Usuario pessoa:grupo) {
+		for(Usuario pessoa:grupo) 
 			out = out + "\n" + pessoa.getNome() + ", Id:" + pessoa.getId(); 
-		}
 		out = out + "\nStatus:" + status; 
 		return out; 
 	}
