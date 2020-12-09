@@ -30,6 +30,20 @@ public class Turma {
 		monitorias = new ArrayList<Monitoria>();
 		duvidas = new ArrayList<Duvidas>();
 	}
+	
+	//contrutor para ser usado na criacao de turmas pelo professor
+	public Turma(String turma, String sigla, Professor professor) {
+		this.turma = turma;
+		this.sigla = sigla;
+		this.professor = professor;
+		ped = new ArrayList<Aluno>();
+		pad = new ArrayList<Aluno>();
+		alunos = new ArrayList<Aluno>();
+		agenda = new ArrayList<Evento>();
+		teoria = new ArrayList<Teoria>();
+		monitorias = new ArrayList<Monitoria>();
+		duvidas = new ArrayList<Duvidas>();
+	}
 
 	public String getTurma() {
 		return turma;
