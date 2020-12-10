@@ -3,10 +3,12 @@ import java.util.ArrayList;
 public class Aluno extends Usuario{
 	private ArrayList<Usuario> amigos;
 	private String curso;
+	private int ra;
 	
-	public Aluno(String nome, Genero genero, String email, String senha, Permissoes permissao, String curso) {
+	public Aluno(String nome, Genero genero, String email, String senha, Permissoes permissao, String curso, int ra) {
 		super(nome, genero, email, senha, permissao);
 		this.curso = curso; 
+		this.ra = ra;
 		amigos = new ArrayList<Usuario>();
 	}
 
@@ -16,6 +18,14 @@ public class Aluno extends Usuario{
 
 	public void setAmigos(ArrayList<Usuario> amigos) {
 		this.amigos = amigos;
+	}
+	
+	public int getRa() {
+		return ra;
+	}
+
+	public void setRa(int ra) {
+		this.ra = ra;
 	}
 
 	public String getCurso() {
