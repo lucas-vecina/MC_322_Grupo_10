@@ -19,6 +19,8 @@ public class Turma {
 	
 	//**********working on********* -> Definir se o construtor irá recber como parâmetro a lista de peds, pads e alunos
 	// ou será um método a parte
+	
+	//Resposta 'Pedro' : Acredito ser melhor ser um metodo a parte para termos maior flxibilidade nas outras classes.
 	public Turma(String turma, String sigla, Cor cor, String ementa, Professor professor, ArrayList<Aluno> ped,
 			ArrayList<Aluno> pad, ArrayList<Aluno> alunos) {
 		this.turma = turma;
