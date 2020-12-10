@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class Turma {
 	private String turma;
 	private String sigla;
+	private Cor cor;
 	private String ementa;
 	private Professor professor;
 	private ArrayList<Aluno> ped;	// Lista contendo elementos do tipo Aluno com permissões próximas ao do Professor
@@ -10,16 +12,18 @@ public class Turma {
 	private ArrayList<Aluno> alunos;	// Lista contendo os Alunos que de fato cursarão a disciplina
 	private ArrayList<Evento> agenda;	// Contém labels informando sobre atividades agendadas
 	private ArrayList<Teoria> teoria;	// Contém simbolicamente arquivos e conteúdos da disciplina
+	private ArrayList<Atividade> atividades;
 	private ArrayList<Monitoria> monitorias;	// Ambiente simbólico para atendimento síncrono do aluno
 	private ArrayList<Duvidas> duvidas;		// Ambiente para retirada de dúvidas. Visível a todos os alunos que cursam a disciplina
 	
 	
 	//**********working on********* -> Definir se o construtor irá recber como parâmetro a lista de peds, pads e alunos
 	// ou será um método a parte
-	public Turma(String turma, String sigla, String ementa, Professor professor, ArrayList<Aluno> ped,
+	public Turma(String turma, String sigla, Cor cor, String ementa, Professor professor, ArrayList<Aluno> ped,
 			ArrayList<Aluno> pad, ArrayList<Aluno> alunos) {
 		this.turma = turma;
 		this.sigla = sigla;
+		this.cor = cor;
 		this.ementa = ementa;
 		this.professor = professor;
 		this.ped = ped;
@@ -27,6 +31,7 @@ public class Turma {
 		this.alunos = alunos;
 		agenda = new ArrayList<Evento>();
 		teoria = new ArrayList<Teoria>();
+		atividades = new ArrayList<Atividade>();
 		monitorias = new ArrayList<Monitoria>();
 		duvidas = new ArrayList<Duvidas>();
 	}
@@ -43,6 +48,16 @@ public class Turma {
 		teoria = new ArrayList<Teoria>();
 		monitorias = new ArrayList<Monitoria>();
 		duvidas = new ArrayList<Duvidas>();
+	}
+	
+	public void criarAtividade(Usuario user, Turma turma, String titulo, Labels label, String descricao, int notaMaxima, 
+			GregorianCalendar dataInicio, GregorianCalendar data) {
+		if(user instanceof Professor || getPed().contains(user)) {
+			getAtividades().add(1, new Atividade(turma, titulo, label, descricao, notaMaxima, dataInicio, data));
+			for(Usuario u: getAlunos()) {
+				u.getNotificacoes().add(1, Notificacoes.NOVA_ATIVIDADE);
+			}
+		}
 	}
 
 	public String getTurma() {
@@ -93,6 +108,14 @@ public class Turma {
 		return agenda;
 	}
 
+	public ArrayList<Teoria> getTeoria() {
+		return teoria;
+	}
+
+	public ArrayList<Atividade> getAtividades() {
+		return atividades;
+	}
+
 	public ArrayList<Monitoria> getMonitorias() {
 		return monitorias;
 	}
@@ -100,10 +123,18 @@ public class Turma {
 	public ArrayList<Duvidas> getDuvidas() {
 		return duvidas;
 	}
+		
+	public Cor getCor() {
+		return cor;
+	}
+
+	public void setCor(Cor cor) {
+		this.cor = cor;
+	}
 	
 	public String toString() {
 		String out = "\n";
-		out+= "-> Disciplina: " + getTurma() + " (" + getSigla() + ") \n";
+		out+= "-> Disciplina: " + getTurma() + " (" + getSigla() + "," + getCor() + ") \n";
 		out+= "-> Ementa: " + getEmenta() + "\n";
 		//Necessario complementar
 				
