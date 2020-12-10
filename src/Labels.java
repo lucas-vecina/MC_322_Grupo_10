@@ -1,11 +1,7 @@
 public enum Labels {
-	PROVA ("Prova", Cor.VERMELHO),
-	ATIVIDADE_INDIVIDUAL ("Atividade individual", Cor.PRETO),
-	ATIVIDADE_GRUPO ("Atividade em grupo", Cor.ROXO),
-	RELATORIO ("Relatório", Cor.VERDE),
-	APRESENTACAO ("Apresentacao", Cor.AMARELO),
-	LISTA_EXERCICIOS ("Lista de exercícios", Cor.AZUL);
-	
+	ATIVIDADE_INDIVIDUAL ("Atividade individual", Cor.AZUL),
+	ATIVIDADE_GRUPO ("Atividade em grupo", Cor.VERDE);
+
 	private final String descricao;
 	private final Cor cor;
 	
