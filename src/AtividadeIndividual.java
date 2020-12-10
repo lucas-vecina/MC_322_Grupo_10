@@ -2,21 +2,32 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class AtividadeIndividual extends Atividade{
-	private ArrayList<Submissao> submissoes;
 	
-	public AtividadeIndividual(Turma turma, String titulo, Labels label, String descricao, int notaMaxima, GregorianCalendar dataInicio, GregorianCalendar data) {
+	/*Essa é uma classe filha de Atividade, especialização que trata do cenário em que um é disponibilizada uma
+	 * atividade individual e cada aluno deve submeter e ter sua tarefa avaliada separadamente.
+	 */
+	
+	// Array que armazena a correspondência entre o aluno a sua atividade (arquivo e nota)
+	private ArrayList<Submissao> submissoes;	
+	
+	// Construtor invocado a partir do método criarAtividade() em Turma
+	public AtividadeIndividual(Turma turma, String titulo, Labels label, String descricao, int notaMaxima,
+			GregorianCalendar dataInicio, GregorianCalendar data) {
+		
 		super(turma, titulo, label, descricao, notaMaxima, dataInicio, data);
 		submissoes = new ArrayList<Submissao>();
 	}
 	
+	// Permite ao aluno enviar sua tarefa. O parâmetro arquivo simboliza o upload de um documento de texto
 	public void submeterAtividade(Aluno aluno, String arquivo) {
-		if(getTurma().getAlunos().contains(aluno))
-				getSubmissoes().add(new Submissao(aluno, arquivo));
+		if(getTurma().getAlunos().contains(aluno))	// Verifica-se se o alumo de fato pertence a turma
+				getSubmissoes().add(new Submissao(aluno, arquivo));	// Vincula o arquivo ao aluno no vetor submissoes
 	}
 	
+	// Permite ao um administrador(ped ou professor) atribuir nota ao aluno
 	public void atribuirNota(Usuario user, Aluno aluno, double nota) {
-		if(super.atribuirNota(user, aluno)){
-			for(Submissao s:getSubmissoes()) {
+		if(super.atribuirNota(user)){
+			for(Submissao s:getSubmissoes()) {	// Faz a busca do aluno no vetor que contém submissões já feitas
 				if(s.getAluno() == aluno) {
 					s.setNota(nota);
 					break;
@@ -25,26 +36,18 @@ public class AtividadeIndividual extends Atividade{
 		}		
 	}
 	
+	// Permite ao aluno visualizar sua nota
 	public String visualizarNota(Aluno aluno) {
-		double aux = 0;
-		boolean verif = false;
+		double aux = -2;
 		
-		for(Submissao s:getSubmissoes()) {
+		for(Submissao s:getSubmissoes()) { // Busca pelo aluno no vetor submissoes
 			if(s.getAluno() == aluno) {
 				aux = s.getNota();
-				verif = true;
 				break;
 			}
 		}
 		
-		if(!verif)
-			return "Você não entregou essa atividade.";
-		
-		if(aux == -1)
-			return "Nota ainda não atribuída.";
-		
-		return "Nota: " + Double.toString(aux);
-			
+		return super.visualizarNota(aux);
 	}
 
 
