@@ -51,6 +51,9 @@ public class Atividade extends Evento{
 	 */	
 	protected String visualizarNota(double aux) {
 		switch((int) aux){
+			case -3:
+				return "Seu grupo ainda não foi adicionado a lista dessa atividade";
+		
 			case -2:
 				return "Você não entregou essa atividade.";
 
