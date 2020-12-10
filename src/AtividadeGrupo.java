@@ -13,7 +13,7 @@ public class AtividadeGrupo extends Atividade{
 		this.submissoes = new ArrayList<Submissao>();
 	}
 	
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //teste
 	private String adicionarGrupo(Grupo equipe) {
 		int verif = 1;
 		
