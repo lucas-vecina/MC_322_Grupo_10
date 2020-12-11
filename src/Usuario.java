@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class Usuario {
 	private static int numeroUsuarios = 0;
@@ -31,6 +30,27 @@ public class Usuario {
 		notificacoes = new ArrayList<Notificacoes>();
 		this.permissao = permissao;
 	}
+	
+	// Exibe as turmas que o usuário participa. Evita loops e exibição de informações desnecessárias
+	public String visualizarTurma(Usuario user1, Usuario user2) {
+		//*******************working on ***********************
+		//Teria q criar uma condicional (switch?) que verifica permissoes e imprime info de acordo
+		// Outras info de usuario estão sujeitas as mesmas condicoes
+		//Ideal é criar um metodo visualizarInfo() q engloba td isso
+		// Esse foi criado a parte pois é invocado do toString() (necessário?) e tem maior relevancia
+		// nome, genero, amigos, etc... td isso pd estar contido no metodo visualizarInfo()
+		
+		String out = "| Turmas: \n";
+		out+= "[";
+		
+		for(Turma t : getTurmas()) {
+			out+= "[>> " + t.getTurma() + "\t{" + t.getSigla() + ", " + t.getCor() + "}" + "\n";
+			out+= "Ementa: " + t.getEmenta() + "\n";
+			out+= "Prof: " + t.getProfessor().getNome() + "]\n";
+		}
+		out+= "]";
+		return out;
+	}
 
 	public ArrayList<Grupo> getGrupos() {
 		return grupos;
@@ -44,7 +64,7 @@ public class Usuario {
 		return genero;
 	}
 
-	public void setSexo(Genero genero) {
+	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
 
@@ -107,10 +127,13 @@ public class Usuario {
 	public String toString() {
 		String out = "\n";
 		out+= "| id: " + getId() + "\n";
-		out+= "| Nome: " + getNome()+ "\n";
-		out+= "| Email: " + getEmail()+ "\n";
-		out+= "| Nome: " + getNome()+ "\n";
-		out+= "| Senha: " + getSenha()+ "\n";
+		out+= "| Nome: " + getNome() + "\n";
+		out+= "| Genêro: " + getGenero().getDescricao() + "\n";
+		out+= "| Email: " + getEmail() + "\n";
+		out+= "| Nome: " + getNome() + "\n";
+		out+= "| Senha: " + getSenha() + "\n";
+		out+= "| Agenda: " + getAgenda() + "\n";
+		out+= visualizarTurma(this, this);//*****LEMBRETE: rever [LV]
 		// Necessário complementar
 
 		
