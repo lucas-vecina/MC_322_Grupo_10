@@ -122,6 +122,7 @@ public class Turma {
 		this.cor = cor;
 	}
 	
+	@Override
 	public String toString() {
 		String out = "\n";
 		out+= "-> Disciplina: " + getTurma() + " (" + getSigla() + "," + getCor() + ") \n";
