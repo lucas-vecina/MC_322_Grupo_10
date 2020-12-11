@@ -11,6 +11,64 @@ public class Aluno extends Usuario{
 		this.ra = ra;
 		amigos = new ArrayList<Usuario>();
 	}
+	
+	public String visualizarInfo(Usuario user) {
+		String out;
+		
+		switch(this.getPermissao().getChave()) {
+			case 1:
+				out = super.visualizarInfo(user);
+				out += "-Curso: " + getCurso() + "\n";
+				out += "-RA: " + getRa() + "\n";
+				out += "-Amigos: " + visualizarAmigos(user);
+				
+				return out;
+				
+			case 2:
+				out = super.visualizarInfo(user);
+				out += "-Curso: " + getCurso() + "\n";
+				return out;
+			
+			case 3:
+				if(getAmigos().contains(user)) {
+					out = super.visualizarInfo(user);
+					out += "-Curso: " + getCurso() + "\n";
+					return out;
+				}
+				
+				else
+					return "Você não tem permissão para visualizar informações desse perfil";	
+		}
+		return "";
+	}
+	
+	public String visualizarAmigos(Usuario user) {
+		if(this.getPermissao().getChave() == 1) {
+			String out;
+			out = "-Amigos: [";
+			for(Usuario u:getAmigos())
+				out += u.getNome() + ", ";
+			out += " ]";
+			
+			return out;
+		}	
+		
+		else
+			return "Você não tem permissão para visualizar a lista de amigos de " + getNome() + "\n";
+				
+	}
+	
+	public String visualizarTurma(Usuario user) {
+		if(this.getPermissao().getChave() != 3 || getAmigos().contains(user)) {
+			String out = super.visualizarTurma(user);
+			return out;
+		}
+		
+		else
+			return "Você não tem permissão de visualizar as turmas que " + getNome() + " participa.\n";
+			
+
+	}
 
 	public ArrayList<Usuario> getAmigos() {
 		return amigos;

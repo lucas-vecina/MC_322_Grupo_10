@@ -31,16 +31,32 @@ public class Usuario {
 		this.permissao = permissao;
 	}
 	
-	// Exibe as turmas que o usuário participa. Evita loops e exibição de informações desnecessárias
-	public String visualizarTurma(Usuario user1, Usuario user2) {
-		//*******************working on ***********************
-		//Teria q criar uma condicional (switch?) que verifica permissoes e imprime info de acordo
-		// Outras info de usuario estão sujeitas as mesmas condicoes
-		//Ideal é criar um metodo visualizarInfo() q engloba td isso
-		// Esse foi criado a parte pois é invocado do toString() (necessário?) e tem maior relevancia
-		// nome, genero, amigos, etc... td isso pd estar contido no metodo visualizarInfo()
+	protected String visualizarInfo(Usuario user) {
+		String out;
 		
-		String out = "| Turmas: \n";
+		switch(this.getPermissao().getChave()) {
+			case 1:
+				out= "-Id: " + getId() + "\n";
+				out+= "-Nome: " + getNome() + "\n";
+				out+= "-Gênero: " + getGenero().getDescricao() + "\n";
+				out+= "-Email: " + getEmail() + "\n";
+				out+= visualizarTurma(user);
+				
+				return out;
+			
+			case 2: case 3:
+				out= "-Nome: " + getNome() + "\n";
+				out+= "-Email: " + getEmail() + "\n";
+				out+= visualizarTurma(user);
+				
+				return out;
+		}
+		return "";
+	}
+	
+	// Exibe as turmas que o usuário participa. Evita loops e exibição de informações desnecessárias
+	public String visualizarTurma(Usuario user) {
+		String out = "-Turmas: \n";
 		out+= "[";
 		
 		for(Turma t : getTurmas()) {
@@ -133,7 +149,12 @@ public class Usuario {
 		out+= "| Nome: " + getNome() + "\n";
 		out+= "| Senha: " + getSenha() + "\n";
 		out+= "| Agenda: " + getAgenda() + "\n";
-		out+= visualizarTurma(this, this);//*****LEMBRETE: rever [LV]
+		out += "| Turmas: [";
+		for(Turma t:getTurmas()) {
+			out += "-" + t.getTurma() + " {" + t.getSigla() + ", " + t.getCor() + "} \n"; 
+		}
+		out+= "]";
+		
 		// Necessário complementar
 
 		
