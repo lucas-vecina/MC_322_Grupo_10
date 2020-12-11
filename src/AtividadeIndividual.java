@@ -33,12 +33,13 @@ public class AtividadeIndividual extends Atividade{
 					break;
 				}
 			}
+			aluno.getNotificacoes().add(1, Notificacoes.NOVA_NOTA);
 		}		
 	}
 	
 	// Permite ao aluno visualizar sua nota
 	public String visualizarNota(Aluno aluno) {
-		double aux = -2;
+		double aux = -2;	// variável de controle de saída
 		
 		for(Submissao s:getSubmissoes()) { // Busca pelo aluno no vetor submissoes
 			if(s.getAluno() == aluno) {
@@ -47,7 +48,7 @@ public class AtividadeIndividual extends Atividade{
 			}
 		}
 		
-		return super.visualizarNota(aux);
+		return "<" + aluno.getNome() + ">" + super.visualizarNota(aux);
 	}
 
 

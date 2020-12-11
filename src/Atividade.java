@@ -58,10 +58,10 @@ public class Atividade extends Evento{
 				return "Você não entregou essa atividade.";
 
 			case -1:
-				return "Nota ainda não atribuída.";
+				return "Sua nota ainda não foi atribuída.";
 			
 			default:
-				return "Nota: " + Double.toString(aux);
+				return "Sua nota foi: " + Double.toString(aux) + "/" + getNotaMaxima();
 		}
 	}
 

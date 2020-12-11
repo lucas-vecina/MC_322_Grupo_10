@@ -99,6 +99,9 @@ public class AtividadeGrupo extends Atividade{
 					break;
 				}
 			}
+			for(Usuario a : grupo.getGrupo()) {
+				a.getNotificacoes().add(1, Notificacoes.NOVA_NOTA);
+			}
 		}		
 	}
 		
@@ -116,7 +119,7 @@ public class AtividadeGrupo extends Atividade{
 
 	public String toString() {
 		String out = super.toString();	
-		out += "Tamnho do grupo: " + getTamanhoGrupo() + "\n";
+		out += "# Tamanho do grupo: " + getTamanhoGrupo() + "\n";
 		out += "# Submissões: " + getSubmissoes() + "\n";
 		
 		return out;
