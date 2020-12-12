@@ -34,20 +34,28 @@ public class Turma {
 	 * É feita uma diferenciação entre duas atividades, individual e em grupo. O parâmetro labels as segrega.
 	 * Ao fim é enviada uma notificação para cada aluno da turma informando sobre a nova atividade.
 	 */
-	public void criarAtividade(Usuario user, Turma turma, String titulo, Labels label, String descricao, int notaMaxima, 
+	public Atividade criarAtividade(Usuario user, Turma turma, String titulo, Labels label, String descricao, int notaMaxima, 
 			GregorianCalendar dataInicio, GregorianCalendar data) {
 		
 		if(user instanceof Professor || getPed().contains(user)) {
-			if(label == Labels.ATIVIDADE_INDIVIDUAL)
-				getAtividades().add(1, new AtividadeIndividual(turma, titulo, label, descricao, notaMaxima, dataInicio, data));
 			
-			else 
-				getAtividades().add(1, new AtividadeGrupo(turma, titulo, label, descricao, notaMaxima, dataInicio, data));
-
 			for(Usuario u: getAlunos()) {
-				u.getNotificacoes().add(1, Notificacoes.NOVA_ATIVIDADE);
+				u.getNotificacoes().add(0, Notificacoes.NOVA_ATIVIDADE);
+			}
+			
+			if(label == Labels.ATIVIDADE_INDIVIDUAL) {
+				AtividadeIndividual atividade = new AtividadeIndividual(turma, titulo, label, descricao, notaMaxima, dataInicio, data);
+				getAtividades().add(0, atividade);
+				return atividade;
+			}
+			
+			else {
+				AtividadeGrupo atividade= new AtividadeGrupo(turma, titulo, label, descricao, notaMaxima, dataInicio, data);
+				getAtividades().add(0, atividade);
+				return atividade;
 			}
 		}
+		return null;
 	}
 	
 	public Teoria criarTeoria(Usuario user, String descricao, String arquivos) {
