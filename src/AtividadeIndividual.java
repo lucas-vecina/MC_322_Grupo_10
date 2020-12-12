@@ -58,7 +58,7 @@ public class AtividadeIndividual extends Atividade{
 	
 	public String toString() {
 		String out = super.toString();	
-		out += "# Submissões: " + getSubmissoes() + "\n";
+		out += "# Submissoes: " + getSubmissoes() + "\n";
 		
 		return out;
 	}

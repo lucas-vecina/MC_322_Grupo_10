@@ -40,7 +40,7 @@ public class Aluno extends Usuario{
 				}
 				
 				else
-					return "Você não tem permissão para visualizar informações desse perfil";	
+					return "Voce nao tem permissao para visualizar informacoes desse perfil";	
 		}
 		return "";
 	}
@@ -58,7 +58,7 @@ public class Aluno extends Usuario{
 		}	
 		
 		else
-			return "Você não tem permissão para visualizar a lista de amigos de " + getNome() + "\n";
+			return "Voce nao tem permissao para visualizar a lista de amigos de " + getNome() + "\n";
 				
 	}
 	
@@ -71,7 +71,7 @@ public class Aluno extends Usuario{
 		}
 		
 		else
-			return "Você não tem permissão de visualizar as turmas que " + getNome() + " participa.\n";
+			return "Voce nao tem permissao de visualizar as turmas que " + getNome() + " participa.\n";
 	}
 
 	public ArrayList<Usuario> getAmigos() {

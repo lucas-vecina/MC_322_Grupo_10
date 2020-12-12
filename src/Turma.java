@@ -201,7 +201,7 @@ public class Turma {
 		out+= "-> Teoria: " + getTeoria() + "\n";
 		out+= "-> Atividades: " + getAtividades();
 		out+= "-> Monitorias: " + getMonitorias() + "\n";
-		out+= "-> Dúvidas: " + getDuvidas() + "\n";
+		out+= "-> Duvidas: " + getDuvidas() + "\n";
 				
 		return out;
 	}
