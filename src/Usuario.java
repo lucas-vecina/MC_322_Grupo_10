@@ -7,9 +7,9 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
-	private ArrayList<Grupo> grupos;	// Contem os grupos em que o usuario esta
 	private ArrayList<Evento> agenda;	// Conterá informações e datas de atividades
 	private ArrayList<Turma> turmas;	// Conterá as turmas as quais o Usuário (Professor ou Aluno) participa
+	private ArrayList<Grupo> grupos;	// Contem os grupos em que o usuario esta
 	private ArrayList<Conversa> conversas;		// Conterá mensagens enviadas e recebidas pelo Usuário
 	private ArrayList<Notificacoes> notificacoes;	// Conterá mensagens pré-definidas que avisam sobre uma nova ação
 	private Permissoes permissao;	// Restringe o nível de visualização e interação do Usuário
@@ -70,6 +70,14 @@ public class Usuario {
 		return out;
 	}
 	
+	public void criarGrupo(String nome, ArrayList<Usuario> membros) {
+		Grupo grupo = new Grupo(nome, membros);
+		grupo.getGrupo().add(this);
+		this.getGrupos().add(grupo);
+		for(Usuario membro:membros) 
+			membro.getGrupos().add(grupo); 
+	}
+	
 	public String exibirNotificacoes(Usuario user) {
 		if(user == this) {
 			String out = "Notificacoes: [";
@@ -98,14 +106,6 @@ public class Usuario {
 			return true;
 		}
 		return false;
-	}
-
-	public ArrayList<Grupo> getGrupos() {
-		return grupos;
-	}
-
-	public void setGrupos(ArrayList<Grupo> grupos) {
-		this.grupos = grupos;
 	}
 
 	public Genero getGenero() {
@@ -163,6 +163,14 @@ public class Usuario {
 	public ArrayList<Turma> getTurmas() {
 		return turmas;
 	}
+	
+	public ArrayList<Grupo> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(ArrayList<Grupo> grupos) {
+		this.grupos = grupos;
+	}
 
 	public ArrayList<Conversa> getConversas() {
 		return conversas;
@@ -190,8 +198,8 @@ public class Usuario {
 		
 		out+= "] \n";
 		out+= "| " + exibirNotificacoes(this);
-		out+= "| Grupos: " + getGrupos() + "\n";
 		out+= "| Conversas: " + getConversas() + "\n";
+		out+= "| Grupos: " + getGrupos() + "\n";
 		
 		return out;
 	}
