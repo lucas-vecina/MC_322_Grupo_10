@@ -27,6 +27,9 @@ public class Teoria {
 
 	public void submeterTeoria(Turma turma) {
 		turma.getTeoria().add(this);
+		for(Usuario u:turma.getAlunos()) {
+			u.getNotificacoes().add(0, Notificacoes.INICIO_AULA);
+		}
 	}
 	
 	public String toString() {
