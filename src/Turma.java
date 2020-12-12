@@ -32,8 +32,7 @@ public class Turma {
 	
 	/* Um professor ou ped podem criar uma nova atividade.
 	 * É feita uma diferenciação entre duas atividades, individual e em grupo. O parâmetro labels as segrega.
-	 * Ao fim é enviada uma notificação para cada aluno da turma informando sobre a nova atividade.
-	 */
+	 * Ao fim é enviada uma notificação para cada aluno da turma informando sobre a nova atividade. */
 	public Atividade criarAtividade(Usuario user, Turma turma, String titulo, Labels label, String descricao, int notaMaxima, 
 			GregorianCalendar dataInicio, GregorianCalendar data) {
 		
@@ -56,6 +55,15 @@ public class Turma {
 			}
 		}
 		return null;
+	}
+	
+	// Possibilita um aluno criar uma nova duvida
+	public Duvidas criarDuvida(Aluno aluno, String indagacao) {
+		if(!getAlunos().contains(aluno))
+			return null;
+		
+		Duvidas duvida = new Duvidas(aluno, indagacao, this);
+		return duvida;
 	}
 	
 	public Teoria criarTeoria(Usuario user, String descricao, String arquivos) {
