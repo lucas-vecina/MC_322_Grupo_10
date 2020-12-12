@@ -49,6 +49,16 @@ public class Turma {
 			}
 		}
 	}
+	
+	public Teoria criarTeoria(Usuario user, String descricao, String arquivos) {
+		if(user == professor) {
+			Teoria t1 = new Teoria(descricao,arquivos);
+			t1.submeterTeoria(this);
+			return t1;
+		} else {
+			return null;
+		}
+	}
 
 	public String getTurma() {
 		return turma;
@@ -204,5 +214,7 @@ public class Turma {
 			pad.add(aluno);
 		}
 	}
+	
+	
 
 }
