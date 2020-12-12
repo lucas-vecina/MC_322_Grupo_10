@@ -79,6 +79,9 @@ public class Turma {
 	public Monitoria ciarMonitoria(Aluno monitor) {
 		if (ped.contains(monitor) || pad.contains(monitor)) {
 			Monitoria monitoria = new Monitoria(monitor, this);
+			for(Usuario u: getAlunos()) {
+				u.getNotificacoes().add(0, Notificacoes.INICIO_MONITORIA);
+			}
 			return monitoria;
 		}else {
 			return null;
