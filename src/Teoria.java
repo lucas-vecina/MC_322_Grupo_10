@@ -4,10 +4,6 @@ public class Teoria {
 	private String descricao;
 	private String arquivos;
 	
-	/**
-	 * @param descricao
-	 * @param arquivos
-	 */
 	public Teoria(String descricao, String arquivos) {
 		this.descricao = descricao;
 		this.arquivos = arquivos;
@@ -31,5 +27,12 @@ public class Teoria {
 
 	public void submeterTeoria(Turma turma) {
 		turma.getTeoria().add(this);
+	}
+	
+	public String toString() {
+		String out = "\n";
+		out+= "* Descrição: " + getDescricao() + "; " + "\t Arquivo: " + getArquivos();
+						
+		return out;
 	}
 }

@@ -66,4 +66,15 @@ public class Duvidas {
 	public void Resolver() {
 		resolvido = true; 
 	}
+	
+	public String toString() {
+		String out = "\n";
+		out+= getTurma().getSigla() + "," + getTurma().getCor() + ") \n";
+		out+= "Indagador: " + getIndagador().getNome() + "\n";
+		out+= "Indagacao: " + getIndagacao() + "\n";
+		out+= "Comentários: " + getComentarios() + "\n";
+		out += "Resolvido? " + (isResolvido() ? "Sim" : "Não");
+				
+		return out;
+	}
 }

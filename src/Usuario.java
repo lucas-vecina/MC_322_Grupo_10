@@ -181,7 +181,7 @@ public class Usuario {
 		out+= "| Nome: " + getNome() + "\n";
 		out+= "| Senha: " + getSenha() + "\n";
 		out+= "| Permissão: " + getPermissao().getDescricao() + "\n";
-		out+= "| Agenda: " + getAgenda() + "\n";
+		out+= "| Agenda: " + getAgenda();
 		out+= "| Turmas: [";
 		
 		for(Turma t:getTurmas()) {

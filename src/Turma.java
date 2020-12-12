@@ -127,7 +127,30 @@ public class Turma {
 		String out = "\n";
 		out+= "-> Disciplina: " + getTurma() + " (" + getSigla() + "," + getCor() + ") \n";
 		out+= "-> Ementa: " + getEmenta() + "\n";
-		//Necessario complementar
+		out+= "-> Professor: " + getProfessor().getNome() + "\n";
+		out+= "-> PED's: [";
+		
+		for(Usuario u:getPed())
+			out+= u.getNome() + ", ";
+		
+		out+= "] \n";
+		out+= "-> Pad's: [";
+		
+		for(Usuario u:getPad())
+			out+= u.getNome() + ", ";
+		
+		out+= "] \n";
+		out+= "-> Alunos: [";
+		
+		for(Aluno a:getAlunos())
+			out+= a.getNome() + ", ";
+		
+		out+= "] \n";
+		out+= "-> Agenda: " + getAgenda();
+		out+= "-> Teoria: " + getTeoria() + "\n";
+		out+= "-> Atividades: " + getAtividades();
+		out+= "-> Monitorias: " + getMonitorias() + "\n";
+		out+= "-> Dúvidas: " + getDuvidas() + "\n";
 				
 		return out;
 	}
