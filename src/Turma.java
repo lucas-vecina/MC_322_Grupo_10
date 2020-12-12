@@ -122,6 +122,18 @@ public class Turma {
 		this.cor = cor;
 	}
 	
+	public void setPed(ArrayList<Aluno> ped) {
+		this.ped = ped;
+	}
+
+	public void setPad(ArrayList<Aluno> pad) {
+		this.pad = pad;
+	}
+
+	public void setAlunos(ArrayList<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+
 	@Override
 	public String toString() {
 		String out = "\n";
