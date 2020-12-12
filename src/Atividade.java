@@ -11,6 +11,7 @@ public class Atividade extends Evento{
 	
 	private Calendar dataInicio = new GregorianCalendar();
 	private int notaMaxima;
+	private Evento agendaTurma;
 	private Evento agendaAluno;
 	private Turma turma;
 	
@@ -21,7 +22,8 @@ public class Atividade extends Evento{
 		super(titulo, label, descricao, data, false);
 		
 		// Evento e adicionado a agenda da turma. Um casting e necessario para se restringir a instancia superior
-		turma.getAgenda().add(0, (Evento) this);	
+		this.agendaTurma = new Evento(titulo, label, descricao, data, false);
+		turma.getAgenda().add(0, agendaTurma);	
 		
 		// Novo objeto de Reuniao e criado, agora para ser incluido a cada agenda de alunos da turma
 		this.agendaAluno = new Evento(titulo, label, descricao, turma.getSigla(), turma.getCor(), data, false);
@@ -83,6 +85,10 @@ public class Atividade extends Evento{
 
 	public Evento getAgendaAluno() {
 		return agendaAluno;
+	}
+	
+	public Evento getAgendaTurma() {
+		return agendaTurma;
 	}
 
 	public Turma getTurma() {
