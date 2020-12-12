@@ -4,8 +4,8 @@ import java.util.Calendar;
 public class Evento {
 	
 	/* A classe Evento tem por obejtivo organizar a entrega de atividades disponibilizadas na plataforma EAD.
-	 * Ela é fundamentada através de Labels que indicam o tipo de atividade, a disciplina e o horário de entrega da mesma. 
-	 * A representação dos Labels é simbólica por meio do método toString() */
+	 * Ela e fundamentada atraves de Labels que indicam o tipo de atividade, a disciplina e o horario de entrega da mesma. 
+	 * A representacao dos Labels e simplificada por meio do metodos toString() */
 	
 	private String titulo;
 	private Labels label;
@@ -15,7 +15,7 @@ public class Evento {
 	private Cor cor;
 	private Calendar data = new GregorianCalendar();
 	
-	/* Como Reuniao e uma classe que se relaciona com duas outras classes distintas, então se optou por fazer uma
+	/* Como Reuniao e uma classe que se relaciona com duas outras classes distintas, entao se optou por fazer uma
 	 * sobrecarga de seu Construtor. */
 	
 	// Esse construtor e referente ao atributo agenda de Usuario
