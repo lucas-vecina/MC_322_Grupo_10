@@ -7,9 +7,11 @@ public class Professor extends Usuario{
 	}
 	
 	//Metodo para cada professor criar sua turma para inumeras materias
-	public void criarTurma(String nome, String sigla) {
+	public Turma criarTurma(String nome, String sigla) {
 		Turma t1 = new Turma(nome,sigla,this);
 		getTurmas().add(t1);
+		
+		return t1;
 	}
 	
 	//Remove uma turma especifica de um professor e de todos os alunos matriculados
