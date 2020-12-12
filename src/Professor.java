@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Professor extends Usuario{
-	
 	// Construtor
 	public Professor(String nome, Genero genero, String email, String senha) {
 		super(nome, genero, email, senha, Permissoes.DEFAULT);

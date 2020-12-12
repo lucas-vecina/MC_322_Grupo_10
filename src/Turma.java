@@ -167,39 +167,42 @@ public class Turma {
 		return out;
 	}
 	
-	public void adicionaPad(Usuario user, Aluno aluno) {
-		if(user instanceof Professor) {
-			pad.add(aluno);
+	public void removePed(Usuario user, Aluno aluno) {
+		if(user == professor && ped.contains(aluno)) {
+			ped.remove(aluno);
 		}
 	}
 	
 	public void adicionaPed(Usuario user, Aluno aluno) {
-		if(user instanceof Professor) {
+		if(user == professor) {
 			ped.add(aluno);
 		}
 	}
 	
 	public void adicionaAluno(Usuario user, Aluno aluno) {
-		if(user instanceof Professor) {
+		if(user == professor) {
 			alunos.add(aluno);
-		}
-	}
-	
-	public void removePad(Usuario user, Aluno aluno) {
-		if(user instanceof Professor && pad.contains(aluno)) {
-			pad.remove(aluno);
-		}
-	}
-	
-	public void removePed(Usuario user, Aluno aluno) {
-		if(user instanceof Professor && ped.contains(aluno)) {
-			ped.remove(aluno);
+			aluno.getTurmas().add(this);
 		}
 	}
 	
 	public void removeAluno(Usuario user, Aluno aluno) {
-		if(user instanceof Professor && alunos.contains(aluno)) {
+		if(user == professor && alunos.contains(aluno)) {
 			alunos.remove(aluno);
+			aluno.getTurmas().remove(this);
 		}
 	}
+	
+	public void removePad(Usuario user, Aluno aluno) {
+		if(user == professor && pad.contains(aluno)) {
+			pad.remove(aluno);
+		}
+	}
+	
+	public void adicionaPad(Usuario user, Aluno aluno) {
+		if(user == professor) {
+			pad.add(aluno);
+		}
+	}
+
 }
