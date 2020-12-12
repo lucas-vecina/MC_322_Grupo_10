@@ -1,10 +1,10 @@
 public enum Notificacoes {
-	NOVA_MENSAGEM("Você recebeu uma nova mensagem!"),
-	NOVA_ATIVIDADE("Você tem uma nova atividade para entrega!"),
-	NOVO_AMIGO("Você tem um novo amigo!"),
-	INICIO_MONITORIA("Uma monitoria acabou de começar!"),
+	NOVA_MENSAGEM("Voce recebeu uma nova mensagem!"),
+	NOVA_ATIVIDADE("Voce tem uma nova atividade para entrega!"),
+	NOVO_AMIGO("Voce tem um novo amigo!"),
+	INICIO_MONITORIA("Uma monitoria acabou de comecar!"),
 	NOVA_AULA("Uma nova aula foi postada"),
-	NOVA_RESPOSTA("Responderam uma dúvida que você fez!"),
+	NOVA_RESPOSTA("Responderam uma dúvida que voce fez!"),
 	NOVA_NOTA("Postaram a sua nota de uma atividade!");
 	
 	private final String notificacao;
