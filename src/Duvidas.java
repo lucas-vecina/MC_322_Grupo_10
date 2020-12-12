@@ -60,8 +60,10 @@ public class Duvidas {
 		if (!resolvido) {
 			Mensagem mensagem = new Mensagem(replicador, comentario);
 			comentarios.add(mensagem); 
+			
+			getIndagador().getNotificacoes().add(0, Notificacoes.NOVA_RESPOSTA);
+			}
 		}
-	}
 	
 	public void Resolver() {
 		resolvido = true; 
