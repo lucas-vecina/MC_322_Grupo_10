@@ -5,6 +5,7 @@ public class Aluno extends Usuario{
 	private String curso;
 	private int ra;
 	
+	//Construtor
 	public Aluno(String nome, Genero genero, String email, String senha, Permissoes permissao, String curso, int ra) {
 		super(nome, genero, email, senha, permissao);
 		this.curso = curso; 
@@ -12,10 +13,12 @@ public class Aluno extends Usuario{
 		amigos = new ArrayList<Usuario>();
 	}
 	
+	/* Método sobrescrito em Usuario. 
+	 * Verifica permissoes do usuario (this) e exibe informacoes de acordo */
 	public String visualizarInfo(Usuario user) {
 		String out;
 		
-		switch(this.getPermissao().getChave()) {
+		switch(getPermissao().getChave()) {
 			case 1:
 				out = super.visualizarInfo(user);
 				out += "-Curso: " + getCurso() + "\n";
@@ -42,6 +45,7 @@ public class Aluno extends Usuario{
 		return "";
 	}
 	
+	// Verifica permissoes do usuario (this) e exibe sua lista de amigos
 	public String visualizarAmigos(Usuario user) {
 		if(this.getPermissao().getChave() == 1) {
 			String out;
@@ -58,6 +62,8 @@ public class Aluno extends Usuario{
 				
 	}
 	
+	/* Método sobrescrito em Usuario. 
+	 * Verifica permissoes do usuario (this) e exibe as turmas */
 	public String visualizarTurma(Usuario user) {
 		if(this.getPermissao().getChave() != 3 || getAmigos().contains(user)) {
 			String out = super.visualizarTurma(user);
@@ -66,8 +72,6 @@ public class Aluno extends Usuario{
 		
 		else
 			return "Você não tem permissão de visualizar as turmas que " + getNome() + " participa.\n";
-			
-
 	}
 
 	public ArrayList<Usuario> getAmigos() {
@@ -94,6 +98,7 @@ public class Aluno extends Usuario{
 		this.curso = curso;
 	}
 	
+	//******************Nao seria um metodo de Usuario???
 	public void criarGrupo(String nome, ArrayList<Usuario> membros) {
 		Grupo grupo = new Grupo(nome, membros);
 		grupo.getGrupo().add(this);
@@ -107,5 +112,19 @@ public class Aluno extends Usuario{
 			turma.getAlunos().remove(this);
 			getTurmas().remove(turma);
 		}
+	}
+	
+	public String toString() {
+		String out = super.toString();
+		out+= "| RA: " + getRa() + "\n";
+		out+= "| Curso: " + getCurso() + "\n";
+		out+= "| Amigos: [" ;
+	
+		for(Usuario u:getAmigos())
+			out += "-" + u.getNome() + ","; 
+		
+		out+= "]\n";
+		
+		return out;
 	}
 }

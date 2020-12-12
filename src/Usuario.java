@@ -13,10 +13,8 @@ public class Usuario {
 	private ArrayList<Conversa> conversas;		// Conterá mensagens enviadas e recebidas pelo Usuário
 	private ArrayList<Notificacoes> notificacoes;	// Conterá mensagens pré-definidas que avisam sobre uma nova ação
 	private Permissoes permissao;	// Restringe o nível de visualização e interação do Usuário
-	/*Ideias
-	//private String descricao;
-	private boolean status;*/
 	
+	// Construtor
 	public Usuario(String nome, Genero genero, String email, String senha, Permissoes permissao) {
 		numeroUsuarios ++;
 		this.id = numeroUsuarios;
@@ -31,11 +29,14 @@ public class Usuario {
 		this.permissao = permissao;
 	}
 	
+	/* Esse método possibilita a um usuário (user) visualizar um apanhado de informações sobre outro (this).
+	 * Ele é sobrescrito em Aluno e também invocado pelo mesmo. Para Professor, esse método já se faz suficiente.
+	 * Conforme a permissão do user, diferentes informações são exibidas. */
 	protected String visualizarInfo(Usuario user) {
 		String out;
 		
-		switch(this.getPermissao().getChave()) {
-			case 1:
+		switch(getPermissao().getChave()) {	// Verifica a permissao do user
+			case 1:	// Permissao Publica
 				out= "-Id: " + getId() + "\n";
 				out+= "-Nome: " + getNome() + "\n";
 				out+= "-Gênero: " + getGenero().getDescricao() + "\n";
@@ -44,7 +45,7 @@ public class Usuario {
 				
 				return out;
 			
-			case 2: case 3:
+			case 2: case 3:	//Permissao Privada e Default. Nesse escopo, sao equivalentes
 				out= "-Nome: " + getNome() + "\n";
 				out+= "-Email: " + getEmail() + "\n";
 				out+= visualizarTurma(user);
@@ -54,7 +55,8 @@ public class Usuario {
 		return "";
 	}
 	
-	// Exibe as turmas que o usuário participa. Evita loops e exibição de informações desnecessárias
+	/* Exibe as turmas que o usuário participa. Evita loops e exibição de informações desnecessárias
+	 * Metódo é sobrescrito e invocado por meio da subclasse Aluno, mas é suficiete para Professor. */
 	public String visualizarTurma(Usuario user) {
 		String out = "-Turmas: \n";
 		out+= "[";
@@ -66,6 +68,36 @@ public class Usuario {
 		}
 		out+= "]";
 		return out;
+	}
+	
+	public String exibirNotificacoes(Usuario user) {
+		if(user == this) {
+			String out = "Notificacoes: [";
+			
+			for(Notificacoes n:getNotificacoes())
+				out+= "* " + n.getNotificacao() + ", ";
+
+			out+= "]\n";
+			return out;
+		}
+		
+		return "Você não tem permissão de visualizar as notificações de " + getNome(); 
+	}
+	
+	public boolean removerNotificacao(Usuario user, int i) {
+		if(user == this) {
+			getNotificacoes().remove(i);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean limparNotificacoes(Usuario user) {
+		if(user == this) {
+			getNotificacoes().clear();
+			return true;
+		}
+		return false;
 	}
 
 	public ArrayList<Grupo> getGrupos() {
@@ -148,15 +180,18 @@ public class Usuario {
 		out+= "| Email: " + getEmail() + "\n";
 		out+= "| Nome: " + getNome() + "\n";
 		out+= "| Senha: " + getSenha() + "\n";
+		out+= "| Permissão: " + getPermissao().getDescricao() + "\n";
 		out+= "| Agenda: " + getAgenda() + "\n";
-		out += "| Turmas: [";
+		out+= "| Turmas: [";
+		
 		for(Turma t:getTurmas()) {
 			out += "-" + t.getTurma() + " {" + t.getSigla() + ", " + t.getCor() + "} \n"; 
 		}
-		out+= "]";
 		
-		// Necessário complementar
-
+		out+= "] \n";
+		out+= "| " + exibirNotificacoes(this);
+		out+= "| Grupos: " + getGrupos() + "\n";
+		out+= "| Conversas: " + getConversas() + "\n";
 		
 		return out;
 	}
