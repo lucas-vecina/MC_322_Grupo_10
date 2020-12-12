@@ -32,6 +32,7 @@ public class Usuario {
 	/* Esse método possibilita a um usuário (user) visualizar um apanhado de informações sobre outro (this).
 	 * Ele é sobrescrito em Aluno e também invocado pelo mesmo. Para Professor, esse método já se faz suficiente.
 	 * Conforme a permissão do user, diferentes informações são exibidas. */
+	
 	protected String visualizarInfo(Usuario user) {
 		String out;
 		
@@ -53,6 +54,14 @@ public class Usuario {
 				return out;
 		}
 		return "";
+	}
+	
+	public void iniciarConversa(ArrayList<Usuario> grupo) {
+		Conversa conversa = new Conversa(grupo);
+		conversas.add(conversa); 
+		for (Usuario membro:grupo) {
+			membro.conversas.add(conversa);
+		}
 	}
 	
 	/* Exibe as turmas que o usuário participa. Evita loops e exibição de informações desnecessárias
