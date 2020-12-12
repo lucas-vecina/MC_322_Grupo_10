@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.GregorianCalendar;
 
 public class Main {
 
@@ -39,8 +40,26 @@ public class Main {
 		turma2.adicionaPed(prof2, aluno5);
 		turma2.adicionaPad(prof2, aluno4);
 
-		// 
+		// Criacao de nova aula para turma1
+		turma1.criarTeoria(prof1, "Conteudo introdutorio a bruxos", "aula1.pdf");
+		turma1.criarTeoria(prof1, "Palestra para bruxos: como matar um Grifo", "palestra.mov");
 		
+		// Criacao duvidas
+		Duvidas duvida1 = turma1.criarDuvida(aluno2, "Quais sao as propriedades fisicas de um Lobisomen?");
+		
+		// Criacao Monitoria
+		Monitoria monitoria1 = turma1.criarMonitoria(aluno1);
+		
+		// Nova atividade
+		AtividadeIndividual atividade1 = (AtividadeIndividual) turma1.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
+				"Matem um grifo", 10, new GregorianCalendar(2020, 03, 25, 00, 00), new GregorianCalendar(2020, 03, 31, 23, 59));
+		
+		AtividadeGrupo atividade2 = (AtividadeGrupo) turma1.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
+				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 00, 00), new GregorianCalendar(2020, 04, 29, 23, 59));
+	
+		// Saida
+		System.out.println("Turma 1: " + turma1);
+	
 	}
 
 }

@@ -25,6 +25,7 @@ public class Turma {
 		pad = new ArrayList<Aluno>();
 		alunos = new ArrayList<Aluno>();
 		agenda = new ArrayList<Evento>();
+		atividades = new ArrayList<Atividade>();
 		teoria = new ArrayList<Teoria>();
 		monitorias = new ArrayList<Monitoria>();
 		duvidas = new ArrayList<Duvidas>();
@@ -33,7 +34,7 @@ public class Turma {
 	/* Um professor ou ped podem criar uma nova atividade.
 	 * É feita uma diferenciação entre duas atividades, individual e em grupo. O parâmetro labels as segrega.
 	 * Ao fim é enviada uma notificação para cada aluno da turma informando sobre a nova atividade. */
-	public Atividade criarAtividade(Usuario user, Turma turma, String titulo, Labels label, String descricao, int notaMaxima, 
+	public Atividade criarAtividade(Usuario user, String titulo, Labels label, String descricao, int notaMaxima, 
 			GregorianCalendar dataInicio, GregorianCalendar data) {
 		
 		if(user instanceof Professor || getPed().contains(user)) {
@@ -43,13 +44,13 @@ public class Turma {
 			}
 			
 			if(label == Labels.ATIVIDADE_INDIVIDUAL) {
-				AtividadeIndividual atividade = new AtividadeIndividual(turma, titulo, label, descricao, notaMaxima, dataInicio, data);
+				AtividadeIndividual atividade = new AtividadeIndividual(this, titulo, label, descricao, notaMaxima, dataInicio, data);
 				getAtividades().add(0, atividade);
 				return atividade;
 			}
 			
 			else {
-				AtividadeGrupo atividade= new AtividadeGrupo(turma, titulo, label, descricao, notaMaxima, dataInicio, data);
+				AtividadeGrupo atividade= new AtividadeGrupo(this, titulo, label, descricao, notaMaxima, dataInicio, data);
 				getAtividades().add(0, atividade);
 				return atividade;
 			}
@@ -76,7 +77,7 @@ public class Turma {
 		}
 	}
 	
-	public Monitoria ciarMonitoria(Aluno monitor) {
+	public Monitoria criarMonitoria(Aluno monitor) {
 		if (ped.contains(monitor) || pad.contains(monitor)) {
 			Monitoria monitoria = new Monitoria(monitor, this);
 			for(Usuario u: getAlunos()) {
