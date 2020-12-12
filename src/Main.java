@@ -53,10 +53,10 @@ public class Main {
 		
 		// Nova atividade
 		AtividadeIndividual atividade1 = (AtividadeIndividual) turma1.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
-				"Matem um grifo", 10, new GregorianCalendar(2020, 03, 25, 00, 00), new GregorianCalendar(2020, 03, 31, 23, 59));
+				"Matem um grifo", 10, new GregorianCalendar(2020, 03, 25, 22, 30), new GregorianCalendar(2020, 03, 31, 23, 59));
 		
 		AtividadeGrupo atividade2 = (AtividadeGrupo) turma1.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
-				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 00, 00), new GregorianCalendar(2020, 04, 29, 23, 59));
+				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
 	
 		// Saida
 		System.out.println("Turma 1: " + turma1);
