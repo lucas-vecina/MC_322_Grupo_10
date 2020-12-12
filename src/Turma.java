@@ -166,4 +166,16 @@ public class Turma {
 				
 		return out;
 	}
+	
+	public void adicionaPad(Usuario user, Aluno aluno) {
+		if(user instanceof Professor) {
+			pad.add(aluno);
+		}
+	}
+	
+	public void adicionaPed(Usuario user, Aluno aluno) {
+		if(user instanceof Professor) {
+			ped.add(aluno);
+		}
+	}
 }
