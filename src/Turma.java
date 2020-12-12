@@ -172,51 +172,6 @@ public class Turma {
 	public void setAlunos(ArrayList<Aluno> alunos) {
 		this.alunos = alunos;
 	}
-
-	@Override
-	public String toString() {
-		String out = "\n";
-		out+= "-> Disciplina: " + getTurma() + " (" + getSigla() + ", " + getCor() + ") \n";
-		out+= "-> Ementa: " + getEmenta() + "\n";
-		out+= "-> Professor: " + getProfessor().getNome() + "\n";
-		out+= "-> PED's: [";
-		
-		for(Usuario u:getPed()) {
-			out+= u.getNome();
-			
-			if(getPed().indexOf(u) != getPed().size() - 1)
-				out+= ", ";
-		}
-		
-		out+= "] \n";
-		out+= "-> Pad's: [";
-		
-		for(Usuario u:getPad()) {
-			out+= u.getNome();
-			
-			if(getPad().indexOf(u) != getPad().size() - 1)
-				out+= ", ";
-		}
-			
-		out+= "] \n";
-		out+= "-> Alunos: [";
-		
-		for(Aluno a:getAlunos()) {
-			out+= a.getNome();
-		
-			if(getAlunos().indexOf(a) != getAlunos().size() -1)
-				out+= ", ";
-		}
-		
-		out+= "] \n";
-		out+= "\n-> Agenda: " + getAgenda();
-		out+= "-> Teoria: " + getTeoria() + "\n";
-		out+= "-> Atividades: " + getAtividades();
-		out+= "-> Monitorias: " + getMonitorias() + "\n";
-		out+= "-> Duvidas: " + getDuvidas() + "\n";
-				
-		return out;
-	}
 	
 	public void removePed(Usuario user, Aluno aluno) {
 		if(user == professor && ped.contains(aluno)) {
@@ -256,6 +211,49 @@ public class Turma {
 		}
 	}
 	
-	
+	@Override
+	public String toString() {
+		String out = "\n";
+		out+= "-> Disciplina: " + getTurma() + " (" + getSigla() + ", " + getCor() + ") \n";
+		out+= "-> Ementa: " + getEmenta() + "\n";
+		out+= "-> Professor: " + getProfessor().getNome() + "\n";
+		out+= "-> PED's: [";
+		
+		for(Usuario u:getPed()) {
+			out+= u.getNome();
+			
+			if(getPed().indexOf(u) != getPed().size() - 1)
+				out+= ", ";
+		}
+		
+		out+= "] \n";
+		out+= "-> Pad's: [";
+		
+		for(Usuario u:getPad()) {
+			out+= u.getNome();
+			
+			if(getPad().indexOf(u) != getPad().size() - 1)
+				out+= ", ";
+		}
+			
+		out+= "] \n";
+		out+= "-> Alunos: [";
+		
+		for(Aluno a:getAlunos()) {
+			out+= a.getNome();
+		
+			if(getAlunos().indexOf(a) != getAlunos().size() -1)
+				out+= ", ";
+		}
+		
+		out+= "] \n";
+		out+= "\n-> Agenda: " + getAgenda();
+		out+= "\n-> Teoria: " + getTeoria() + "\n";
+		out+= "\n-> Atividades: " + getAtividades();
+		out+= "\n-> Monitorias: " + getMonitorias() + "\n";
+		out+= "\n-> Duvidas: " + getDuvidas() + "\n";
+				
+		return out;
+	}
 
 }
