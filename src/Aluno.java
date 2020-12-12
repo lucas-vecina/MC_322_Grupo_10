@@ -3,10 +3,10 @@ import java.util.ArrayList;
 public class Aluno extends Usuario{
 	private ArrayList<Usuario> amigos;
 	private String curso;
-	private int ra;
+	private String ra;
 	
 	//Construtor
-	public Aluno(String nome, Genero genero, String email, String senha, Permissoes permissao, String curso, int ra) {
+	public Aluno(String nome, Genero genero, String email, String senha, Permissoes permissao, String curso, String ra) {
 		super(nome, genero, email, senha, permissao);
 		this.curso = curso; 
 		this.ra = ra;
@@ -82,15 +82,13 @@ public class Aluno extends Usuario{
 		this.amigos = amigos;
 	}
 	
-	public int getRa() {
+	public String getRa() {
 		return ra;
 	}
 
-	public void setRa(int ra) {
+	public void setRa(String ra) {
 		this.ra = ra;
 	}
-
-
 	
 	public String getCurso() {
 		return curso;
