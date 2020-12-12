@@ -90,21 +90,14 @@ public class Aluno extends Usuario{
 		this.ra = ra;
 	}
 
+
+	
 	public String getCurso() {
 		return curso;
 	}
 
 	public void setCurso(String curso) {
 		this.curso = curso;
-	}
-	
-	//******************Nao seria um metodo de Usuario???
-	public void criarGrupo(String nome, ArrayList<Usuario> membros) {
-		Grupo grupo = new Grupo(nome, membros);
-		grupo.getGrupo().add(this);
-		this.getGrupos().add(grupo);
-		for(Usuario membro:membros) 
-			membro.getGrupos().add(grupo); 
 	}
 	
 	public void trancarDisciplina(Turma turma) {
