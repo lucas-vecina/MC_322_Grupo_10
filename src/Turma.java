@@ -7,14 +7,14 @@ public class Turma {
 	private Cor cor = Cor.LARANJA;	//default, possivel alterar
 	private String ementa;
 	private Professor professor;
-	private ArrayList<Aluno> ped;	// Lista contendo elementos do tipo Aluno com permissões próximas ao do Professor
-	private ArrayList<Aluno> pad;	// Lista contendo elementos do tipo Aluno algumas permissões a mais do que um aluno comum
-	private ArrayList<Aluno> alunos;	// Lista contendo os Alunos que de fato cursarão a disciplina
-	private ArrayList<Evento> agenda;	// Contém labels informando sobre atividades agendadas
-	private ArrayList<Teoria> teoria;	// Contém simbolicamente arquivos e conteúdos da disciplina
-	private ArrayList<Atividade> atividades;	// Ambiente em que é possível visualizar todas as atividades criadas
-	private ArrayList<Monitoria> monitorias;	// Ambiente simbólico para atendimento síncrono do aluno
-	private ArrayList<Duvidas> duvidas;		// Ambiente para retirada de dúvidas. Visível a todos os alunos que cursam a disciplina
+	private ArrayList<Aluno> ped;	// Lista contendo elementos do tipo Aluno com permissoees proximas ao do Professor
+	private ArrayList<Aluno> pad;	// Lista contendo elementos do tipo Aluno algumas permissoes a mais do que um aluno comum
+	private ArrayList<Aluno> alunos;	// Lista contendo os Alunos que de fato cursarao a disciplina
+	private ArrayList<Evento> agenda;	// Contem labels informando sobre atividades agendadas
+	private ArrayList<Teoria> teoria;	// Contem simbolicamente arquivos e conteudos da disciplina
+	private ArrayList<Atividade> atividades;	// Ambiente em que e possivel visualizar todas as atividades criadas
+	private ArrayList<Monitoria> monitorias;	// Ambiente simbolico para atendimento sincrono do aluno
+	private ArrayList<Duvidas> duvidas;		// Ambiente para retirada de duvidas. Visivel a todos os alunos que cursam a disciplina
 	
 	//Contrutor para ser usado na criacao de turmas pelo professor
 	public Turma(String turma, String sigla, Professor professor) {
@@ -32,8 +32,8 @@ public class Turma {
 	}
 	
 	/* Um professor ou ped podem criar uma nova atividade.
-	 * É feita uma diferenciação entre duas atividades, individual e em grupo. O parâmetro labels as segrega.
-	 * Ao fim é enviada uma notificação para cada aluno da turma informando sobre a nova atividade. */
+	 * E feita uma diferenciacao entre duas atividades, individual e em grupo. O parametro labels as segrega.
+	 * Ao fim e enviada uma notificacao para cada aluno da turma informando sobre a nova atividade. */
 	public Atividade criarAtividade(Usuario user, String titulo, Labels label, String descricao, int notaMaxima, 
 			GregorianCalendar dataInicio, GregorianCalendar data) {
 		

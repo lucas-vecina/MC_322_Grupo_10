@@ -13,7 +13,7 @@ public class Aluno extends Usuario{
 		amigos = new ArrayList<Usuario>();
 	}
 	
-	/* Método sobrescrito em Usuario. 
+	/* Metodo sobrescrito em Usuario. 
 	 * Verifica permissoes do usuario (this) e exibe informacoes de acordo */
 	public String visualizarInfo(Usuario user) {
 		String out;
@@ -62,7 +62,7 @@ public class Aluno extends Usuario{
 				
 	}
 	
-	/* Método sobrescrito em Usuario. 
+	/* Metodo sobrescrito em Usuario. 
 	 * Verifica permissoes do usuario (this) e exibe as turmas */
 	public String visualizarTurma(Usuario user) {
 		if(this.getPermissao().getChave() != 3 || getAmigos().contains(user)) {
