@@ -67,6 +67,15 @@ public class Turma {
 			return null;
 		}
 	}
+	
+	public Monitoria ciarMonitoria(Aluno monitor) {
+		if (ped.contains(monitor) || pad.contains(monitor)) {
+			Monitoria monitoria = new Monitoria(monitor, this);
+			return monitoria;
+		}else {
+			return null;
+		}
+	}
 
 	public String getTurma() {
 		return turma;
