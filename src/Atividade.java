@@ -3,10 +3,10 @@ import java.util.GregorianCalendar;
 
 public class Atividade extends Evento{
 	
-	/* A classe Atividade é mãe de duas outras especializadas, AtividadeIndividual e AtividadeGrupo.
-	 * Aqui são reunidos alguns atributos e métodos comuns a elas.
-	 * Atividade, por conseguinte, também é filha de Evento, pois toda atividade instanciada é diretamente
-	 * associada a agenda do usuário e da turma. 
+	/* A classe Atividade e mae de duas outras especializadas, AtividadeIndividual e AtividadeGrupo.
+	 * Aqui sao reunidos alguns atributos e metodos comuns a elas.
+	 * Atividade, por conseguinte, tambem e filha de Evento, pois toda atividade instanciada e diretamente
+	 * associada a agenda do usuario e da turma. 
 	 */
 	
 	private Calendar dataInicio = new GregorianCalendar();
@@ -17,13 +17,13 @@ public class Atividade extends Evento{
 	public Atividade(Turma turma, String titulo, Labels label, String descricao, int notaMaxima,
 			GregorianCalendar dataInicio, GregorianCalendar data) {
 	
-		// Como o construtor de Evento é sobrecerregado, optou-se por inicializar, por default, aquele associado a Turma
+		// Como o construtor de Evento e sobrecerregado, optou-se por inicializar, por default, aquele associado a Turma
 		super(titulo, label, descricao, data, false);
 		
-		// Evento é adicionado a agenda da turma. Um casting é necessário para se restringir a instância superior
+		// Evento e adicionado a agenda da turma. Um casting e necessario para se restringir a instancia superior
 		turma.getAgenda().add(0, (Evento) this);	
 		
-		// Novo objeto de Reunião é criado, agora para ser incluido a cada agenda de alunos da turma
+		// Novo objeto de Reuniao e criado, agora para ser incluido a cada agenda de alunos da turma
 		this.agendaAluno = new Evento(titulo, label, descricao, turma.getSigla(), turma.getCor(), data, false);
 		for(Usuario u:turma.getAlunos()) {
 			u.getAgenda().add(0, agendaAluno);
@@ -34,10 +34,10 @@ public class Atividade extends Evento{
 		this.turma = turma;
 	}
 	
-	/* Esse é um método que contém características em comum entre os respectivos metodos das classess filhas.
-	 * É  simplismente uma comdicional que avalia se o usuário solicitante tem a permissao de atribuir nota a um
-	 * aluno em específico ou a um grupo.
-	 * Somente o professor e peds detém dessa permissao.
+	/* Esse e um metodo que contem caracteristicas em comum entre os respectivos metodos das classess filhas.
+	 * E simplismente uma comdicional que avalia se o usuario solicitante tem a permissao de atribuir nota a um
+	 * aluno em especifico ou a um grupo.
+	 * Somente o professor e peds detem dessa permissao.
 	 */
 	protected boolean atribuirNota(Usuario user) {
 		if (user instanceof Professor || turma.getPed().contains(user)) {
@@ -46,19 +46,19 @@ public class Atividade extends Evento{
 		return false;
 	}
 	
-	/* Esse é um método que contém características em comum entre os respectivos metodos das classess filhas.
-	 * Ele avalia as saídas comuns que ambos os métodos filhos podem ter ao um aluno solicitar para visualizar sua nota.
+	/* Esse e um metodo que contem caracteristicas em comum entre os respectivos metodos das classess filhas.
+	 * Ele avalia as saidas comuns que ambos os metodos filhos podem ter ao um aluno solicitar para visualizar sua nota.
 	 */	
 	protected String visualizarNota(double aux) {
 		switch((int) aux){
 			case -3:
-				return "Seu grupo ainda não foi adicionado a lista dessa atividade";
+				return "Seu grupo ainda nao foi adicionado a lista dessa atividade";
 		
 			case -2:
-				return "Você não entregou essa atividade.";
+				return "Voce nao entregou essa atividade.";
 
 			case -1:
-				return "Sua nota ainda não foi atribuída.";
+				return "Sua nota ainda nao foi atribuida.";
 			
 			default:
 				return "Sua nota foi: " + Double.toString(aux) + "/" + getNotaMaxima();
@@ -95,7 +95,7 @@ public class Atividade extends Evento{
 	
 	public String toString() {
 		String out = super.toString();	
-		out+= "# Data de início: " + getDataInicio().get(Calendar.DAY_OF_MONTH) + "/" + getDataInicio().get(Calendar.MONTH)
+		out+= "# Data de inicio: " + getDataInicio().get(Calendar.DAY_OF_MONTH) + "/" + getDataInicio().get(Calendar.MONTH)
 				+ " " + getDataInicio().get(Calendar.HOUR_OF_DAY) + ":" + getDataInicio().get(Calendar.MINUTE) + "\n";
 
 		return out;
