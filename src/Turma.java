@@ -176,28 +176,40 @@ public class Turma {
 	@Override
 	public String toString() {
 		String out = "\n";
-		out+= "-> Disciplina: " + getTurma() + " (" + getSigla() + "," + getCor() + ") \n";
+		out+= "-> Disciplina: " + getTurma() + " (" + getSigla() + ", " + getCor() + ") \n";
 		out+= "-> Ementa: " + getEmenta() + "\n";
 		out+= "-> Professor: " + getProfessor().getNome() + "\n";
 		out+= "-> PED's: [";
 		
-		for(Usuario u:getPed())
-			out+= u.getNome() + ", ";
+		for(Usuario u:getPed()) {
+			out+= u.getNome();
+			
+			if(getPed().indexOf(u) != getPed().size() - 1)
+				out+= ", ";
+		}
 		
 		out+= "] \n";
 		out+= "-> Pad's: [";
 		
-		for(Usuario u:getPad())
-			out+= u.getNome() + ", ";
-		
+		for(Usuario u:getPad()) {
+			out+= u.getNome();
+			
+			if(getPad().indexOf(u) != getPad().size() - 1)
+				out+= ", ";
+		}
+			
 		out+= "] \n";
 		out+= "-> Alunos: [";
 		
-		for(Aluno a:getAlunos())
-			out+= a.getNome() + ", ";
+		for(Aluno a:getAlunos()) {
+			out+= a.getNome();
+		
+			if(getAlunos().indexOf(a) != getAlunos().size() -1)
+				out+= ", ";
+		}
 		
 		out+= "] \n";
-		out+= "-> Agenda: " + getAgenda();
+		out+= "\n-> Agenda: " + getAgenda();
 		out+= "-> Teoria: " + getTeoria() + "\n";
 		out+= "-> Atividades: " + getAtividades();
 		out+= "-> Monitorias: " + getMonitorias() + "\n";
