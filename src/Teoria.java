@@ -34,7 +34,7 @@ public class Teoria {
 	
 	public String toString() {
 		String out = "\n";
-		out+= "* Descrição: " + getDescricao() + "; " + "\t Arquivo: " + getArquivos();
+		out += "* Descricao: " + getDescricao() + "; " + "\n" + "Arquivo: " + getArquivos() + ";\n ";
 						
 		return out;
 	}
