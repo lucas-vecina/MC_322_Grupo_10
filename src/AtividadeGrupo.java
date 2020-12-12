@@ -50,13 +50,13 @@ public class AtividadeGrupo extends Atividade{
 		// Ações de saída personalizadas conforme o cenário
 		switch(verif) {
 			case -2:
-				return "Grupo não pode ser adicionado. Um ou mais alunos não pertencem a essa turma."; 
+				return "Grupo nao pode ser adicionado. Um ou mais alunos nao pertencem a essa turma."; 
 				
 			case -1:
-				return "Grupo não pode ser adicionado. um ou mais integrantes já pertencem a um outro grupo dessa atividade"; 
+				return "Grupo nao pode ser adicionado. um ou mais integrantes ja pertencem a um outro grupo dessa atividade"; 
 			
 			case 0:
-				return "Grupo não pode ser adicionado. Quantidade de integrantes diferente da solicitada.";
+				return "Grupo nao pode ser adicionado. Quantidade de integrantes diferente da solicitada.";
 
 			default:
 				getSubmissoes().add(new Submissao(equipe));	// grupo adicionado ao array de submissoes
@@ -120,7 +120,7 @@ public class AtividadeGrupo extends Atividade{
 	public String toString() {
 		String out = super.toString();	
 		out += "# Tamanho do grupo: " + getTamanhoGrupo() + "\n";
-		out += "# Submissões: " + getSubmissoes() + "\n";
+		out += "# Submissoes: " + getSubmissoes() + "\n";
 		
 		return out;
 	}

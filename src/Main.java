@@ -35,7 +35,8 @@ public class Main {
 		turma1.adicionaPed(prof1, aluno1);
 		turma1.adicionaPad(prof1, aluno3);
 		
-		aux1.clear();	aux1.addAll(Arrays.asList(aluno1, aluno2, aluno3));
+		aux1.clear();	
+		aux1.addAll(Arrays.asList(aluno1, aluno2, aluno3));
 		turma2.setAlunos(aux1);
 		turma2.adicionaPed(prof2, aluno5);
 		turma2.adicionaPad(prof2, aluno4);
