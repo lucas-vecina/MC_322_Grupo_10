@@ -15,15 +15,14 @@ public class AtividadeGrupo extends Atividade{
 			GregorianCalendar dataInicio, GregorianCalendar data) {
 		
 		super(turma, titulo, label, descricao, notaMaxima, dataInicio, data);
-		this.tamanhoGrupo = 4;	//default, pode ser alterado
+		this.tamanhoGrupo = 3;	//default, pode ser alterado
 		this.submissoes = new ArrayList<Submissao>();
 	}
 	
 	/* Um grupo de alunos já pré-definido é inserido atraves do desse metodo.
 	 * Se faz necessário que o grupo de alunos seja estabelcido e adicionado antes da submissão da atividade
 	 */
-	@SuppressWarnings("unused")
-	private String adicionarGrupo(Grupo equipe) {
+	public String adicionarGrupo(Grupo equipe) {
 		int verif = 1;	// variavel para manipulação das saídas
 		
 		for(Usuario u:equipe.getGrupo()) {

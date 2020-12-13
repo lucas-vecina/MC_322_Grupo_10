@@ -53,8 +53,7 @@ public class Submissao {
 	}
 
 	public String toString() {
-		String out = "\n";
-		out+= (getAluno() != null ? "! Aluno: " + getAluno().getNome() + " [" + getAluno().getRa() + "]" + "\n" : "");
+		String out = (getAluno() != null ? "! Aluno: " + getAluno().getNome() + " [" + getAluno().getRa() + "]" + "\n" : "");
 		out+= (getEquipe() != null ? "! Grupo: " + getEquipe() + "\n" : "");
 		out+= (getArquivo() != null ? "! Arquivo: " + getArquivo() + "\n" : "");
 		out+= "! " + (getNota() != -1 ? "Nota: " + getNota() : "Nota ainda não atribuída") + "\n";
