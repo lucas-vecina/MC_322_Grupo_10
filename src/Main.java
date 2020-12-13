@@ -31,20 +31,20 @@ public class Main {
 		
 		// Insercao dos alunos, peds e pads nas turmas
 		aux1.addAll(Arrays.asList(aluno2, aluno4, aluno6));
-		turma1.adicionaAluno(prof1,aux1);
+		turma1.adicionaAluno(prof1, aux1);
 		turma1.adicionaPed(prof1, aluno1);
 		turma1.adicionaPad(prof1, aluno3);
 	
 		
 		aux1.clear();	
 		aux1.addAll(Arrays.asList(aluno1, aluno2, aluno3));
-		turma2.setAlunos(aux1);
+		turma2.adicionaAluno(prof2, aux1);
 		turma2.adicionaPed(prof2, aluno5);
 		turma2.adicionaPad(prof2, aluno4);
 
 		// Criacao de nova aula para turma1
 		turma1.criarTeoria(prof1, "Conteudo introdutorio a bruxos", "aula1.pdf");
-		turma1.criarTeoria(prof1, "Palestra para bruxos: como matar um Grifo", "palestra.mov");
+		turma1.criarTeoria(prof1, "Palestra para bruxos: como matar um Grifo", "seminario.mov");
 		
 		// Criacao duvidas
 		Duvidas duvida1 = turma1.criarDuvida(aluno2, "Quais sao as propriedades fisicas de um Lobisomen?");
@@ -62,25 +62,27 @@ public class Main {
 		// Saida
 		System.out.println("Turma 1: " + turma1);
 	
-		/*/ Criacao de nova aula para turma2
+		// Criacao de nova aula para turma2
 		turma2.criarTeoria(prof2, "Introcao a alquimia", "aula1.pdf");
 		turma2.criarTeoria(prof2, "Seminario: Transformar agua em vinho", "palestra.mov");
 		
 		// Criacao duvidas
 		Duvidas duvida2 = turma2.criarDuvida(aluno3, "E possivel transformar um bruxo em ouro?");
+		duvida2.Replicar(prof1, "Posso te transformar em picadinho.");
 		
 		// Criacao Monitoria
-		Monitoria monitoria2 = turma2.criarMonitoria(aluno1);
+		Monitoria monitoria2 = turma2.criarMonitoria(aluno5);
+		monitoria2.AbrirMonitoria(aluno5);
 		
 		// Nova atividade
-		AtividadeIndividual atividade1 = (AtividadeIndividual) turma1.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
-				"Matem um grifo", 10, new GregorianCalendar(2020, 03, 25, 22, 30), new GregorianCalendar(2020, 03, 31, 23, 59));
+		AtividadeIndividual atividade3 = (AtividadeIndividual) turma2.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
+				"Criar um arco-iris de fogo", 10, new GregorianCalendar(2020, 03, 25, 22, 30), new GregorianCalendar(2020, 03, 31, 23, 59));
 		
-		AtividadeGrupo atividade2 = (AtividadeGrupo) turma1.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
-				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
+		AtividadeGrupo atividade4 = (AtividadeGrupo) turma2.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
+				"Mostre que homunculus podem existir", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
 	
 		// Saida
-		System.out.println("Turma 1: " + turma1);*/
+		System.out.println("Turma 2: " + turma2);
 	}
 
 }

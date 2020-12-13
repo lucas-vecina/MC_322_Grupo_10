@@ -25,8 +25,8 @@ public class Mensagem {
 	
 	@Override
 	public String toString() {
-		String out = "Remetente:" + sujeito.getNome(); 
-		out = out + "Mensagem:\n" + texto;
+		String out = sujeito.getNome()+": "; 
+		out = out + texto;
 		return out;
 	}
 }

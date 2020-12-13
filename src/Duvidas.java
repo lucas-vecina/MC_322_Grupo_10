@@ -57,7 +57,7 @@ public class Duvidas {
 	}
 	
 	public void Replicar(Usuario replicador, String comentario) {
-		if (!resolvido) {
+		if (!resolvido && (replicador instanceof Professor || this.turma.getAlunos().contains(replicador))) {
 			Mensagem mensagem = new Mensagem(replicador, comentario);
 			comentarios.add(mensagem); 
 			
@@ -71,11 +71,15 @@ public class Duvidas {
 	
 	public String toString() {
 		String out = "\n";
-		out+= "(" + getTurma().getSigla() + ", " + getTurma().getCor() + ") \n";
 		out+= "Indagador: " + getIndagador().getNome() + "\n";
 		out+= "Indagacao: " + getIndagacao() + "\n";
-		out+= "Comentarios: " + getComentarios() + "\n";
-		out += "Resolvido? " + (isResolvido() ? "Sim" : "Nao");
+		
+		out+= "Comentarios: ";
+		for(Mensagem m: comentarios) {
+			out+= "\n" + m;
+		}
+		
+		out += "\nResolvido? " + (isResolvido() ? "Sim" : "Nao");
 				
 		return out;
 	}
