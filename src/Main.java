@@ -60,7 +60,7 @@ public class Main {
 				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
 	
 		// Saida
-		System.out.println("Turma 1: " + turma1);
+		System.out.println("Turma 1: " + turma1 + "---------------------------------------------------------");
 	
 		// Criacao de nova aula para turma2
 		turma2.criarTeoria(prof2, "Introcao a alquimia", "aula1.pdf");
@@ -82,7 +82,9 @@ public class Main {
 				"Mostre que homunculus podem existir", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
 	
 		// Saida
-		System.out.println("Turma 2: " + turma2);
+		System.out.println("Turma 2: " + turma2 + "---------------------------------------------------------");
+		//Mostrando notificacoes para aluno 2
+		System.out.println(aluno2.exibirNotificacoes(aluno2));
 	}
 
 }

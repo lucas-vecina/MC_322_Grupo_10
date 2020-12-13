@@ -80,7 +80,7 @@ public class Monitoria {
 	
 	@Override
 	public String toString() {
-		String out = "Monitor:" + getMonitor().getNome() + ", RA: " + getMonitor().getRa();
+		String out = "\nMonitor:" + getMonitor().getNome() + ", RA: " + getMonitor().getRa();
 		out += "\n Turma: " + getTurma().getSigla(); 
 		out += "\n Status: " + (isStatus()? "Aberto" : "Fechado"); 
 		out += "\n Pessoas na fila:";

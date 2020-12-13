@@ -92,7 +92,7 @@ public class Usuario {
 			String out = "Notificacoes: [";
 			
 			for(Notificacoes n:getNotificacoes())
-				out+= "* " + n.getNotificacao() + ", ";
+				out+= "\n* " + n.getNotificacao() + ", ";
 
 			out+= "]\n";
 			return out;
