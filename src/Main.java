@@ -32,9 +32,6 @@ public class Main {
 		// Insercao dos alunos, peds e pads nas turmas
 		aux1.addAll(Arrays.asList(aluno2, aluno4, aluno6));
 		turma1.adicionaAluno(prof1,aux1);
-		//turma1.adicionaAluno(prof1, aluno2);
-		//turma1.adicionaAluno(prof1, aluno4);
-		//turma1.adicionaAluno(prof1, aluno6);
 		turma1.adicionaPed(prof1, aluno1);
 		turma1.adicionaPad(prof1, aluno3);
 	
