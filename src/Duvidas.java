@@ -75,7 +75,7 @@ public class Duvidas {
 		out+= "Indagador: " + getIndagador().getNome() + "\n";
 		out+= "Indagacao: " + getIndagacao() + "\n";
 		out+= "Comentarios: " + getComentarios() + "\n";
-		out += "Resolvido? " + (isResolvido() ? "Sim" : "Não");
+		out += "Resolvido? " + (isResolvido() ? "Sim" : "Nao");
 				
 		return out;
 	}
