@@ -49,7 +49,6 @@ public class Main {
 		// Criando um grupo
 		ArrayList<Usuario> aux2 = new ArrayList<Usuario>(aux1);
 		Grupo equipe1 = new Grupo(aux2);
-		
 		// Criacao de nova aula para turma1
 		turma1.criarTeoria(prof1, "Conteudo introdutorio a bruxos", "aula1.pdf");
 		turma1.criarTeoria(prof1, "Palestra para bruxos: como matar um Grifo", "seminario.mov");
@@ -70,7 +69,7 @@ public class Main {
 		
 		AtividadeGrupo atividade2 = (AtividadeGrupo) turma1.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
 				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
-	
+		System.out.println(atividade2.adicionarGrupo(equipe1));
 		// Saida
 		System.out.println("Turma 1: " + turma1 + "---------------------------------------------------------");
 	
@@ -108,6 +107,8 @@ public class Main {
 		conversa1.enviarMensagem(aluno1, "oi");
 		conversa1.enviarMensagem(aluno3, "ola");
 		System.out.println(conversa1);
+		
+		
 	}
 
 }
