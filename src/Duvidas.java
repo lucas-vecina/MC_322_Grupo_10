@@ -71,7 +71,7 @@ public class Duvidas {
 	
 	public String toString() {
 		String out = "\n";
-		out+= getTurma().getSigla() + ", " + getTurma().getCor() + ") \n";
+		out+= "(" + getTurma().getSigla() + ", " + getTurma().getCor() + ") \n";
 		out+= "Indagador: " + getIndagador().getNome() + "\n";
 		out+= "Indagacao: " + getIndagacao() + "\n";
 		out+= "Comentarios: " + getComentarios() + "\n";
