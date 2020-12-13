@@ -8,6 +8,7 @@ public class Atividade extends Evento{
 	 * Atividade, por conseguinte, tambem e filha de Evento, pois toda atividade instanciada e diretamente
 	 * associada a agenda do usuario e da turma. 
 	 */
+	//Ainda nao utilizamos a heranca com Evento, sera feito na continuacao do trabalho
 	
 	private Calendar dataInicio = new GregorianCalendar();
 	private int notaMaxima;

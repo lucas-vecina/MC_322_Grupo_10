@@ -58,6 +58,10 @@ public class Main {
 		
 		// Criacao Monitoria
 		Monitoria monitoria1 = turma1.criarMonitoria(aluno1);
+		monitoria1.abrirMonitoria(aluno1);
+		monitoria1.entrarMonitoria(aluno2);
+		monitoria1.entrarMonitoria(aluno4);
+		monitoria1.atender(aluno1);
 		
 		// Nova atividade
 		AtividadeIndividual atividade1 = (AtividadeIndividual) turma1.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
@@ -84,7 +88,7 @@ public class Main {
 		
 		// Criacao Monitoria
 		Monitoria monitoria2 = turma2.criarMonitoria(aluno5);
-		monitoria2.AbrirMonitoria(aluno5);
+		monitoria2.abrirMonitoria(aluno5);
 		
 		// Nova atividade
 		AtividadeIndividual atividade3 = (AtividadeIndividual) turma2.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
@@ -106,7 +110,12 @@ public class Main {
 		Conversa conversa1 = new Conversa(aux2);
 		conversa1.enviarMensagem(aluno1, "oi");
 		conversa1.enviarMensagem(aluno3, "ola");
-		System.out.println(conversa1);
+		System.out.println(conversa1 + "\n---------------------------------------------------------\n\n");
+		
+		//Trancando disciplinas
+		aluno1.trancarDisciplina(turma2);
+		System.out.println("Turma 2: " + turma2 + "---------------------------------------------------------");
+		
 		
 		
 	}

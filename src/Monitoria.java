@@ -46,19 +46,19 @@ public class Monitoria {
 		this.fila = fila;
 	}
 
-	public void Atender(Aluno monitor) {
+	public void atender(Aluno monitor) {
 		if (!fila.isEmpty() && status && monitor == this.monitor) {
 			fila.remove(1); 
 		}
 	}
 	
-	public void AbrirMonitoria(Aluno monitor) {
+	public void abrirMonitoria(Aluno monitor) {
 		if (!status && monitor == this.monitor) {
 			status = true;
 		}
 	}
 	
-	public void FecharMontoria(Aluno monitor) {
+	public void fecharMontoria(Aluno monitor) {
 		if (status && monitor == this.monitor) {
 			for (Usuario aluno:fila) 
 				fila.remove(aluno);
@@ -66,13 +66,13 @@ public class Monitoria {
 		}
 	}
 	
-	public void EntrarMonitoria(Aluno aluno) {
+	public void entrarMonitoria(Aluno aluno) {
 		if (status && turma.getAlunos().contains(aluno)) {
 			fila.add(aluno); 
 		}
 	}
 	
-	public void SairMonitoria(Aluno aluno) {
+	public void sairMonitoria(Aluno aluno) {
 		if (fila.contains(aluno)) {
 			fila.remove(aluno); 
 		}
