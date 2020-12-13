@@ -6,6 +6,7 @@ public class Conversa {
 	
 	public Conversa(ArrayList<Usuario> pessoas) {
 		this.pessoas = new Grupo(pessoas); 
+		mensagens = new ArrayList<Mensagem>();
 	}
 
 	public Grupo getPessoas() {

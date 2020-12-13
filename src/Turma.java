@@ -224,7 +224,7 @@ public class Turma {
 	public String toString() {
 		String out = "\n";
 		out+= "-> Disciplina: " + getTurma() + " (" + getSigla() + ", " + getCor() + ") \n";
-		out+= "-> Ementa: " + getEmenta() + "\n";
+		out+= (ementa != null? "-> Ementa: " + getEmenta() + "\n":"");
 		out+= "-> Professor: " + getProfessor().getNome() + "\n";
 		out+= "-> PED's: [";
 		

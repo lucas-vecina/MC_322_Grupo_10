@@ -81,6 +81,7 @@ public class Main {
 		// Criacao duvidas
 		Duvidas duvida2 = turma2.criarDuvida(aluno3, "E possivel transformar um bruxo em ouro?");
 		duvida2.Replicar(prof1, "Posso te transformar em picadinho.");
+		duvida2.Resolver();
 		
 		// Criacao Monitoria
 		Monitoria monitoria2 = turma2.criarMonitoria(aluno5);
@@ -101,6 +102,12 @@ public class Main {
 		System.out.println("Turma 2: " + turma2 + "---------------------------------------------------------");
 		//Mostrando notificacoes para aluno 2
 		System.out.println(aluno2.exibirNotificacoes(aluno2) + "---------------------------------------------------------");
+		
+		// Demonstrando conversa
+		Conversa conversa1 = new Conversa(aux2);
+		conversa1.enviarMensagem(aluno1, "oi");
+		conversa1.enviarMensagem(aluno3, "ola");
+		System.out.println(conversa1);
 	}
 
 }
