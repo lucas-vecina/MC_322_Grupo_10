@@ -55,6 +55,7 @@ public class Main {
 		
 		// Criacao duvidas
 		Duvidas duvida1 = turma1.criarDuvida(aluno2, "Quais sao as propriedades fisicas de um Lobisomen?");
+		duvida1.resolver();
 		
 		// Criacao Monitoria
 		Monitoria monitoria1 = turma1.criarMonitoria(aluno1);
@@ -83,8 +84,8 @@ public class Main {
 		
 		// Criacao duvidas
 		Duvidas duvida2 = turma2.criarDuvida(aluno3, "E possivel transformar um bruxo em ouro?");
-		duvida2.Replicar(prof1, "Posso te transformar em picadinho.");
-		duvida2.Resolver();
+		duvida2.replicar(prof1, "Posso te transformar em picadinho.");
+		duvida2.resolver();
 		
 		// Criacao Monitoria
 		Monitoria monitoria2 = turma2.criarMonitoria(aluno5);
@@ -93,7 +94,8 @@ public class Main {
 		// Nova atividade
 		AtividadeIndividual atividade3 = (AtividadeIndividual) turma2.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
 				"Criar um arco-iris de fogo", 10, new GregorianCalendar(2020, 03, 25, 22, 30), new GregorianCalendar(2020, 03, 31, 23, 59));
-
+		atividade3.submeterAtividade(aluno1, "instrucoes.pdf");
+		
 		AtividadeGrupo atividade4 = (AtividadeGrupo) turma2.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
 				"Mostre que homunculus podem existir", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
 		atividade4.adicionarGrupo(equipe1);
