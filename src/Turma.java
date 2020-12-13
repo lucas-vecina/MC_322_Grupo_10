@@ -192,6 +192,15 @@ public class Turma {
 		}
 	}
 	
+	public void adicionaAluno(Usuario user, ArrayList<Aluno> alunos) {
+		if(user == professor) {
+			for(Aluno a: alunos) {
+				this.alunos.add(a);
+				a.getTurmas().add(this);
+			}
+		}
+	}
+	
 	public void removeAluno(Usuario user, Aluno aluno) {
 		if(user == professor && alunos.contains(aluno)) {
 			alunos.remove(aluno);

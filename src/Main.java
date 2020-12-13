@@ -17,23 +17,27 @@ public class Main {
 		Aluno aluno2 = new Aluno("Dandelion", Genero.MASCULINO, "dan@uol.com", "senha321", Permissoes.DEFAULT,
 				"Musica", "54321");
 		Aluno aluno3 = new Aluno("Zoltan", Genero.NAO_IDENTIFICADO, "zoltan@dac.unicamp.br", "sen321ha", Permissoes.PRIVATE,
-				"Eng. Mecânica", "00012");
+				"Eng. Mecanica", "00012");
 		Aluno aluno4 = new Aluno("Triss", Genero.FEMININO, "triss@apple.mail.com", "sen123ha", Permissoes.DEFAULT,
-				"Eng. Química", "00044");
+				"Eng. Quimica", "00044");
 		Aluno aluno5 = new Aluno("Fringila", Genero.NAO_BINARIO, "frin@usp.br", "sen000ha", Permissoes.PRIVATE,
-				"Química", "00055");
+				"Quimica", "00055");
 		Aluno aluno6 = new Aluno("Emhyr", Genero.MASCULINO, "emhyr@unesp.br", "senha000", Permissoes.PUBLIC,
 				"Economia", "99666");
 		
 		// Instancias de turmas
 		Turma turma1 = prof1.criarTurma("Bruxos I", "BX111");
-		Turma turma2 = prof2.criarTurma("Quimica I", "QG101");
+		Turma turma2 = prof2.criarTurma("Alquimia I", "QG101");
 		
 		// Insercao dos alunos, peds e pads nas turmas
 		aux1.addAll(Arrays.asList(aluno2, aluno4, aluno6));
-		turma1.setAlunos(aux1);
+		turma1.adicionaAluno(prof1,aux1);
+		//turma1.adicionaAluno(prof1, aluno2);
+		//turma1.adicionaAluno(prof1, aluno4);
+		//turma1.adicionaAluno(prof1, aluno6);
 		turma1.adicionaPed(prof1, aluno1);
 		turma1.adicionaPad(prof1, aluno3);
+	
 		
 		aux1.clear();	
 		aux1.addAll(Arrays.asList(aluno1, aluno2, aluno3));
@@ -61,6 +65,25 @@ public class Main {
 		// Saida
 		System.out.println("Turma 1: " + turma1);
 	
+		/*/ Criacao de nova aula para turma2
+		turma2.criarTeoria(prof2, "Introcao a alquimia", "aula1.pdf");
+		turma2.criarTeoria(prof2, "Seminario: Transformar agua em vinho", "palestra.mov");
+		
+		// Criacao duvidas
+		Duvidas duvida2 = turma2.criarDuvida(aluno3, "E possivel transformar um bruxo em ouro?");
+		
+		// Criacao Monitoria
+		Monitoria monitoria2 = turma2.criarMonitoria(aluno1);
+		
+		// Nova atividade
+		AtividadeIndividual atividade1 = (AtividadeIndividual) turma1.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
+				"Matem um grifo", 10, new GregorianCalendar(2020, 03, 25, 22, 30), new GregorianCalendar(2020, 03, 31, 23, 59));
+		
+		AtividadeGrupo atividade2 = (AtividadeGrupo) turma1.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
+				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
+	
+		// Saida
+		System.out.println("Turma 1: " + turma1);*/
 	}
 
 }
