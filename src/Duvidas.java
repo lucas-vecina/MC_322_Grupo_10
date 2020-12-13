@@ -56,7 +56,7 @@ public class Duvidas {
 		this.resolvido = resolvido;
 	}
 	
-	public void Replicar(Usuario replicador, String comentario) {
+	public void replicar(Usuario replicador, String comentario) {
 		if (!resolvido && (replicador instanceof Professor || this.turma.getAlunos().contains(replicador))) {
 			Mensagem mensagem = new Mensagem(replicador, comentario);
 			comentarios.add(mensagem); 
@@ -65,7 +65,7 @@ public class Duvidas {
 			}
 		}
 	
-	public void Resolver() {
+	public void resolver() {
 		resolvido = true; 
 	}
 	
