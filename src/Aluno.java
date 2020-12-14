@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 public class Aluno extends Usuario{
-	//Ainda nao utilizamos amigos no programa estamos deixando para uma versao futura
-	private ArrayList<Usuario> amigos;
+	private ArrayList<Usuario> amigos; 	//Ainda nao utilizamos amigos no programa estamos deixando para uma versao futura
 	private String curso;
 	private String ra;
 	
@@ -12,6 +11,30 @@ public class Aluno extends Usuario{
 		this.curso = curso; 
 		this.ra = ra;
 		amigos = new ArrayList<Usuario>();
+	}
+	
+	public ArrayList<Usuario> getAmigos() {
+		return amigos;
+	}
+
+	public void setAmigos(ArrayList<Usuario> amigos) {
+		this.amigos = amigos;
+	}
+	
+	public String getRa() {
+		return ra;
+	}
+
+	public void setRa(String ra) {
+		this.ra = ra;
+	}
+	
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
 	
 	/* Metodo sobrescrito em Usuario. 
@@ -76,30 +99,6 @@ public class Aluno extends Usuario{
 		
 		else
 			return "Voce nao tem permissao de visualizar as turmas que " + getNome() + " participa.\n";
-	}
-
-	public ArrayList<Usuario> getAmigos() {
-		return amigos;
-	}
-
-	public void setAmigos(ArrayList<Usuario> amigos) {
-		this.amigos = amigos;
-	}
-	
-	public String getRa() {
-		return ra;
-	}
-
-	public void setRa(String ra) {
-		this.ra = ra;
-	}
-	
-	public String getCurso() {
-		return curso;
-	}
-
-	public void setCurso(String curso) {
-		this.curso = curso;
 	}
 	
 	public void trancarDisciplina(Turma turma) {

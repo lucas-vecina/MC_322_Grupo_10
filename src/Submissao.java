@@ -1,11 +1,7 @@
-
-public class Submissao {
-	
-	/* Essa é uma classe de apoio as classe AtividadeIndividual e AtividadeGrupo.
-	 * Ela possibilita um correspondênicia direta entre o arquivo de envio e a nota com o aluno, seja ele individual
-	 * ou em grupo.
-	 */
-	
+/* Essa e uma classe de apoio as classe AtividadeIndividual e AtividadeGrupo.
+ * Ela possibilita um correspondencia direta entre o arquivo de envio e a nota com o aluno, seja ele individual
+ * ou em grupo. */
+public class Submissao {	
 	private Aluno aluno;
 	private Grupo equipe;
 	private String arquivo;
@@ -18,9 +14,8 @@ public class Submissao {
 	}
 	
 	/* Construtor sobrecarregado invocado por AtividadeGrupo. 
-	 * Notar que arquivo não é passado de inicio. Isso porque o grupo é estabelecido previamente e só depois a 
-	 * atividade é submetida (alterada pelo set())
-	 */
+	 * Notar que arquivo nao e passado de inicio. Isso porque o grupo e estabelecido previamente e so depois a 
+	 * atividade e submetida (alterada pelo set()). */
 	public Submissao(Grupo equipe) {
 		this.equipe = equipe;
 	}
@@ -56,7 +51,7 @@ public class Submissao {
 		String out = (getAluno() != null ? "! Aluno: " + getAluno().getNome() + " [" + getAluno().getRa() + "]" + "\n" : "");
 		out+= (getEquipe() != null ? "! Grupo: " + getEquipe() + "\n" : "");
 		out+= (getArquivo() != null ? "! Arquivo: " + getArquivo() + "\n" : "");
-		out+= "! " + (getNota() != -1 ? "Nota: " + getNota() : "Nota ainda não atribuída") + "\n";
+		out+= "! " + (getNota() != -1 ? "Nota: " + getNota() : "Nota ainda não atribuida") + "\n";
 		
 		return out;
 	}	

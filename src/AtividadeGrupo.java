@@ -1,14 +1,11 @@
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+/* Essa sublcasse de Atividade se diferencia pela possibilidade de submissao conjunta de uma atividade.
+ * Assim um grupo de alunos envia um arquivo e sua nota e atribuida unicamente a todos os integrantes. */
 public class AtividadeGrupo extends Atividade{
-	
-	/* Essa sublcasse de Atividade se diferencia pela possibilidade de submissão conjunta de uma atividade.
-	 * Assim um grupo de alunos envia um arquivo e sua nota é atribuida unicamente a todos os integrantes.
-	 */
-	
 	private int tamanhoGrupo;
-	private ArrayList<Submissao> submissoes;	// Armazena a relação entre o grupo e sua atividade(nota, arquivo)
+	private ArrayList<Submissao> submissoes;	// Armazena a relacao entre o grupo e sua atividade(nota, arquivo)
 	
 	// Construtor invocado a partir de criarAtividade() em Turma
 	public AtividadeGrupo(Turma turma, String titulo, Labels label, String descricao, int notaMaxima,
@@ -19,19 +16,30 @@ public class AtividadeGrupo extends Atividade{
 		this.submissoes = new ArrayList<Submissao>();
 	}
 	
-	/* Um grupo de alunos já pré-definido é inserido atraves do desse metodo.
-	 * Se faz necessário que o grupo de alunos seja estabelcido e adicionado antes da submissão da atividade
-	 */
+	public int getTamanhoGrupo() {
+		return tamanhoGrupo;
+	}
+
+	public void setTamanhoGrupo(int tamanhoGrupo) {
+		this.tamanhoGrupo = tamanhoGrupo;
+	}
+
+	public ArrayList<Submissao> getSubmissoes() {
+		return submissoes;
+	}
+	
+	/* Um grupo de alunos ja pre-definido é inserido atraves do desse metodo.
+	 * Se faz necessario que o grupo de alunos seja estabelecido e adicionado antes da submissão da atividade */
 	public String adicionarGrupo(Grupo equipe) {
-		int verif = 1;	// variavel para manipulação das saídas
+		int verif = 1;	// variavel para manipulacao das saídas
 		
 		for(Usuario u:equipe.getGrupo()) {
-			if(!getTurma().getAlunos().contains(u)) { // Analisa o caso em que um ou mais integrantes não pertencem a turma
+			if(!getTurma().getAlunos().contains(u)) { // Analisa o caso em que um ou mais integrantes nao pertencem a turma
 				verif = -2;
 				break;
 			}
 			
-			// Caso especial em que ao menos um dos integrantes do grupo já está em outro grupo da mesma atividade
+			// Caso especial em que ao menos um dos integrantes do grupo ja esta em outro grupo da mesma atividade
 			if(getSubmissoes().size() > 0) {
 				for(Submissao s : getSubmissoes()) {
 					if(s.getEquipe().getGrupo().contains(u)) {
@@ -42,11 +50,11 @@ public class AtividadeGrupo extends Atividade{
 			}		
 		}
 		
-		// Caso especial em que o número de integrantes não corresponde ao solicitado pelo administrador
+		// Caso especial em que o numero de integrantes nao corresponde ao solicitado pelo administrador
 		if(equipe.getGrupo().size() != getTamanhoGrupo()) 
 			verif = 0;
 		
-		// Ações de saída personalizadas conforme o cenário
+		// Acoes de saida personalizadas conforme o cenario
 		switch(verif) {
 			case -2:
 				return "Grupo nao pode ser adicionado. Um ou mais alunos nao pertencem a essa turma."; 
@@ -63,7 +71,7 @@ public class AtividadeGrupo extends Atividade{
 		}		
 	}
 	
-	// Permite a um grupo já adicionado submeter sua atividade
+	// Permite a um grupo ja adicionado submeter sua atividade
 	public void submeterAtividade(Grupo grupo, String arquivo) {
 		for(Submissao s: getSubmissoes()) {
 			if(s.getEquipe() == grupo) {
@@ -79,7 +87,7 @@ public class AtividadeGrupo extends Atividade{
 		
 		for(Submissao s: getSubmissoes()) {
 			if(s.getEquipe() == grupo) {				
-				if(s.getArquivo() == null) //Caso especial. Grupo foi adicionado previamente, mas não submeteu arquivo 
+				if(s.getArquivo() == null) //Caso especial. Grupo foi adicionado previamente, mas nao submeteu arquivo 
 					aux = -2;
 				
 				aux = s.getNota();
@@ -89,7 +97,7 @@ public class AtividadeGrupo extends Atividade{
 		return super.visualizarNota(aux);	
 	}
 	
-	//Permite ao admin (prof e ped) atribuir uma nota única aos integrantes do grupo
+	//Permite ao admin (prof e ped) atribuir uma nota unica aos integrantes do grupo
 	public void atribuirNota(Usuario user, Grupo grupo, double nota) {
 		if(super.atribuirNota(user)){
 			for(Submissao s:getSubmissoes()) {
@@ -102,18 +110,6 @@ public class AtividadeGrupo extends Atividade{
 				a.getNotificacoes().add(1, Notificacoes.NOVA_NOTA);
 			}
 		}		
-	}
-		
-	public int getTamanhoGrupo() {
-		return tamanhoGrupo;
-	}
-
-	public void setTamanhoGrupo(int tamanhoGrupo) {
-		this.tamanhoGrupo = tamanhoGrupo;
-	}
-
-	public ArrayList<Submissao> getSubmissoes() {
-		return submissoes;
 	}
 
 	public String toString() {

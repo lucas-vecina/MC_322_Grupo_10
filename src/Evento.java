@@ -1,12 +1,10 @@
 import java.util.GregorianCalendar;
 import java.util.Calendar;
 
+/* A classe Evento tem por obejtivo organizar a entrega de atividades disponibilizadas na plataforma EAD.
+ * Ela e fundamentada atraves de Labels que indicam o tipo de atividade, a disciplina e o horario de entrega da mesma. 
+ * A representacao dos Labels e simplificada por meio do metodos toString() */
 public class Evento {
-	
-	/* A classe Evento tem por obejtivo organizar a entrega de atividades disponibilizadas na plataforma EAD.
-	 * Ela e fundamentada atraves de Labels que indicam o tipo de atividade, a disciplina e o horario de entrega da mesma. 
-	 * A representacao dos Labels e simplificada por meio do metodos toString() */
-	
 	private String titulo;
 	private Labels label;
 	private String descricao;

@@ -1,10 +1,11 @@
 import java.util.ArrayList; 
 
-public class Monitoria {
+// Ambiente simbolico para interacao entre um monitor e alunos para retirada de duvidas de maneira sincrona
+public class Monitoria {	
 	private Turma turma; 
 	private Aluno monitor;
 	private boolean status;
-	private ArrayList<Aluno> fila;
+	private ArrayList<Aluno> fila;	// Onde os alunos ingressarao e aguardarao serem atendidos
 	
 	public Monitoria(Aluno monitor, Turma turma) {
 		this.turma = turma;
@@ -45,7 +46,8 @@ public class Monitoria {
 	public void setFila(ArrayList<Aluno> fila) {
 		this.fila = fila;
 	}
-
+	
+	// O monitor atende o primeiro aluno da fila
 	public void atender(Aluno monitor) {
 		if (!fila.isEmpty() && status && monitor == this.monitor) {
 			fila.remove(1); 
@@ -66,6 +68,7 @@ public class Monitoria {
 		}
 	}
 	
+	// Permite a um aluno entrar na fila de atendimento da monitoria
 	public void entrarMonitoria(Aluno aluno) {
 		if (status && turma.getAlunos().contains(aluno)) {
 			fila.add(aluno); 
@@ -83,7 +86,7 @@ public class Monitoria {
 		String out = "\nMonitor:" + getMonitor().getNome() + ", RA: " + getMonitor().getRa();
 		out += "\n Turma: " + getTurma().getSigla(); 
 		out += "\n Status: " + (isStatus()? "Aberto" : "Fechado"); 
-		out += "\n Pessoas na fila:";
+		out += "\n Pessoas na fila: " + (getFila().size() == 0 ? "0":"") ;
 		for (Aluno aluno:fila) {
 			out += "\n-" + aluno.getNome() + ", RA: " + aluno.getRa();
 		}

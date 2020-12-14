@@ -19,7 +19,7 @@ public class Mensagem {
 		return texto;
 	}
 
-	public void Edit(String texto) {
+	public void edit(String texto) {
 		this.texto = texto;
 	}
 	

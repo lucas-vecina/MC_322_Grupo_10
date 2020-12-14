@@ -56,6 +56,7 @@ public class Duvidas {
 		this.resolvido = resolvido;
 	}
 	
+	// Responde a uma duvida ja feita analisando algumas condicoes
 	public void replicar(Usuario replicador, String comentario) {
 		if (!resolvido && (replicador instanceof Professor || this.turma.getAlunos().contains(replicador))) {
 			Mensagem mensagem = new Mensagem(replicador, comentario);

@@ -31,64 +31,6 @@ public class Turma {
 		duvidas = new ArrayList<Duvidas>();
 	}
 	
-	/* Um professor ou ped podem criar uma nova atividade.
-	 * E feita uma diferenciacao entre duas atividades, individual e em grupo. O parametro labels as segrega.
-	 * Ao fim e enviada uma notificacao para cada aluno da turma informando sobre a nova atividade. */
-	public Atividade criarAtividade(Usuario user, String titulo, Labels label, String descricao, int notaMaxima, 
-			GregorianCalendar dataInicio, GregorianCalendar data) {
-		
-		if(user instanceof Professor || getPed().contains(user)) {
-			
-			for(Usuario u: getAlunos()) {
-				u.getNotificacoes().add(0, Notificacoes.NOVA_ATIVIDADE);
-			}
-			
-			if(label == Labels.ATIVIDADE_INDIVIDUAL) {
-				AtividadeIndividual atividade = new AtividadeIndividual(this, titulo, label, descricao, notaMaxima, dataInicio, data);
-				getAtividades().add(0, atividade);
-				return atividade;
-			}
-			
-			else {
-				AtividadeGrupo atividade= new AtividadeGrupo(this, titulo, label, descricao, notaMaxima, dataInicio, data);
-				getAtividades().add(0, atividade);
-				return atividade;
-			}
-		}
-		return null;
-	}
-	
-	// Possibilita um aluno criar uma nova duvida
-	public Duvidas criarDuvida(Aluno aluno, String indagacao) {
-		if(!getAlunos().contains(aluno))
-			return null;
-		
-		Duvidas duvida = new Duvidas(aluno, indagacao, this);
-		return duvida;
-	}
-	
-	public Teoria criarTeoria(Usuario user, String descricao, String arquivos) {
-		if(user == professor) {
-			Teoria t1 = new Teoria(descricao,arquivos);
-			t1.submeterTeoria(this);
-			return t1;
-		} else {
-			return null;
-		}
-	}
-	
-	public Monitoria criarMonitoria(Aluno monitor) {
-		if (ped.contains(monitor) || pad.contains(monitor)) {
-			Monitoria monitoria = new Monitoria(monitor, this);
-			for(Usuario u: getAlunos()) {
-				u.getNotificacoes().add(0, Notificacoes.INICIO_MONITORIA);
-			}
-			return monitoria;
-		}else {
-			return null;
-		}
-	}
-
 	public String getTurma() {
 		return turma;
 	}
@@ -173,6 +115,64 @@ public class Turma {
 		this.alunos = alunos;
 	}
 	
+	/* Um professor ou ped podem criar uma nova atividade.
+	 * E feita uma diferenciacao entre duas atividades, individual e em grupo. O parametro labels as segrega.
+	 * Ao fim e enviada uma notificacao para cada aluno da turma informando sobre a nova atividade. */
+	public Atividade criarAtividade(Usuario user, String titulo, Labels label, String descricao, int notaMaxima, 
+			GregorianCalendar dataInicio, GregorianCalendar data) {
+		
+		if(user instanceof Professor || getPed().contains(user)) {
+			
+			for(Usuario u: getAlunos()) {
+				u.getNotificacoes().add(0, Notificacoes.NOVA_ATIVIDADE);
+			}
+			
+			if(label == Labels.ATIVIDADE_INDIVIDUAL) {
+				AtividadeIndividual atividade = new AtividadeIndividual(this, titulo, label, descricao, notaMaxima, dataInicio, data);
+				getAtividades().add(0, atividade);
+				return atividade;
+			}
+			
+			else {
+				AtividadeGrupo atividade= new AtividadeGrupo(this, titulo, label, descricao, notaMaxima, dataInicio, data);
+				getAtividades().add(0, atividade);
+				return atividade;
+			}
+		}
+		return null;
+	}
+	
+	// Possibilita um aluno criar uma nova duvida
+	public Duvidas criarDuvida(Aluno aluno, String indagacao) {
+		if(!getAlunos().contains(aluno))
+			return null;
+		
+		Duvidas duvida = new Duvidas(aluno, indagacao, this);
+		return duvida;
+	}
+	
+	public Teoria criarTeoria(Usuario user, String descricao, String arquivos) {
+		if(user == professor) {
+			Teoria t1 = new Teoria(descricao,arquivos);
+			t1.submeterTeoria(this);
+			return t1;
+		} else {
+			return null;
+		}
+	}
+	
+	public Monitoria criarMonitoria(Aluno monitor) {
+		if (ped.contains(monitor) || pad.contains(monitor)) {
+			Monitoria monitoria = new Monitoria(monitor, this);
+			for(Usuario u: getAlunos()) {
+				u.getNotificacoes().add(0, Notificacoes.INICIO_MONITORIA);
+			}
+			return monitoria;
+		}else {
+			return null;
+		}
+	}
+	
 	public void removePed(Usuario user, Aluno aluno) {
 		if(user == professor && ped.contains(aluno)) {
 			ped.remove(aluno);
@@ -222,6 +222,7 @@ public class Turma {
 	
 	@Override
 	public String toString() {
+		int i = 0;
 		String out = "\n";
 		out+= "-> Disciplina: " + getTurma() + " (" + getSigla() + ", " + getCor() + ") \n";
 		out+= (ementa != null? "-> Ementa: " + getEmenta() + "\n":"");
@@ -231,34 +232,39 @@ public class Turma {
 		for(Usuario u:getPed()) {
 			out+= u.getNome();
 			
-			if(getPed().indexOf(u) != getPed().size() - 1)
+			if(i != getPed().size() - 1)
 				out+= ", ";
+			i++;
 		}
 		
 		out+= "] \n";
 		out+= "-> Pad's: [";
 		
+		i = 0;
 		for(Usuario u:getPad()) {
 			out+= u.getNome();
 			
-			if(getPad().indexOf(u) != getPad().size() - 1)
+			if(i != getPad().size() - 1)
 				out+= ", ";
+			i++;
 		}
 			
 		out+= "] \n";
 		out+= "-> Alunos: [";
 		
+		i = 0;
 		for(Aluno a:getAlunos()) {
 			out+= a.getNome();
 		
-			if(getAlunos().indexOf(a) != getAlunos().size() -1)
+			if(i != getAlunos().size() -1)
 				out+= ", ";
+			i++;
 		}
 		
 		out+= "] \n";
-		out+= "\n-> Agenda: " + getAgenda();
+		out+= "\n-> Agenda: " + getAgenda() + "\n";
 		out+= "\n-> Teoria: " + getTeoria() + "\n";
-		out+= "\n-> Atividades: " + getAtividades();
+		out+= "\n-> Atividades: " + getAtividades() + "\n";
 		out+= "\n-> Monitorias: " + getMonitorias() + "\n";
 		out+= "\n-> Duvidas: " + getDuvidas() + "\n";
 				
