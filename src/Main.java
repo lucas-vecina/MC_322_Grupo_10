@@ -6,7 +6,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		ArrayList<Aluno> aux1 = new ArrayList<Aluno>();
-
 		
 		// Instancias de professores
 		Professor prof1 = new Professor("Geraldo", Genero.NAO_BINARIO, "geraldo@hotmail.com", "senha123");
@@ -26,9 +25,6 @@ public class Main {
 		Aluno aluno6 = new Aluno("Emhyr", Genero.MASCULINO, "emhyr@unesp.br", "senha000", Permissoes.PUBLIC,
 				"Economia", "99666");
 		
-		
-
-		
 		// Instancias de turmas
 		Turma turma1 = prof1.criarTurma("Bruxos I", "BX111");
 		Turma turma2 = prof2.criarTurma("Alquimia I", "QG101");
@@ -39,7 +35,6 @@ public class Main {
 		turma1.adicionaPed(prof1, aluno1);
 		turma1.adicionaPad(prof1, aluno3);
 	
-		
 		aux1.clear();	
 		aux1.addAll(Arrays.asList(aluno1, aluno2, aluno3));
 		turma2.adicionaAluno(prof2, aux1);
@@ -48,14 +43,15 @@ public class Main {
 
 		// Criando um grupo
 		ArrayList<Usuario> aux2 = new ArrayList<Usuario>(aux1);
-		Grupo equipe1 = new Grupo(aux2);
+		Grupo equipe1 = aluno2.criarGrupo("Estudo", aux2);
+		
 		// Criacao de nova aula para turma1
 		turma1.criarTeoria(prof1, "Conteudo introdutorio a bruxos", "aula1.pdf");
 		turma1.criarTeoria(prof1, "Palestra para bruxos: como matar um Grifo", "seminario.mov");
 		
 		// Criacao duvidas
-		Duvidas duvida1 = turma1.criarDuvida(aluno2, "Quais sao as propriedades fisicas de um Lobisomen?");
-		duvida1.resolver();
+		Duvidas duvida1 = turma1.criarDuvida(aluno2, "Quais sao as propriedades fisicas de um Lobisomem?");
+		duvida1.replicar(aluno4, "Tambem to na duvida");
 		
 		// Criacao Monitoria
 		Monitoria monitoria1 = turma1.criarMonitoria(aluno1);
@@ -74,7 +70,10 @@ public class Main {
 		
 		AtividadeGrupo atividade2 = (AtividadeGrupo) turma1.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
 				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
-		System.out.println(atividade2.adicionarGrupo(equipe1));
+		
+		// Testando uma condicional. Integrantes da equipe nao fazem parte da turma.
+		System.out.println(atividade2.adicionarGrupo(equipe1) + "\n");
+		
 		// Saida
 		System.out.println("Turma 1: " + turma1 + "---------------------------------------------------------");
 	
@@ -97,29 +96,33 @@ public class Main {
 		atividade3.submeterAtividade(aluno1, "instrucoes.pdf");
 		
 		AtividadeGrupo atividade4 = (AtividadeGrupo) turma2.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
-				"Mostre que homunculus podem existir", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
+				"Mostre que homunculus podem existir", 100, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
 		atividade4.adicionarGrupo(equipe1);
 		atividade4.submeterAtividade(equipe1, "Eles podem.");
 		atividade4.atribuirNota(prof1, equipe1, 100);
 		
-		
 		// Saida
 		System.out.println("Turma 2: " + turma2 + "---------------------------------------------------------");
+		
 		//Mostrando notificacoes para aluno 2
 		System.out.println(aluno2.exibirNotificacoes(aluno2) + "---------------------------------------------------------");
 		
 		// Demonstrando conversa
-		Conversa conversa1 = new Conversa(aux2);
+		aux2.add(aluno5);
+		Conversa conversa1 = aluno2.iniciarConversa(aux2);
 		conversa1.enviarMensagem(aluno1, "oi");
 		conversa1.enviarMensagem(aluno3, "ola");
-		System.out.println(conversa1 + "\n---------------------------------------------------------\n\n");
+		System.out.println(conversa1 + "\n---------------------------------------------------------\n");
 		
 		//Trancando disciplinas
 		aluno1.trancarDisciplina(turma2);
-		System.out.println("Turma 2: " + turma2 + "---------------------------------------------------------");
+		System.out.println("Turma 2: " + turma2 + "---------------------------------------------------------\n");		
+	
+		// Saida de um aluno
+		System.out.println("Aluno 2: " + aluno2 + "---------------------------------------------------------\n");
 		
-		
-		
-	}
+		// Saida de um professor
+		System.out.println("Professor 1: " + prof1 + "---------------------------------------------------------\n");
 
+	}
 }
