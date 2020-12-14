@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 
-public class Conversa {
+//Disponibiliza um ambiente para interacao e troca de mensagens entre diferentes usuarios
+public class Conversa {	
 	private Grupo pessoas;
 	private ArrayList<Mensagem> mensagens; 
 	
 	public Conversa(ArrayList<Usuario> pessoas) {
-		this.pessoas = new Grupo(pessoas); 
+		this.pessoas = new Grupo(pessoas);
+		getPessoas().adicionarGrupo();
 		mensagens = new ArrayList<Mensagem>();
 	}
 
@@ -31,6 +33,22 @@ public class Conversa {
 			mensagens.add(mensagem); 
 		}
 	}
+		
+	public void adicionarUsuario(Usuario integrante, Usuario forasteiro) {
+		if(getPessoas().adicionarUsuario(integrante, forasteiro))
+			forasteiro.getConversas().add(this);
+	}
+	
+	public void removerUsuario(Usuario integrante, Usuario removido) {
+		if(getPessoas().removerUsuario(integrante, removido))
+			removido.getConversas().remove(this);
+	}
+	
+	public void adicionarConversa() {
+		for(Usuario u:getPessoas().getGrupo())
+			u.getConversas().add(this);
+	}
+
 	
 	@Override
 	public String toString() {
