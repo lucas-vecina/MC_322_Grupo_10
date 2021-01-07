@@ -19,41 +19,58 @@ public class AtividadeIndividual extends Atividade{
 	}
 	
 	// Permite ao aluno enviar sua tarefa. O parametro arquivo simboliza o upload de um documento de texto
-		public void submeterAtividade(Aluno aluno, String arquivo) {
-			if(getTurma().getAlunos().contains(aluno))	// Verifica-se se o alumo de fato pertence a turma
-					getSubmissoes().add(new Submissao(aluno, arquivo));	// Vincula o arquivo ao aluno no vetor submissoes
-		}
-		
-		// Permite ao um administrador(ped ou professor) atribuir nota ao aluno
-		public void atribuirNota(Usuario user, Aluno aluno, double nota) {
-			if(super.atribuirNota(user)){
-				for(Submissao s:getSubmissoes()) {	// Faz a busca do aluno no vetor que contem submissões ja feitas
-					if(s.getAluno() == aluno) {
-						s.setNota(nota);
-						break;
-					}
-				}
-				aluno.getNotificacoes().add(1, Notificacoes.NOVA_NOTA);
-			}		
-		}
-		
-		// Permite ao aluno visualizar sua nota
-		public String visualizarNota(Aluno aluno) {
-			double aux = -2;	// variavel de controle de saída
-			
-			for(Submissao s:getSubmissoes()) { // Busca pelo aluno no vetor submissoes
+	// Parametro grupo nao utilizado nesse e proximos metodos. Necessario para garantir polimorfismo
+	@Override
+	public void submeterAtividade(Aluno aluno, Grupo grupo, String arquivo) {
+		if(getTurma().getAlunos().contains(aluno))	// Verifica-se se o alumo de fato pertence a turma
+				getSubmissoes().add(new Submissao(aluno, arquivo));	// Vincula o arquivo ao aluno no vetor submissoes
+	}
+	
+	// Permite ao um administrador(ped ou professor) atribuir nota ao aluno
+	@Override
+	public void atribuirNota(Usuario user, Aluno aluno, Grupo grupo, double nota) {
+		if(user instanceof Professor || getTurma().getPed().contains(user)){
+			for(Submissao s:getSubmissoes()) {	// Faz a busca do aluno no vetor que contem submissões ja feitas
 				if(s.getAluno() == aluno) {
-					aux = s.getNota();
+					s.setNota(nota);
 					break;
 				}
 			}
-			
-			return "<" + aluno.getNome() + ">" + super.visualizarNota(aux);
+			aluno.getNotificacoes().add(1, Notificacoes.NOVA_NOTA);
+		}		
+	}
+	
+	// Permite ao aluno visualizar sua nota
+	@Override
+	public String visualizarNota(Aluno aluno, Grupo grupo) {
+		double aux = -2;	// variavel de controle de saída
+		String out;
+		
+		for(Submissao s:getSubmissoes()) { // Busca pelo aluno no vetor submissoes
+			if(s.getAluno() == aluno) {
+				aux = s.getNota();
+				break;
+			}
 		}
+		
+		switch((int) aux){
+			case -2:
+				out = "Voce nao entregou essa atividade.";
+	
+			case -1:
+				out = "Sua nota ainda nao foi atribuida.";
+			
+			default:
+				out = "Sua nota foi: " + Double.toString(aux) + "/" + getNotaMaxima();
+		}
+		
+		return "<" + aluno.getNome() + ">" + out;
+	}
 	
 	public String toString() {
 		String out = super.toString();	
 		out += "# Submissoes: ";
+		
 		for(Submissao s: submissoes) {
 			out += "\n" + s;
 		}

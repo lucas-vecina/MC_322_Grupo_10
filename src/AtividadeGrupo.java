@@ -72,7 +72,9 @@ public class AtividadeGrupo extends Atividade{
 	}
 	
 	// Permite a um grupo ja adicionado submeter sua atividade
-	public void submeterAtividade(Grupo grupo, String arquivo) {
+	// Parametro aluno nao utilizado nesse e proximos metodos. Necessario para garantir polimorfismo
+	@Override
+	public void submeterAtividade(Aluno aluno, Grupo grupo, String arquivo) {
 		for(Submissao s: getSubmissoes()) {
 			if(s.getEquipe() == grupo) {
 				s.setArquivo(arquivo);
@@ -82,24 +84,44 @@ public class AtividadeGrupo extends Atividade{
 	}
 	
 	// Permite ao grupo visualizar sua nota
-	public String visualizarNota(Grupo grupo) {
+	@Override
+	public String visualizarNota(Aluno aluno, Grupo grupo) {
 		double aux = -3;	//variavel que administra a saida
+		String out;
 		
 		for(Submissao s: getSubmissoes()) {
 			if(s.getEquipe() == grupo) {				
-				if(s.getArquivo() == null) //Caso especial. Grupo foi adicionado previamente, mas nao submeteu arquivo 
+				if(s.getArquivo() == null) { //Caso especial. Grupo foi adicionado previamente, mas nao submeteu arquivo 
 					aux = -2;
+					break;
+				}
 				
 				aux = s.getNota();
 				break;
 			}
 		}
-		return super.visualizarNota(aux);	
+		
+		switch((int) aux){
+			case -3:
+				out = "Seu grupo ainda nao foi adicionado a lista dessa atividade";
+		
+			case -2:
+				out = "Voce nao entregou essa atividade.";
+	
+			case -1:
+				out = "Sua nota ainda nao foi atribuida.";
+			
+			default:
+				out = "Sua nota foi: " + Double.toString(aux) + "/" + getNotaMaxima();
+		}
+		
+		return out;	
 	}
 	
 	//Permite ao admin (prof e ped) atribuir uma nota unica aos integrantes do grupo
-	public void atribuirNota(Usuario user, Grupo grupo, double nota) {
-		if(super.atribuirNota(user)){
+	@Override
+	public void atribuirNota(Usuario user, Aluno aluno, Grupo grupo, double nota) {
+		if(user instanceof Professor || getTurma().getPed().contains(user)){
 			for(Submissao s:getSubmissoes()) {
 				if(s.getEquipe() == grupo) {
 					s.setNota(nota);

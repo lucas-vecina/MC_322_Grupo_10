@@ -63,10 +63,10 @@ public class Main {
 		// Nova atividade
 		AtividadeIndividual atividade1 = (AtividadeIndividual) turma1.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
 				"Matem um grifo", 10, new GregorianCalendar(2020, 03, 25, 22, 30), new GregorianCalendar(2020, 03, 31, 23, 59));
-		atividade1.submeterAtividade(aluno4, "Cabeca.jpeg");
-		atividade1.atribuirNota(prof1, aluno4, 10);
-		atividade1.submeterAtividade(aluno2, "Cabeca.png");
-		atividade1.atribuirNota(prof1, aluno2, -0.1);
+		atividade1.submeterAtividade(aluno4, null, "Cabeca.jpeg");
+		atividade1.atribuirNota(prof1, aluno4, null, 10);
+		atividade1.submeterAtividade(aluno2, null, "Cabeca.png");
+		atividade1.atribuirNota(prof1, aluno2, null,  0.1);
 		
 		AtividadeGrupo atividade2 = (AtividadeGrupo) turma1.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
 				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
@@ -93,13 +93,13 @@ public class Main {
 		// Nova atividade
 		AtividadeIndividual atividade3 = (AtividadeIndividual) turma2.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
 				"Criar um arco-iris de fogo", 10, new GregorianCalendar(2020, 03, 25, 22, 30), new GregorianCalendar(2020, 03, 31, 23, 59));
-		atividade3.submeterAtividade(aluno1, "instrucoes.pdf");
+		atividade3.submeterAtividade(aluno1, null, "instrucoes.pdf");
 		
 		AtividadeGrupo atividade4 = (AtividadeGrupo) turma2.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
 				"Mostre que homunculus podem existir", 100, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
 		atividade4.adicionarGrupo(equipe1);
-		atividade4.submeterAtividade(equipe1, "Eles podem.");
-		atividade4.atribuirNota(prof1, equipe1, 100);
+		atividade4.submeterAtividade(null, equipe1, "Eles podem.");
+		atividade4.atribuirNota(prof1, null, equipe1, 100);
 		
 		// Saida
 		System.out.println("Turma 2: " + turma2 + "---------------------------------------------------------");

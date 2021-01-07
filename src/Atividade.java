@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
  * Atividade, por conseguinte, tambem e filha de Evento, pois toda atividade instanciada e diretamente
  * associada a agenda do usuario e da turma.
  * Ainda nao utilizamos plenamente a heranca com Evento, sera melhor explorado na continuacao do projeto */
-public class Atividade extends Evento{
+public abstract class Atividade extends Evento{
 	private Calendar dataInicio = new GregorianCalendar();
 	private int notaMaxima;
 	private Evento agendaTurma;
@@ -66,34 +66,11 @@ public class Atividade extends Evento{
 		this.turma = turma;
 	}
 	
-	/* Esse e um metodo que contem caracteristicas em comum entre os respectivos metodos das classes filhas.
-	 * E simplismente uma comdicional que avalia se o usuario solicitante tem a permissao de atribuir nota a um
-	 * aluno em especifico ou a um grupo.
-	 * Somente o professor e peds detem dessa permissao. */
-	protected boolean atribuirNota(Usuario user) {
-		if (user instanceof Professor || turma.getPed().contains(user)) {
-			return true;
-		}
-		return false;
-	}
+	public abstract void submeterAtividade(Aluno aluno, Grupo grupo, String arquivo);
 	
-	/* Esse e um metodo que contem caracteristicas em comum entre os respectivos metodos das classes filhas.
-	 * Ele avalia as saidas comuns que ambos os metodos filhos podem ter ao um aluno solicitar para visualizar sua nota. */	
-	protected String visualizarNota(double aux) {
-		switch((int) aux){
-			case -3:
-				return "Seu grupo ainda nao foi adicionado a lista dessa atividade";
-		
-			case -2:
-				return "Voce nao entregou essa atividade.";
-
-			case -1:
-				return "Sua nota ainda nao foi atribuida.";
-			
-			default:
-				return "Sua nota foi: " + Double.toString(aux) + "/" + getNotaMaxima();
-		}
-	}
+	public abstract void atribuirNota(Usuario user, Aluno aluno, Grupo grupo, double nota);
+	
+	public abstract String visualizarNota(Aluno aluno, Grupo grupo);
 	
 	public String toString() {
 		String out = super.toString();	
