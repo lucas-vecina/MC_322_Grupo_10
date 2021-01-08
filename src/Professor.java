@@ -26,6 +26,11 @@ public class Professor extends Usuario{
 		this.getTurmas().remove(turma);
 	}
 	
+	@Override
+	public String visualizarAmigos(Usuario user) {
+		return null;
+	}
+	
 	public String toString() {
 		String out = super.toString();		
 		return out;

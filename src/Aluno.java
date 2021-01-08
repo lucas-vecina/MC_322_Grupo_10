@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Aluno extends Usuario{
-	private ArrayList<Usuario> amigos; 	//Ainda nao utilizamos amigos no programa estamos deixando para uma versao futura
+	private ArrayList<Usuario> amigos; 
 	private String curso;
 	private String ra;
 	
@@ -39,7 +39,7 @@ public class Aluno extends Usuario{
 	
 	/* Metodo sobrescrito em Usuario. 
 	 * Verifica permissoes do usuario (this) e exibe informacoes de acordo */
-	//Ainda nao utilizamos amigos no programa estamos deixando para uma versao futura
+	@Override
 	public String visualizarInfo(Usuario user) {
 		String out;
 		
@@ -71,7 +71,7 @@ public class Aluno extends Usuario{
 	}
 	
 	// Verifica permissoes do usuario (this) e exibe sua lista de amigos
-	//Ainda nao utilizamos amigos no programa estamos deixando para uma versao futura
+	@Override
 	public String visualizarAmigos(Usuario user) {
 		if(this.getPermissao().getChave() == 1) {
 			String out;
@@ -88,9 +88,8 @@ public class Aluno extends Usuario{
 				
 	}
 	
-	/* Metodo sobrescrito em Usuario. 
-	 * Verifica permissoes do usuario (this) e exibe as turmas */
-	//Ainda nao utilizamos amigos no programa estamos deixando para uma versao futura
+	 //Verifica permissoes do usuario (this) e exibe as turmas
+	@Override
 	public String visualizarTurma(Usuario user) {
 		if(this.getPermissao().getChave() != 3 || getAmigos().contains(user)) {
 			String out = super.visualizarTurma(user);

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Usuario {
+public abstract class Usuario {
 	private static int numeroUsuarios = 0;
 	private final int id;
 	private Genero genero;
@@ -104,11 +104,8 @@ public class Usuario {
 	
 	/* Esse metodo possibilita a um usuário (user) visualizar um apanhado de informações sobre outro (this).
 	 * Ele e sobrescrito em Aluno e também invocado pelo mesmo. Para Professor, esse metodo ja se faz suficiente.
-	 * Conforme a permissao do user, diferentes informacoes sao exibidas. 
-	 * Como os metodos do atributo amigos de Aluno ainda nao foram implementados, entao a permissao PRIVATE ainda
-	 * nao esta funcional. Por tal motivo esse metodo ainda nao foi demonstrado na main.
-	 * Outros metodos de visualizar tambem so serao totalmente funcionais na versao futura do projeto */	
-	protected String visualizarInfo(Usuario user) {
+	 * Conforme a permissao do user, diferentes informacoes sao exibidas.*/
+	public String visualizarInfo(Usuario user) {
 		String out;
 		
 		switch(getPermissao().getChave()) {	// Verifica a permissao do user
@@ -131,15 +128,8 @@ public class Usuario {
 		return "";
 	}
 	
-	public Conversa iniciarConversa(ArrayList<Usuario> grupo) {
-		Conversa conversa = new Conversa(grupo);
-		conversa.adicionarConversa();
-		
-		return conversa;
-	}
-	
 	/* Exibe as turmas que o usuario participa. Evita loops e exibição de informacoes desnecessarias
-	 * Metodo é sobrescrito e invocado por meio da subclasse Aluno, mas e suficiete para Professor. */
+	 * Metodo é sobrescrito na subclasse Aluno, mas e suficiente para Professor. */
 	public String visualizarTurma(Usuario user) {
 		String out = "-Turmas: \n";
 		out+= "[";
@@ -150,9 +140,19 @@ public class Usuario {
 			out+= "Prof: " + t.getProfessor().getNome() + "]\n";
 		}
 		out+= "]";
+		
 		return out;
 	}
 	
+	public abstract String visualizarAmigos(Usuario user);
+	
+	public Conversa iniciarConversa(ArrayList<Usuario> grupo) {
+		Conversa conversa = new Conversa(grupo);
+		conversa.adicionarConversa();
+		
+		return conversa;
+	}
+		
 	public Grupo criarGrupo(String nome, ArrayList<Usuario> membros) {
 		Grupo grupo = new Grupo(nome, membros);
 		grupo.adicionarGrupo();
