@@ -99,7 +99,34 @@ public class Aluno extends Usuario{
 			System.out.println("Proxima solicitacao: ");
 			System.out.println(super.getSolicitacoes().get(0));
 			System.out.println("Aceitar? (Y/N) \n");
+			while (true) {
+				String resposta = scan.next();
+				if(resposta == "Y") {
+					amigos.add(super.getSolicitacoes().get(0).getUser());
+					super.getSolicitacoes().remove(0);
+					break;
+				}
+				if(resposta == "N") {
+					super.getSolicitacoes().remove(0);
+					break;
+				}
+			}
+			
+			if(!(super.getSolicitacoes().isEmpty())) {
+				System.out.println("Proxima solicitacao? (Y/N) \n");
+				while (true) {
+					String resposta = scan.next();
+					if(resposta == "Y") {
+						this.aceitarSolicitacao();
+						break;
+					}
+					if(resposta == "N") {
+						break;
+					}
+				}
+			}
 		}
+		scan.close();
 	}
 	
 	 //Verifica permissoes do usuario (this) e exibe as turmas

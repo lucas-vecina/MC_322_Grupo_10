@@ -21,4 +21,10 @@ public class Solicitacao {
 	public Tipo getTipo() {
 		return tipo;
 	}	
+	
+	public String toString() {
+		String out = "";
+		out += "Solicitacao de " + tipo + " vinda de " + nome;
+		return out;
+	}
 }
