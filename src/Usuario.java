@@ -13,6 +13,7 @@ public abstract class Usuario {
 	private ArrayList<Conversa> conversas;		// Contera mensagens enviadas e recebidas pelo Usuario
 	private ArrayList<Notificacoes> notificacoes;	// Contera mensagens pre-definidas que avisam sobre uma nova acao
 	private Permissoes permissao;	// Restringe o nivel de visualizacao e interacao do Usuario
+	private ArrayList<Solicitacao> solicitacoes;
 	
 	// Construtor
 	public Usuario(String nome, Genero genero, String email, String senha, Permissoes permissao) {
@@ -28,6 +29,7 @@ public abstract class Usuario {
 		conversas = new ArrayList<Conversa>();
 		notificacoes = new ArrayList<Notificacoes>();
 		this.permissao = permissao;
+		solicitacoes = new ArrayList<Solicitacao>();
 	}
 	
 	public Genero getGenero() {
@@ -86,6 +88,10 @@ public abstract class Usuario {
 		return turmas;
 	}
 	
+	public ArrayList<Solicitacao> getSolicitacoes() {
+		return solicitacoes;
+	}
+
 	public ArrayList<Grupo> getGrupos() {
 		return grupos;
 	}
@@ -145,6 +151,8 @@ public abstract class Usuario {
 	}
 	
 	public abstract String visualizarAmigos(Usuario user);
+	
+	public abstract void adicionarSolicitacao(Usuario user);
 	
 	public Conversa iniciarConversa(ArrayList<Usuario> grupo) {
 		Conversa conversa = new Conversa(grupo);

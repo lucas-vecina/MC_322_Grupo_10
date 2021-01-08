@@ -31,6 +31,10 @@ public class Professor extends Usuario{
 		return null;
 	}
 	
+	public void adicionarSolicitacao(Usuario user) {
+		user.getSolicitacoes().add(new Solicitacao(this, this.getNome(), Tipo.AULA));
+	}
+	
 	public String toString() {
 		String out = super.toString();		
 		return out;

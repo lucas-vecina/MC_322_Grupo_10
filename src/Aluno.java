@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Aluno extends Usuario{
 	private ArrayList<Usuario> amigos; 
@@ -86,6 +87,19 @@ public class Aluno extends Usuario{
 		else
 			return "Voce nao tem permissao para visualizar a lista de amigos de " + getNome() + "\n";
 				
+	}
+	
+	public void adicionarSolicitacao(Usuario user) {
+		user.getSolicitacoes().add(new Solicitacao(this, this.getNome(), Tipo.AMIZADE));
+	}
+	
+	public void aceitarSolicitacao() {
+		Scanner scan = new Scanner(System.in);
+		if(!(super.getSolicitacoes().isEmpty())){
+			System.out.println("Proxima solicitacao: ");
+			System.out.println(super.getSolicitacoes().get(0));
+			System.out.println("Aceitar? (Y/N) \n");
+		}
 	}
 	
 	 //Verifica permissoes do usuario (this) e exibe as turmas
