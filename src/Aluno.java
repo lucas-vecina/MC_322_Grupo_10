@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Aluno extends Usuario{
-	private ArrayList<Usuario> amigos; 
+	private ArrayList<Usuario> amigos;
+	private ArrayList<Feed> feedAluno;
 	private String curso;
 	private String ra;
 	
@@ -12,6 +13,7 @@ public class Aluno extends Usuario{
 		this.curso = curso; 
 		this.ra = ra;
 		amigos = new ArrayList<Usuario>();
+		feedAluno = new ArrayList<Feed>();
 	}
 	
 	public ArrayList<Usuario> getAmigos() {
@@ -20,6 +22,10 @@ public class Aluno extends Usuario{
 
 	public void setAmigos(ArrayList<Usuario> amigos) {
 		this.amigos = amigos;
+	}
+	
+	public ArrayList<Feed> getFeedAluno(){
+		return feedAluno;
 	}
 	
 	public String getRa() {

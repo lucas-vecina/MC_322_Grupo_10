@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
  * Atividade, por conseguinte, tambem e filha de Evento, pois toda atividade instanciada e diretamente
  * associada a agenda do usuario e da turma.
  * Ainda nao utilizamos plenamente a heranca com Evento, sera melhor explorado na continuacao do projeto */
-public abstract class Atividade extends Evento{
+public abstract class Atividade extends Evento implements Feed{
 	private Calendar dataInicio = new GregorianCalendar();
 	private int notaMaxima;
 	private Evento agendaTurma;
@@ -71,6 +71,20 @@ public abstract class Atividade extends Evento{
 	public abstract void atribuirNota(Usuario user, Aluno aluno, Grupo grupo, double nota);
 	
 	public abstract String visualizarNota(Aluno aluno, Grupo grupo);
+	
+	public void adicionarFeed() {
+		if(getTurma().getMural().size() == 3)
+			getTurma().getMural().remove(2);
+		
+		getTurma().getMural().add(0, this);
+		
+		for(Aluno a : getTurma().getAlunos()) {
+			if(a.getFeedAluno().size() == 3)
+				a.getFeedAluno().remove(2);
+			
+			a.getFeedAluno().add(0, this);
+		}
+	}
 	
 	public String toString() {
 		String out = super.toString();	

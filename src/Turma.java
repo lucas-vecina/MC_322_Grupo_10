@@ -15,6 +15,7 @@ public class Turma {
 	private ArrayList<Atividade> atividades;	// Ambiente em que e possivel visualizar todas as atividades criadas
 	private ArrayList<Monitoria> monitorias;	// Ambiente simbolico para atendimento sincrono do aluno
 	private ArrayList<Duvidas> duvidas;		// Ambiente para retirada de duvidas. Visivel a todos os alunos que cursam a disciplina
+	private ArrayList<Feed> mural;
 	
 	//Contrutor para ser usado na criacao de turmas pelo professor
 	public Turma(String turma, String sigla, Professor professor) {
@@ -29,6 +30,7 @@ public class Turma {
 		teoria = new ArrayList<Teoria>();
 		monitorias = new ArrayList<Monitoria>();
 		duvidas = new ArrayList<Duvidas>();
+		mural = new ArrayList<Feed>();
 	}
 	
 	public String getTurma() {
@@ -115,6 +117,10 @@ public class Turma {
 		this.alunos = alunos;
 	}
 	
+	public ArrayList<Feed> getMural() {
+		return mural;
+	}
+	
 	/* Um professor ou ped podem criar uma nova atividade.
 	 * E feita uma diferenciacao entre duas atividades, individual e em grupo. O parametro labels as segrega.
 	 * Ao fim e enviada uma notificacao para cada aluno da turma informando sobre a nova atividade. */
@@ -130,12 +136,14 @@ public class Turma {
 			if(label == Labels.ATIVIDADE_INDIVIDUAL) {
 				AtividadeIndividual atividade = new AtividadeIndividual(this, titulo, label, descricao, notaMaxima, dataInicio, data);
 				getAtividades().add(0, atividade);
+				atividade.adicionarFeed();
 				return atividade;
 			}
 			
 			else {
 				AtividadeGrupo atividade= new AtividadeGrupo(this, titulo, label, descricao, notaMaxima, dataInicio, data);
 				getAtividades().add(0, atividade);
+				atividade.adicionarFeed();
 				return atividade;
 			}
 		}
@@ -153,8 +161,9 @@ public class Turma {
 	
 	public Teoria criarTeoria(Usuario user, String descricao, String arquivos) {
 		if(user == professor) {
-			Teoria t1 = new Teoria(descricao,arquivos);
+			Teoria t1 = new Teoria(descricao,arquivos, this);
 			t1.submeterTeoria(this);
+			t1.adicionarFeed();
 			return t1;
 		} else {
 			return null;
@@ -267,6 +276,7 @@ public class Turma {
 		out+= "\n-> Atividades: " + getAtividades() + "\n";
 		out+= "\n-> Monitorias: " + getMonitorias() + "\n";
 		out+= "\n-> Duvidas: " + getDuvidas() + "\n";
+		out+= "\n-> Feed: " + getMural() + "\n";
 				
 		return out;
 	}
