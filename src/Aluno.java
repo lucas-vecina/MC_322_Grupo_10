@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Aluno extends Usuario{
+public class Aluno extends Usuario implements Comparable<Aluno>{
 	private ArrayList<Usuario> amigos;
 	private ArrayList<Feed> feedAluno;
 	private String curso;
@@ -152,6 +152,15 @@ public class Aluno extends Usuario{
 			turma.getAlunos().remove(this);
 			getTurmas().remove(turma);
 		}
+	}
+	
+	public int compareTo(Aluno outro) {
+		if (getNome().compareTo(outro.getNome()) == 1)
+			return 1;
+		else if (getNome().compareTo(outro.getNome()) == 0)
+			return 0;
+		else
+			return -1; 
 	}
 	
 	public String toString() {

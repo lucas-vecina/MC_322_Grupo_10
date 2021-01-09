@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Formatter;
 import java.util.GregorianCalendar;
@@ -15,6 +16,7 @@ public abstract class Atividade extends Evento implements Feed{
 	private Evento agendaTurma;
 	private Evento agendaAluno;
 	private Turma turma;
+	private ArrayList<Submissao> submissoes; // Array que armazena a correspondencia entre o aluno a sua atividade (arquivo e nota)
 	
 	public Atividade(Turma turma, String titulo, Labels label, String descricao, int notaMaxima,
 			GregorianCalendar dataInicio, GregorianCalendar data) {
@@ -32,6 +34,7 @@ public abstract class Atividade extends Evento implements Feed{
 			u.getAgenda().add(0, agendaAluno);
 		}
 		
+		this.submissoes = new ArrayList<Submissao>();
 		this.dataInicio = dataInicio;
 		this.notaMaxima = notaMaxima;
 		this.turma = turma;
@@ -68,6 +71,10 @@ public abstract class Atividade extends Evento implements Feed{
 
 	public void setTurma(Turma turma) {
 		this.turma = turma;
+	}
+	
+	public ArrayList<Submissao> getSubmissoes() {
+		return submissoes;
 	}
 	
 	public void submeterAtividade(Aluno aluno, Grupo grupo, String arquivo) {

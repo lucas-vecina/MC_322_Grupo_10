@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
  * Assim um grupo de alunos envia um arquivo e sua nota e atribuida unicamente a todos os integrantes. */
 public class AtividadeGrupo extends Atividade{
 	private int tamanhoGrupo;
-	private ArrayList<Submissao> submissoes;	// Armazena a relacao entre o grupo e sua atividade(nota, arquivo)
+
 	
 	// Construtor invocado a partir de criarAtividade() em Turma
 	public AtividadeGrupo(Turma turma, String titulo, Labels label, String descricao, int notaMaxima,
@@ -13,7 +13,6 @@ public class AtividadeGrupo extends Atividade{
 		
 		super(turma, titulo, label, descricao, notaMaxima, dataInicio, data);
 		this.tamanhoGrupo = 3;	//default, pode ser alterado
-		this.submissoes = new ArrayList<Submissao>();
 	}
 	
 	public int getTamanhoGrupo() {
@@ -22,10 +21,6 @@ public class AtividadeGrupo extends Atividade{
 
 	public void setTamanhoGrupo(int tamanhoGrupo) {
 		this.tamanhoGrupo = tamanhoGrupo;
-	}
-
-	public ArrayList<Submissao> getSubmissoes() {
-		return submissoes;
 	}
 	
 	/* Um grupo de alunos ja pre-definido é inserido atraves do desse metodo.

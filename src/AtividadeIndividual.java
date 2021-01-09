@@ -4,18 +4,12 @@ import java.util.GregorianCalendar;
 /* Essa e uma classe filha de Atividade, especializacao que trata do cenario em que um e disponibilizada uma
  * atividade individual e cada aluno deve submeter e ter sua tarefa avaliada separadamente. */
 public class AtividadeIndividual extends Atividade{
-	private ArrayList<Submissao> submissoes;	// Array que armazena a correspondencia entre o aluno a sua atividade (arquivo e nota)
 	
 	// Construtor invocado a partir do metodo criarAtividade() em Turma
 	public AtividadeIndividual(Turma turma, String titulo, Labels label, String descricao, int notaMaxima,
 			GregorianCalendar dataInicio, GregorianCalendar data) {
 		
 		super(turma, titulo, label, descricao, notaMaxima, dataInicio, data);
-		submissoes = new ArrayList<Submissao>();
-	}
-	
-	public ArrayList<Submissao> getSubmissoes() {
-		return submissoes;
 	}
 	
 	// Permite ao aluno enviar sua tarefa. O parametro arquivo simboliza o upload de um documento de texto
@@ -73,7 +67,7 @@ public class AtividadeIndividual extends Atividade{
 		String out = super.toString();	
 		out += "# Submissoes: ";
 		
-		for(Submissao s: submissoes) {
+		for(Submissao s: getSubmissoes()) {
 			out += "\n" + s;
 		}
 		

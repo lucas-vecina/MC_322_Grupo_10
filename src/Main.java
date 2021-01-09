@@ -123,6 +123,8 @@ public class Main {
 		
 		// Saida de um professor
 		System.out.println("Professor 1: " + prof1 + "---------------------------------------------------------\n");
-
+		
+		turma1.tirarMedia();
+		turma2.tirarMedia(); 
 	}
 }

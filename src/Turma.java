@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Formatter;
 import java.util.GregorianCalendar;
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Turma {
@@ -240,6 +243,52 @@ public class Turma {
 		dirAtividades.mkdir();
 		File dirTeoria = new File(ap + getSigla() + "/Teoria");
 		dirTeoria.mkdir(); 
+	}
+	
+	public void tirarMedia() { 
+		Collections.sort(alunos);
+		double[] medias = new double[alunos.size()];
+		for (int i=0; i<alunos.size(); i+=1) {
+			medias[i] = 0;
+		}
+		int natividades = 0; 
+		for (Atividade atividade:atividades) {
+			natividades += 1;  
+			for (Submissao submissao:atividade.getSubmissoes()) {
+				if (submissao.getAluno() == null) {
+					for (Usuario aluno:submissao.getEquipe().getGrupo()) {
+						if (alunos.contains(aluno)) {
+							int posicao = alunos.indexOf(aluno);
+							medias[posicao] += submissao.getNota();
+						}
+					}
+				}
+				else {
+					if (alunos.contains(submissao.getAluno())) {
+						int posicao = alunos.indexOf(submissao.getAluno()); 
+						medias[posicao] += submissao.getNota(); 
+					}
+				}
+			}
+		}
+		for (int i=0; i<alunos.size(); i+=1) {
+			medias[i] = medias[i]/natividades; 
+		}
+		
+		try {
+			Formatter file = new Formatter(ap + getSigla() + "/Medias.txt"); 
+			String out = "Medias: ";
+			for (int i=0; i<alunos.size(); i+=1) {
+				Aluno aluno = alunos.get(i);
+				out += "\n -" + aluno.getNome() + ", RA: " + aluno.getRa() + ", Nota: " + medias[i] + ". Aprovado: " + (medias[i]>=5? "Sim":"Nao");
+			}
+			file.format("%s", out);
+			file.flush();
+			file.close();
+		}
+		catch (IOException ex) {
+			ex.printStackTrace();
+		}
 	}
 	
 	@Override
