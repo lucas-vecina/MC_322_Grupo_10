@@ -112,13 +112,14 @@ public abstract class Atividade extends Evento implements Feed{
 	
 	private void criaArquivoAtividade() {
 		try {
-			File folder = new File("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo() + "/Submissoes/");
-			if (folder.mkdir()) {
-				Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo() + "/" + getTitulo() + ".txt");
-				file.format("%s", getDescricao()); 
-				file.flush();
-				file.close(); 
-			}
+			File folder = new File("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo());
+			folder.mkdir();
+			File folder2 = new File("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo() + "/Submissoes/");
+			folder2.mkdir();
+			Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo() + "/" + getTitulo() + ".txt");
+			file.format("%s", getDescricao()); 
+			file.flush();
+			file.close(); 
 		}
 		catch (IOException ex) {
 			ex.printStackTrace();
