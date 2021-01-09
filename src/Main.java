@@ -27,7 +27,7 @@ public class Main {
 		
 		// Instancias de turmas
 		Turma turma1 = prof1.criarTurma("Bruxos I", "BX111");
-		Turma turma2 = prof2.criarTurma("Alquimia I", "QG101");
+		Turma turma2 = prof2.criarTurma("Alquimia I", "AQ101");
 		
 		// Insercao dos alunos, peds e pads nas turmas
 		aux1.addAll(Arrays.asList(aluno2, aluno4, aluno6));
@@ -46,7 +46,7 @@ public class Main {
 		Grupo equipe1 = aluno2.criarGrupo("Estudo", aux2);
 		
 		// Criacao de nova aula para turma1
-		turma1.criarTeoria(prof1, "Conteudo introdutorio a bruxos", "aula1.pdf");
+		turma1.criarTeoria(prof1, "Conteudo introdutorio a bruxos", "aula1.txt");
 		turma1.criarTeoria(prof1, "Palestra para bruxos: como matar um Grifo", "seminario.mov");
 		
 		// Criacao duvidas
@@ -61,14 +61,14 @@ public class Main {
 		monitoria1.atender(aluno1);
 		
 		// Nova atividade
-		AtividadeIndividual atividade1 = (AtividadeIndividual) turma1.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
+		AtividadeIndividual atividade1 = (AtividadeIndividual) turma1.criarAtividade(prof1, "Apresentacao_1", Labels.ATIVIDADE_INDIVIDUAL, 
 				"Matem um grifo", 10, new GregorianCalendar(2020, 03, 25, 22, 30), new GregorianCalendar(2020, 03, 31, 23, 59));
-		atividade1.submeterAtividade(aluno4, null, "Cabeca.jpeg");
+		atividade1.submeterAtividade(aluno4, null, "Triss.txt");
 		atividade1.atribuirNota(prof1, aluno4, null, 10);
-		atividade1.submeterAtividade(aluno2, null, "Cabeca.png");
+		atividade1.submeterAtividade(aluno2, null, "Dandelion.txt");
 		atividade1.atribuirNota(prof1, aluno2, null,  0.1);
 		
-		AtividadeGrupo atividade2 = (AtividadeGrupo) turma1.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
+		AtividadeGrupo atividade2 = (AtividadeGrupo) turma1.criarAtividade(prof1, "Relatorio_1", Labels.ATIVIDADE_GRUPO, 
 				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
 		
 		// Testando uma condicional. Integrantes da equipe nao fazem parte da turma.
@@ -78,7 +78,7 @@ public class Main {
 		System.out.println("Turma 1: " + turma1 + "---------------------------------------------------------");
 	
 		// Criacao de nova aula para turma2
-		turma2.criarTeoria(prof2, "Introcao a alquimia", "aula1.pdf");
+		turma2.criarTeoria(prof2, "Introcao a alquimia", "aula1.txt");
 		turma2.criarTeoria(prof2, "Seminario: Transformar agua em vinho", "palestra.mov");
 		
 		// Criacao duvidas
@@ -91,14 +91,14 @@ public class Main {
 		monitoria2.abrirMonitoria(aluno5);
 		
 		// Nova atividade
-		AtividadeIndividual atividade3 = (AtividadeIndividual) turma2.criarAtividade(prof1, "Apresentacao 1", Labels.ATIVIDADE_INDIVIDUAL, 
+		AtividadeIndividual atividade3 = (AtividadeIndividual) turma2.criarAtividade(prof1, "Apresentacao_1", Labels.ATIVIDADE_INDIVIDUAL, 
 				"Criar um arco-iris de fogo", 10, new GregorianCalendar(2020, 03, 25, 22, 30), new GregorianCalendar(2020, 03, 31, 23, 59));
-		atividade3.submeterAtividade(aluno1, null, "instrucoes.pdf");
+		atividade3.submeterAtividade(aluno1, null, "instrucoes.txt");
 		
-		AtividadeGrupo atividade4 = (AtividadeGrupo) turma2.criarAtividade(prof1, "Relatorio 1", Labels.ATIVIDADE_GRUPO, 
+		AtividadeGrupo atividade4 = (AtividadeGrupo) turma2.criarAtividade(prof1, "Relatorio_1", Labels.ATIVIDADE_GRUPO, 
 				"Mostre que homunculus podem existir", 100, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
 		atividade4.adicionarGrupo(equipe1);
-		atividade4.submeterAtividade(null, equipe1, "Eles podem.");
+		atividade4.submeterAtividade(null, equipe1, "Eles_podem.txt");
 		atividade4.atribuirNota(prof1, null, equipe1, 100);
 		
 		// Saida

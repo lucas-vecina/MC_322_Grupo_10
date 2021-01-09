@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.Formatter;
 import java.util.GregorianCalendar;
 
 /* A classe Atividade e mae de duas outras especializadas, AtividadeIndividual e AtividadeGrupo.
@@ -32,6 +35,7 @@ public abstract class Atividade extends Evento implements Feed{
 		this.dataInicio = dataInicio;
 		this.notaMaxima = notaMaxima;
 		this.turma = turma;
+		criaArquivoAtividade();
 	}
 	
 	public Calendar getDataInicio() {
@@ -66,7 +70,27 @@ public abstract class Atividade extends Evento implements Feed{
 		this.turma = turma;
 	}
 	
-	public abstract void submeterAtividade(Aluno aluno, Grupo grupo, String arquivo);
+	public void submeterAtividade(Aluno aluno, Grupo grupo, String arquivo) {
+		try {
+			Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo() + "/Submissoes/" + arquivo);
+			String out;
+			if (aluno != null) {
+				out = "Nome do aluno: " + aluno.getNome() + " RA: " + aluno.getRa();
+			}
+			else {
+				out = "Grupo :";
+				for (Usuario membro:grupo.getGrupo()) {
+					out += "\n- Nome: " + membro.getNome() + " RA: " + ((Aluno)membro).getRa(); 
+				}
+			}
+			file.format("%s", out);
+			file.flush(); 
+			file.close();
+		}
+		catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
 	
 	public abstract void atribuirNota(Usuario user, Aluno aluno, Grupo grupo, double nota);
 	
@@ -83,6 +107,21 @@ public abstract class Atividade extends Evento implements Feed{
 				a.getFeedAluno().remove(2);
 			
 			a.getFeedAluno().add(0, this);
+		}
+	}
+	
+	private void criaArquivoAtividade() {
+		try {
+			File folder = new File("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo() + "/Submissoes/");
+			if (folder.mkdir()) {
+				Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo() + "/" + getTitulo() + ".txt");
+				file.format("%s", getDescricao()); 
+				file.flush();
+				file.close(); 
+			}
+		}
+		catch (IOException ex) {
+			ex.printStackTrace();
 		}
 	}
 	

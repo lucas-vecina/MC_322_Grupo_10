@@ -1,13 +1,18 @@
+import java.io.*;
+import java.util.Formatter;
+import java.util.FormatterClosedException; 
+import java.util.NoSuchElementException; 
 
 public class Teoria implements Feed{
 	private String descricao;
 	private String arquivos;
-	private Turma turma;
+	private Turma turma; 
 	
 	public Teoria(String descricao, String arquivos, Turma turma) {
 		this.descricao = descricao;
 		this.arquivos = arquivos;
 		this.turma = turma;
+		criarArquivoTeoria(); 
 	}
 
 	public String getDescricao() {
@@ -48,6 +53,18 @@ public class Teoria implements Feed{
 				a.getFeedAluno().remove(2);
 			
 			a.getFeedAluno().add(0, this);
+		}
+	}
+	
+	private void criarArquivoTeoria() {
+		try {
+			Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Teoria/" + arquivos);
+			file.format("%s", descricao); 
+			file.flush();
+			file.close(); 
+		}
+		catch (IOException ex) {
+			ex.printStackTrace();
 		}
 	}
 	

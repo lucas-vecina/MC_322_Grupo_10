@@ -22,8 +22,10 @@ public class AtividadeIndividual extends Atividade{
 	// Parametro grupo nao utilizado nesse e proximos metodos. Necessario para garantir polimorfismo
 	@Override
 	public void submeterAtividade(Aluno aluno, Grupo grupo, String arquivo) {
-		if(getTurma().getAlunos().contains(aluno))	// Verifica-se se o alumo de fato pertence a turma
+		if(getTurma().getAlunos().contains(aluno))	{// Verifica-se se o alumo de fato pertence a turma
 				getSubmissoes().add(new Submissao(aluno, arquivo));	// Vincula o arquivo ao aluno no vetor submissoes
+				super.submeterAtividade(aluno, grupo, arquivo); 
+		}
 	}
 	
 	// Permite ao um administrador(ped ou professor) atribuir nota ao aluno

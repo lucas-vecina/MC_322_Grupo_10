@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.io.File;
+import java.util.Scanner;
 
 public class Turma {
 	private String turma;
@@ -16,6 +18,7 @@ public class Turma {
 	private ArrayList<Monitoria> monitorias;	// Ambiente simbolico para atendimento sincrono do aluno
 	private ArrayList<Duvidas> duvidas;		// Ambiente para retirada de duvidas. Visivel a todos os alunos que cursam a disciplina
 	private ArrayList<Feed> mural;
+	private static final String ap = "files/"; 
 	
 	//Contrutor para ser usado na criacao de turmas pelo professor
 	public Turma(String turma, String sigla, Professor professor) {
@@ -31,6 +34,7 @@ public class Turma {
 		monitorias = new ArrayList<Monitoria>();
 		duvidas = new ArrayList<Duvidas>();
 		mural = new ArrayList<Feed>();
+		criarPastas();
 	}
 	
 	public String getTurma() {
@@ -227,6 +231,15 @@ public class Turma {
 		if(user == professor) {
 			pad.add(aluno);
 		}
+	}
+	
+	private void criarPastas() {
+		File dirTurma = new File(ap + getSigla()); 
+		dirTurma.mkdir();
+		File dirAtividades = new File(ap + getSigla() + "/Atividades/"); 
+		dirAtividades.mkdir();
+		File dirTeoria = new File(ap + getSigla() + "/Teoria");
+		dirTeoria.mkdir(); 
 	}
 	
 	@Override

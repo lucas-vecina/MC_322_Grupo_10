@@ -78,6 +78,7 @@ public class AtividadeGrupo extends Atividade{
 		for(Submissao s: getSubmissoes()) {
 			if(s.getEquipe() == grupo) {
 				s.setArquivo(arquivo);
+				super.submeterAtividade(aluno, grupo, arquivo); 
 				break;
 			}	
 		}
