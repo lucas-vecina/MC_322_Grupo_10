@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 /* Essa e uma classe filha de Atividade, especializacao que trata do cenario em que um e disponibilizada uma
@@ -29,6 +28,7 @@ public class AtividadeIndividual extends Atividade{
 			for(Submissao s:getSubmissoes()) {	// Faz a busca do aluno no vetor que contem submissões ja feitas
 				if(s.getAluno() == aluno) {
 					s.setNota(nota);
+					s.adicionarFeed();
 					break;
 				}
 			}

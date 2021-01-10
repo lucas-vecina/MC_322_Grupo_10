@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -172,7 +173,8 @@ public class Aluno extends Usuario implements Comparable<Aluno>{
 		for(Usuario u:getAmigos())
 			out += "-" + u.getNome() + ","; 
 		
-		out+= "]\n";
+		out+= "]\n\n";
+		out+= "Feed do aluno: " + getFeedAluno() + "\n";
 		
 		return out;
 	}

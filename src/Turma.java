@@ -4,7 +4,6 @@ import java.util.Formatter;
 import java.util.GregorianCalendar;
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Turma {
 	private String turma;
@@ -20,8 +19,7 @@ public class Turma {
 	private ArrayList<Atividade> atividades;	// Ambiente em que e possivel visualizar todas as atividades criadas
 	private ArrayList<Monitoria> monitorias;	// Ambiente simbolico para atendimento sincrono do aluno
 	private ArrayList<Duvidas> duvidas;		// Ambiente para retirada de duvidas. Visivel a todos os alunos que cursam a disciplina
-	private ArrayList<Feed> mural;
-	private static final String ap = "files/"; 
+	private ArrayList<Feed> mural;		// Feed da turma
 	
 	//Contrutor para ser usado na criacao de turmas pelo professor
 	public Turma(String turma, String sigla, Professor professor) {
@@ -180,9 +178,7 @@ public class Turma {
 	public Monitoria criarMonitoria(Aluno monitor) {
 		if (ped.contains(monitor) || pad.contains(monitor)) {
 			Monitoria monitoria = new Monitoria(monitor, this);
-			for(Usuario u: getAlunos()) {
-				u.getNotificacoes().add(0, Notificacoes.INICIO_MONITORIA);
-			}
+			
 			return monitoria;
 		}else {
 			return null;
@@ -237,11 +233,11 @@ public class Turma {
 	}
 	
 	private void criarPastas() {
-		File dirTurma = new File(ap + getSigla()); 
+		File dirTurma = new File("files/" + getSigla()); 
 		dirTurma.mkdir();
-		File dirAtividades = new File(ap + getSigla() + "/Atividades/"); 
+		File dirAtividades = new File("files/" + getSigla() + "/Atividades/"); 
 		dirAtividades.mkdir();
-		File dirTeoria = new File(ap + getSigla() + "/Teoria");
+		File dirTeoria = new File("files/" + getSigla() + "/Teoria");
 		dirTeoria.mkdir(); 
 	}
 	
@@ -276,7 +272,7 @@ public class Turma {
 		}
 		
 		try {
-			Formatter file = new Formatter(ap + getSigla() + "/Medias.txt"); 
+			Formatter file = new Formatter("files/" + getSigla() + "/Medias.txt"); 
 			String out = "Medias: ";
 			for (int i=0; i<alunos.size(); i+=1) {
 				Aluno aluno = alunos.get(i);
@@ -338,7 +334,7 @@ public class Turma {
 		out+= "\n-> Atividades: " + getAtividades() + "\n";
 		out+= "\n-> Monitorias: " + getMonitorias() + "\n";
 		out+= "\n-> Duvidas: " + getDuvidas() + "\n";
-		out+= "\n-> Feed: " + getMural() + "\n";
+		out+= "\n-> Mural: " + getMural() + "\n";
 				
 		return out;
 	}

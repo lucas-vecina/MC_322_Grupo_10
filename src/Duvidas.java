@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Duvidas {
+public class Duvidas implements Feed{
 	private Turma turma; 
 	private ArrayList<Mensagem> comentarios;
 	private Usuario indagador;
@@ -63,11 +63,21 @@ public class Duvidas {
 			comentarios.add(mensagem); 
 			
 			getIndagador().getNotificacoes().add(0, Notificacoes.NOVA_RESPOSTA);
+			adicionarFeed();
 			}
 		}
 	
 	public void resolver() {
 		resolvido = true; 
+	}
+	
+	public void adicionarFeed() {
+		if(!((Aluno) indagador).getFeedAluno().contains(this)) {
+			if(((Aluno) indagador).getFeedAluno().size() == 3)
+				((Aluno) indagador).getFeedAluno().remove(2);
+				
+			((Aluno) indagador).getFeedAluno().add(0, this);
+		}
 	}
 	
 	public String toString() {

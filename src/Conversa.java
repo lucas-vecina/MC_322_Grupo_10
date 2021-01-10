@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 //Disponibiliza um ambiente para interacao e troca de mensagens entre diferentes usuarios
-public class Conversa {	
+public class Conversa implements Feed{	
 	private Grupo pessoas;
 	private ArrayList<Mensagem> mensagens; 
 	
@@ -31,6 +31,11 @@ public class Conversa {
 		if(pessoas.getGrupo().contains(remetente)) {
 			Mensagem mensagem = new Mensagem(remetente, texto); 
 			mensagens.add(mensagem); 
+			
+			for(Usuario u : pessoas.getGrupo()) {
+				u.getNotificacoes().add(0, Notificacoes.NOVA_MENSAGEM);
+			}
+			adicionarFeed();
 		}
 	}
 		
@@ -48,18 +53,30 @@ public class Conversa {
 		for(Usuario u:getPessoas().getGrupo())
 			u.getConversas().add(this);
 	}
+	
+	public void adicionarFeed() {
+		for(Usuario u : pessoas.getGrupo()) {
+			if(!((Aluno) u).getFeedAluno().contains(this)) {
+				
+				if(((Aluno) u).getFeedAluno().size() == 3)
+					((Aluno) u).getFeedAluno().remove(2);
+				
+				((Aluno) u).getFeedAluno().add(0, this);
+			}			
+		}
+	}
 
 	
 	@Override
 	public String toString() {
 		String out = "Pessoas na conversa:";
 		for(Usuario pessoa:pessoas.getGrupo()) {
-			out = out + "\n" + pessoa.getNome() + ", Id:" + pessoa.getId();
+			out = out + "\n" + pessoa.getNome() + " - id:" + pessoa.getId();
 		}
 		out = out + "\nMensagens:"; 
 		for(Mensagem mensagem:mensagens) {
 			out = out + "\n" + mensagem; 
 		}
-		return out; 
+		return out + "\n"; 
 	}
 }

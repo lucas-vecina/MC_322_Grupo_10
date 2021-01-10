@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 /* Essa sublcasse de Atividade se diferencia pela possibilidade de submissao conjunta de uma atividade.
@@ -121,6 +120,7 @@ public class AtividadeGrupo extends Atividade{
 			for(Submissao s:getSubmissoes()) {
 				if(s.getEquipe() == grupo) {
 					s.setNota(nota);
+					s.adicionarFeed();
 					break;
 				}
 			}

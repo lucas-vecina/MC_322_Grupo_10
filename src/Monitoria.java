@@ -1,7 +1,7 @@
 import java.util.ArrayList; 
 
 // Ambiente simbolico para interacao entre um monitor e alunos para retirada de duvidas de maneira sincrona
-public class Monitoria {	
+public class Monitoria implements Feed {	
 	private Turma turma; 
 	private Aluno monitor;
 	private boolean status;
@@ -35,10 +35,6 @@ public class Monitoria {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
 	public ArrayList<Aluno> getFila() {
 		return fila;
 	}
@@ -57,6 +53,10 @@ public class Monitoria {
 	public void abrirMonitoria(Aluno monitor) {
 		if (!status && monitor == this.monitor) {
 			status = true;
+			adicionarFeed();
+			
+			for(Aluno a: getTurma().getAlunos())
+				a.getNotificacoes().add(0, Notificacoes.INICIO_MONITORIA);
 		}
 	}
 	
@@ -78,6 +78,20 @@ public class Monitoria {
 	public void sairMonitoria(Aluno aluno) {
 		if (fila.contains(aluno)) {
 			fila.remove(aluno); 
+		}
+	}
+	
+	public void adicionarFeed() {
+		if(getTurma().getMural().size() == 3)
+			getTurma().getMural().remove(2);
+		
+		getTurma().getMural().add(0, this);
+		
+		for(Aluno a : getTurma().getAlunos()) {
+			if(a.getFeedAluno().size() == 3)
+				a.getFeedAluno().remove(2);
+			
+			a.getFeedAluno().add(0, this);
 		}
 	}
 	
