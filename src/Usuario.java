@@ -13,7 +13,7 @@ public abstract class Usuario {
 	private ArrayList<Conversa> conversas;		// Contera mensagens enviadas e recebidas pelo Usuario
 	private ArrayList<Notificacoes> notificacoes;	// Contera mensagens pre-definidas que avisam sobre uma nova acao
 	private Permissoes permissao;	// Restringe o nivel de visualizacao e interacao do Usuario
-	private ArrayList<Solicitacao> solicitacoes;
+	private ArrayList<Solicitacao> solicitacoes;  //Solicitacoes de amizade ou qualquer outra coisa que o aluno receba
 	
 	// Construtor
 	public Usuario(String nome, Genero genero, String email, String senha, Permissoes permissao) {
