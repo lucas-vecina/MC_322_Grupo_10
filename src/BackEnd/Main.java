@@ -140,7 +140,7 @@ public class Main {
 		
 		monitoria1.getConversa().enviarMensagem(aluno2, "Ola galera");
 		monitoria1.getConversa().enviarMensagem(aluno1, "Tchau");
-		monitoria1.getConversa().enviarMensagem(aluno4, "Vsf");
+		monitoria1.getConversa().enviarMensagem(aluno4, "hello");
 		System.out.println(monitoria1.getConversa()); 
 		monitoria1.fecharMonitoria(aluno1);
 		System.out.println(monitoria1.getConversa()); 

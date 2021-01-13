@@ -1,4 +1,0 @@
-Grupo :
-- Nome: Ciri RA: 12345
-- Nome: Dandelion RA: 54321
-- Nome: Zoltan RA: 00012
