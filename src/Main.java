@@ -141,6 +141,8 @@ public class Main {
 		aluno1.adicionarSolicitacao(aluno2);
 		aluno3.adicionarSolicitacao(aluno2);
 		aluno2.aceitarSolicitacao();
-		System.out.println("---------------------------------------------------------\n");
+		
+		
+		System.out.println(aluno2);
 	}
 }

@@ -106,18 +106,19 @@ public class Aluno extends Usuario implements Comparable<Aluno>{
 			System.out.println("Proxima solicitacao: ");
 			System.out.println(super.getSolicitacoes().get(0));
 			System.out.println("Aceitar? (Y/N) \n");
-			while (true) {
+			boolean aux = true;
+			while (aux) {
 				String resposta = scan.next();
-				if(resposta == "Y") {
+				if(resposta.contains("Y")) {
 					amigos.add(super.getSolicitacoes().get(0).getUser());
 					Aluno a = (Aluno) super.getSolicitacoes().get(0).getUser();
 					a.getAmigos().add(this);
 					super.getSolicitacoes().remove(0);
-					break;
+					aux = false;
 				}
-				if(resposta == "N") {
+				if(resposta.contains("N")) {
 					super.getSolicitacoes().remove(0);
-					break;
+					aux = false;
 				}
 			}
 			
@@ -125,11 +126,11 @@ public class Aluno extends Usuario implements Comparable<Aluno>{
 				System.out.println("Proxima solicitacao? (Y/N) \n");
 				while (true) {
 					String resposta = scan.next();
-					if(resposta == "Y") {
+					if(resposta.contains("Y")) {
 						this.aceitarSolicitacao();
 						break;
 					}
-					if(resposta == "N") {
+					if(resposta.contains("N")) {
 						break;
 					}
 				}
