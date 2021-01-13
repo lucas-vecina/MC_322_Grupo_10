@@ -10,6 +10,9 @@ public class Main {
 		// Instancias de professores
 		Professor prof1 = new Professor("Geraldo", Genero.NAO_BINARIO, "geraldo@hotmail.com", "senha123");
 		Professor prof2 = new Professor("Yennefer", Genero.FEMININO, "yen@gmail.com", "123senha");
+		ArrayList<Professor> professores = new ArrayList<Professor>();
+		professores.add(prof1);
+		professores.add(prof2); 
 		
 		// Instancias de alunos
 		Aluno aluno1 = new Aluno("Ciri", Genero.NAO_BINARIO, "ciri@yahoo.com", "321senha", Permissoes.PUBLIC,
@@ -24,6 +27,14 @@ public class Main {
 				"Quimica", "00055");
 		Aluno aluno6 = new Aluno("Emhyr", Genero.MASCULINO, "emhyr@unesp.br", "senha000", Permissoes.PUBLIC,
 				"Economia", "99666");
+		
+		ArrayList<Aluno> aluno = new ArrayList<Aluno>();
+		aluno.add(aluno1);
+		aluno.add(aluno2);
+		aluno.add(aluno3);
+		aluno.add(aluno4);
+		aluno.add(aluno5);
+		aluno.add(aluno6);
 		
 		// Instancias de turmas
 		Turma turma1 = prof1.criarTurma("Bruxos I", "BX111");

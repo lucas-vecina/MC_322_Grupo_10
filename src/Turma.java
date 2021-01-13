@@ -22,6 +22,7 @@ public class Turma {
 	private ArrayList<Feed> mural;		// Feed da turma
 	
 	//Contrutor para ser usado na criacao de turmas pelo professor
+	
 	public Turma(String turma, String sigla, Professor professor) {
 		this.turma = turma;
 		this.sigla = sigla;
@@ -180,7 +181,7 @@ public class Turma {
 			Monitoria monitoria = new Monitoria(monitor, this);
 			
 			return monitoria;
-		}else {
+		} else {
 			return null;
 		}
 	}

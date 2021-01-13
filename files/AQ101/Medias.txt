@@ -1,0 +1,3 @@
+Medias: 
+ -Zoltan, RA: 00012, Nota: 50.0. Aprovado: Sim
+ -Dandelion, RA: 54321, Nota: 50.0. Aprovado: Sim

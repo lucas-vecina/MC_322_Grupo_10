@@ -64,8 +64,8 @@ public class Duvidas implements Feed{
 			
 			getIndagador().getNotificacoes().add(0, Notificacoes.NOVA_RESPOSTA);
 			adicionarFeed();
-			}
 		}
+	}
 	
 	public void resolver() {
 		resolvido = true; 

@@ -6,6 +6,7 @@ public class Monitoria implements Feed {
 	private Aluno monitor;
 	private boolean status;
 	private ArrayList<Aluno> fila;	// Onde os alunos ingressarao e aguardarao serem atendidos
+	private Conversa conversa; // Onde o monitor se comunica com os alunos 
 	
 	public Monitoria(Aluno monitor, Turma turma) {
 		this.turma = turma;
@@ -13,9 +14,12 @@ public class Monitoria implements Feed {
 		this.monitor = monitor;
 		status = false;
 		fila = new ArrayList<Aluno>();
+		ArrayList<Usuario> aux = new ArrayList<Usuario>();
+		aux.add(monitor); 
+		conversa = new Conversa(aux); 
 	}
 	
-		public Turma getTurma() {
+	public Turma getTurma() {
 		return turma;
 	}
 
@@ -46,7 +50,7 @@ public class Monitoria implements Feed {
 	// O monitor atende o primeiro aluno da fila
 	public void atender(Aluno monitor) {
 		if (!fila.isEmpty() && status && monitor == this.monitor) {
-			fila.remove(1); 
+			fila.remove(0); 
 		}
 	}
 	
@@ -64,20 +68,27 @@ public class Monitoria implements Feed {
 		if (status && monitor == this.monitor) {
 			for (Usuario aluno:fila) 
 				fila.remove(aluno);
+			for (Usuario aluno:conversa.getPessoas().getGrupo()) {
+				if (aluno != monitor) 
+					conversa.removerUsuario(monitor, aluno); 
+			}
 			status = false; 
 		}
+		conversa.setMensagens(new ArrayList<Mensagem>()); 
 	}
 	
 	// Permite a um aluno entrar na fila de atendimento da monitoria
 	public void entrarMonitoria(Aluno aluno) {
 		if (status && turma.getAlunos().contains(aluno)) {
 			fila.add(aluno); 
+			conversa.adicionarUsuario(monitor, aluno);
 		}
 	}
 	
 	public void sairMonitoria(Aluno aluno) {
 		if (fila.contains(aluno)) {
 			fila.remove(aluno); 
+		conversa.removerUsuario(monitor, aluno);
 		}
 	}
 	

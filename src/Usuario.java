@@ -235,6 +235,4 @@ public abstract class Usuario {
 		return out;
 	}
 	
-	
-
 }

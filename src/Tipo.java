@@ -1,4 +1,4 @@
 
 public enum Tipo {
-AMIZADE, GRUPO, AULA;
+	AMIZADE, GRUPO, AULA;
 }
