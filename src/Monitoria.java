@@ -47,6 +47,14 @@ public class Monitoria implements Feed {
 		this.fila = fila;
 	}
 	
+	public Conversa getConversa() {
+		return conversa;
+	}
+
+	public void setConversa(Conversa conversa) {
+		this.conversa = conversa;
+	}
+
 	// O monitor atende o primeiro aluno da fila
 	public void atender(Aluno monitor) {
 		if (!fila.isEmpty() && status && monitor == this.monitor) {
@@ -64,13 +72,14 @@ public class Monitoria implements Feed {
 		}
 	}
 	
-	public void fecharMontoria(Aluno monitor) {
+	public void fecharMonitoria(Aluno monitor) {
 		if (status && monitor == this.monitor) {
 			for (Usuario aluno:fila) 
-				fila.remove(aluno);
-			for (Usuario aluno:conversa.getPessoas().getGrupo()) {
-				if (aluno != monitor) 
-					conversa.removerUsuario(monitor, aluno); 
+				fila.remove(aluno); 
+			Usuario aluno; 
+			while (conversa.getPessoas().getGrupo().size() != 1) {
+				aluno = conversa.getPessoas().getGrupo().get(1);
+				conversa.removerUsuario(monitor, aluno);
 			}
 			status = false; 
 		}
@@ -88,8 +97,8 @@ public class Monitoria implements Feed {
 	public void sairMonitoria(Aluno aluno) {
 		if (fila.contains(aluno)) {
 			fila.remove(aluno); 
-		conversa.removerUsuario(monitor, aluno);
 		}
+		conversa.removerUsuario(monitor, aluno);
 	}
 	
 	public void adicionarFeed() {

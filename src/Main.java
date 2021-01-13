@@ -69,7 +69,6 @@ public class Main {
 		monitoria1.abrirMonitoria(aluno1);
 		monitoria1.entrarMonitoria(aluno2);
 		monitoria1.entrarMonitoria(aluno4);
-		monitoria1.atender(aluno1);
 		
 		// Nova atividade
 		AtividadeIndividual atividade1 = (AtividadeIndividual) turma1.criarAtividade(prof1, "Apresentacao_1", Labels.ATIVIDADE_INDIVIDUAL, 
@@ -136,13 +135,13 @@ public class Main {
 		System.out.println("Professor 1: " + prof1 + "---------------------------------------------------------\n");
 		
 		turma1.tirarMedia();
-		turma2.tirarMedia(); 
+		turma2.tirarMedia();		
 		
-		aluno1.adicionarSolicitacao(aluno2);
-		aluno3.adicionarSolicitacao(aluno2);
-		aluno2.aceitarSolicitacao();
-		
-		
-		System.out.println(aluno2);
+		monitoria1.getConversa().enviarMensagem(aluno2, "Ola galera");
+		monitoria1.getConversa().enviarMensagem(aluno1, "Tchau");
+		monitoria1.getConversa().enviarMensagem(aluno4, "Vsf");
+		System.out.println(monitoria1.getConversa()); 
+		monitoria1.fecharMonitoria(aluno1);
+		System.out.println(monitoria1.getConversa()); 
 	}
 }
