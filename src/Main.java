@@ -137,5 +137,10 @@ public class Main {
 		
 		turma1.tirarMedia();
 		turma2.tirarMedia(); 
+		
+		aluno1.adicionarSolicitacao(aluno2);
+		aluno3.adicionarSolicitacao(aluno2);
+		aluno2.aceitarSolicitacao();
+		System.out.println("---------------------------------------------------------\n");
 	}
 }

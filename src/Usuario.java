@@ -220,6 +220,7 @@ public abstract class Usuario {
 		out+= "| Email: " + getEmail() + "\n";
 		out+= "| Nome: " + getNome() + "\n";
 		out+= "| Permissao: " + getPermissao().getDescricao() + "\n\n";
+		out+= "| Solicitacao: " + getSolicitacoes() + "\n\n";
 		out+= "| Agenda: " + getAgenda() + "\n\n";
 		out+= "| Turmas: [\n";
 		
