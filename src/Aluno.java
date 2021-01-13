@@ -110,6 +110,8 @@ public class Aluno extends Usuario implements Comparable<Aluno>{
 				String resposta = scan.next();
 				if(resposta == "Y") {
 					amigos.add(super.getSolicitacoes().get(0).getUser());
+					Aluno a = (Aluno) super.getSolicitacoes().get(0).getUser();
+					a.getAmigos().add(this);
 					super.getSolicitacoes().remove(0);
 					break;
 				}
