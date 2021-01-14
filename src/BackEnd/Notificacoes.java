@@ -3,6 +3,7 @@ public enum Notificacoes {
 	NOVA_MENSAGEM("Voce recebeu uma nova mensagem!"),
 	NOVA_ATIVIDADE("Voce tem uma nova atividade para entrega!"),
 	NOVO_AMIGO("Voce tem um novo amigo!"),
+	NOVA_SOLICITACAO("Voce tem uma nova solicitacao"),
 	INICIO_MONITORIA("Uma monitoria acabou de comecar!"),
 	NOVA_AULA("Uma nova aula foi postada"),
 	NOVA_RESPOSTA("Responderam uma duvida que voce fez!"),

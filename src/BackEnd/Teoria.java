@@ -1,8 +1,6 @@
 package BackEnd;
 import java.io.*;
 import java.util.Formatter;
-import java.util.FormatterClosedException; 
-import java.util.NoSuchElementException; 
 
 public class Teoria implements Feed{
 	private String descricao;

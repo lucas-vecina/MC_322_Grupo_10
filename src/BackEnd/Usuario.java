@@ -153,7 +153,7 @@ public abstract class Usuario {
 	
 	public abstract String visualizarAmigos(Usuario user);
 	
-	public abstract void adicionarSolicitacao(Usuario user);
+	public abstract void adicionarSolicitacao(Usuario user, Tipo tipo);
 	
 	public Conversa iniciarConversa(ArrayList<Usuario> grupo) {
 		Conversa conversa = new Conversa(grupo);

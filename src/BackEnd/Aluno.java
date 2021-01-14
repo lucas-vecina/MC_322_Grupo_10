@@ -3,7 +3,7 @@ package BackEnd;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Aluno extends Usuario implements Comparable<Aluno>{
+public class Aluno extends Usuario implements Comparable<Aluno>, Feed{
 	private ArrayList<Usuario> amigos;
 	private ArrayList<Feed> feedAluno;
 	private String curso;
@@ -97,8 +97,9 @@ public class Aluno extends Usuario implements Comparable<Aluno>{
 				
 	}
 	
-	public void adicionarSolicitacao(Usuario user) {
-		user.getSolicitacoes().add(new Solicitacao(this, this.getNome(), Tipo.AMIZADE));
+	public void adicionarSolicitacao(Usuario user, Tipo tipo) {
+		user.getSolicitacoes().add(new Solicitacao(this, this.getNome(), tipo));
+		user.getNotificacoes().add(Notificacoes.NOVA_SOLICITACAO);
 	}
 	
 	public void aceitarSolicitacao() {
@@ -111,12 +112,13 @@ public class Aluno extends Usuario implements Comparable<Aluno>{
 			while (aux) {
 				String resposta = scan.next();
 				if(resposta.contains("Y")) {
-					amigos.add(super.getSolicitacoes().get(0).getUser());
 					Aluno a = (Aluno) super.getSolicitacoes().get(0).getUser();
+					amigos.add(a);
 					a.getAmigos().add(this);
 					super.getSolicitacoes().remove(0);
 					aux = false;
 				}
+				
 				if(resposta.contains("N")) {
 					super.getSolicitacoes().remove(0);
 					aux = false;
@@ -166,6 +168,13 @@ public class Aluno extends Usuario implements Comparable<Aluno>{
 			return 0;
 		else
 			return -1; 
+	}
+	
+	public void adicionarFeed() {
+		if(((Aluno) getSolicitacoes().get(0).getUser()).getFeedAluno().size() == 3)
+			((Aluno) getSolicitacoes().get(0).getUser()).getFeedAluno().remove(2);
+		
+		((Aluno) getSolicitacoes().get(0).getUser()).getFeedAluno().add(this);
 	}
 	
 	public String toString() {

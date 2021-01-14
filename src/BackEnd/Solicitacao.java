@@ -1,6 +1,6 @@
 package BackEnd;
 
-public class Solicitacao {
+public class Solicitacao{
 	private Usuario user;
 	private String nome;
 	private Tipo tipo;
@@ -9,6 +9,7 @@ public class Solicitacao {
 		this.user = user;
 		this.nome = nome;
 		this.tipo = tipo;
+		//adicionarFeed();
 	}
 
 	public Usuario getUser() {
@@ -22,6 +23,15 @@ public class Solicitacao {
 	public Tipo getTipo() {
 		return tipo;
 	}	
+	
+	/*public void adicionarFeed() {
+		if(((Aluno) user).getFeedAluno().size() == 3) {
+			((Aluno) user).getFeedAluno().remove(2);
+		}
+		
+		((Aluno) user).getFeedAluno().add(0, this);
+		
+	}*/
 	
 	public String toString() {
 		String out = "";
