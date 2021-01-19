@@ -2,6 +2,7 @@ package BackEnd;
 import java.util.ArrayList;
 
 public abstract class Usuario {
+        private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>(); 
 	private static int numeroUsuarios = 0;
 	private final int id;
 	private Genero genero;
@@ -31,6 +32,7 @@ public abstract class Usuario {
 		notificacoes = new ArrayList<Notificacoes>();
 		this.permissao = permissao;
 		solicitacoes = new ArrayList<Solicitacao>();
+                usuarios.add(this); 
 	}
 	
 	public Genero getGenero() {
@@ -109,6 +111,18 @@ public abstract class Usuario {
 		return notificacoes;
 	}
 	
+        public ArrayList<Usuario> getUsuarios() {
+            return usuarios; 
+        }
+        
+        public static Usuario signIn(String email, String senha) {
+            for(Usuario usuario:usuarios) {
+                if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha))
+                    return usuario; 
+            }
+            return null; 
+        } 
+        
 	/* Esse metodo possibilita a um usuário (user) visualizar um apanhado de informações sobre outro (this).
 	 * Ele e sobrescrito em Aluno e também invocado pelo mesmo. Para Professor, esse metodo ja se faz suficiente.
 	 * Conforme a permissao do user, diferentes informacoes sao exibidas.*/
