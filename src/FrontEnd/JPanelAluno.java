@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package FrontEnd;
-
+import BackEnd.*; 
 /**
  *
  * @author guilh
@@ -14,8 +14,21 @@ public class JPanelAluno extends javax.swing.JPanel {
     /**
      * Creates new form JPanelAluno
      */
-    public JPanelAluno() {
+    public JPanelAluno(Aluno aluno, JFrameMain frame) {
         initComponents();
+        this.aluno = aluno; 
+        this.frame = frame; 
+        // Text field de informacao:
+        String out = "Nome: " + aluno.getNome(); 
+        out += "\nRA: " + aluno.getRa();
+        out += "\nCurso: " + aluno.getCurso(); 
+        out += "\nMatriculas:\n"; 
+        for (Turma turma:aluno.getTurmas()) {
+            out += turma.getSigla();
+            if (aluno.getTurmas().indexOf(turma) != aluno.getTurmas().size()-1)
+                out += ", "; 
+        }
+        jTextInfo.setText(out); 
     }
 
     /**
@@ -27,19 +40,222 @@ public class JPanelAluno extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabelFeed = new javax.swing.JLabel();
+        jLabelTabela = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextInfo = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jListFeed = new javax.swing.JList<>();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanelAmigos = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListAmigos = new javax.swing.JList<>();
+        jPanelTurmas = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jListTurmas = new javax.swing.JList<>();
+        jPanelSolicitacoes = new javax.swing.JPanel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jTable1.setFont(new java.awt.Font("Yu Gothic", 0, 10)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"08:00", null, null, null, null, null},
+                {"09:00", null, null, null, null, null},
+                {"10:00", null, null, null, null, null},
+                {"11:00", null, null, null, null, null},
+                {"13:00", null, null, null, null, null},
+                {"14:00", null, null, null, null, null},
+                {"15:00", null, null, null, null, null},
+                {"16:00", null, null, null, null, null},
+                {"17:00", null, null, null, null, null},
+                {"18:00", null, null, null, null, null},
+                {"20:00", null, null, null, null, null},
+                {"21:00", null, null, null, null, null},
+                {"22:00", null, null, null, null, null}
+            },
+            new String [] {
+                "", "Segunda", "Terça", "Quarta", "Quinta", "Sexta"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+        }
+
+        jLabelFeed.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jLabelFeed.setText("Feed");
+
+        jLabelTabela.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jLabelTabela.setText("Tabela de horarios");
+
+        jTextInfo.setEditable(false);
+        jTextInfo.setColumns(20);
+        jTextInfo.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jTextInfo.setRows(5);
+        jTextInfo.setToolTipText("");
+        jTextInfo.setBorder(null);
+        jScrollPane3.setViewportView(jTextInfo);
+
+        jListFeed.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jListFeed.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jListFeed.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jListFeed);
+
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+
+        jPanelAmigos.setBackground(new java.awt.Color(255, 255, 255));
+
+        jListAmigos.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jListAmigos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListAmigosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jListAmigos);
+
+        javax.swing.GroupLayout jPanelAmigosLayout = new javax.swing.GroupLayout(jPanelAmigos);
+        jPanelAmigos.setLayout(jPanelAmigosLayout);
+        jPanelAmigosLayout.setHorizontalGroup(
+            jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+        );
+        jPanelAmigosLayout.setVerticalGroup(
+            jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Amigos", jPanelAmigos);
+
+        jPanelTurmas.setBackground(new java.awt.Color(255, 255, 255));
+
+        jListTurmas.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jListTurmas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(jListTurmas);
+
+        javax.swing.GroupLayout jPanelTurmasLayout = new javax.swing.GroupLayout(jPanelTurmas);
+        jPanelTurmas.setLayout(jPanelTurmasLayout);
+        jPanelTurmasLayout.setHorizontalGroup(
+            jPanelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+        );
+        jPanelTurmasLayout.setVerticalGroup(
+            jPanelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Turmas", jPanelTurmas);
+
+        jPanelSolicitacoes.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanelSolicitacoesLayout = new javax.swing.GroupLayout(jPanelSolicitacoes);
+        jPanelSolicitacoes.setLayout(jPanelSolicitacoesLayout);
+        jPanelSolicitacoesLayout.setHorizontalGroup(
+            jPanelSolicitacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 320, Short.MAX_VALUE)
+        );
+        jPanelSolicitacoesLayout.setVerticalGroup(
+            jPanelSolicitacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 163, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Solicitações", jPanelSolicitacoes);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 696, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelFeed)
+                        .addGap(101, 101, 101))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabelTabela)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 523, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jLabelTabela)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelFeed)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
+
+        jTabbedPane1.getAccessibleContext().setAccessibleName("Amigos");
+        jTabbedPane1.getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jListAmigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListAmigosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jListAmigosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabelFeed;
+    private javax.swing.JLabel jLabelTabela;
+    private javax.swing.JList<String> jListAmigos;
+    private javax.swing.JList<String> jListFeed;
+    private javax.swing.JList<String> jListTurmas;
+    private javax.swing.JPanel jPanelAmigos;
+    private javax.swing.JPanel jPanelSolicitacoes;
+    private javax.swing.JPanel jPanelTurmas;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextInfo;
     // End of variables declaration//GEN-END:variables
+    private Aluno aluno; 
+    private JFrameMain frame; 
 }

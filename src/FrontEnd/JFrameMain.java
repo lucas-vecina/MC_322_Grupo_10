@@ -54,6 +54,9 @@ public class JFrameMain extends javax.swing.JFrame {
             .addGap(0, 521, Short.MAX_VALUE)
         );
 
+        jTextFieldLogin.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jTextFieldLogin.setText("ciri@yahoo.com");
+
         jLabelEmail.setFont(new java.awt.Font("Yu Gothic", 0, 18)); // NOI18N
         jLabelEmail.setText("Email");
 
@@ -64,10 +67,10 @@ public class JFrameMain extends javax.swing.JFrame {
         jLabelSenha.setText("Senha");
 
         jButton1.setBackground(new java.awt.Color(201, 23, 48));
-        jButton1.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Entrar");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -83,25 +86,23 @@ public class JFrameMain extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelEmail)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSenha))
+                .addGap(87, 87, 87))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanelPreto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelEmail)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelSenha))
-                        .addGap(87, 87, 87))
+                        .addGap(122, 122, 122)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(122, 122, 122)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(jLabelNotification, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(104, 104, 104)
+                        .addComponent(jLabelNotification, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +148,11 @@ public class JFrameMain extends javax.swing.JFrame {
           jLabelNotification.setText("Email ou senha incorretos.");
         }
         else {
-          jLabelNotification.setText("Parabens"); 
+          if (usuario instanceof Aluno) {
+              JPanelAluno panel = new JPanelAluno((Aluno)usuario, this); 
+              jPanel1.setVisible(false);
+              setContentPane(panel);  
+          }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
