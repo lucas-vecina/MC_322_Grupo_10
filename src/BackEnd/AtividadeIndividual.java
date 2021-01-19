@@ -17,7 +17,7 @@ public class AtividadeIndividual extends Atividade{
 	@Override
 	public void submeterAtividade(Aluno aluno, Grupo grupo, String arquivo) {
 		if(getTurma().getAlunos().contains(aluno))	{// Verifica-se se o alumo de fato pertence a turma
-				getSubmissoes().add(new Submissao(aluno, arquivo));	// Vincula o arquivo ao aluno no vetor submissoes
+				getSubmissoes().add(new Submissao(aluno, arquivo, this));	// Vincula o arquivo ao aluno no vetor submissoes
 				super.submeterAtividade(aluno, grupo, arquivo); 
 		}
 	}

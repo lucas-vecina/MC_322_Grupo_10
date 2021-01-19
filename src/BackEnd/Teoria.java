@@ -55,6 +55,13 @@ public class Teoria implements Feed{
 		}
 	}
 	
+	public String exibirFeed() {
+		String out = "Voce tem uma nova aula da turma " + turma.getSigla() + "\n Descricao: " + descricao;
+		
+		return out;
+	}
+	
+	
 	private void criarArquivoTeoria() {
 		try {
 			Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Teoria/" + arquivos);

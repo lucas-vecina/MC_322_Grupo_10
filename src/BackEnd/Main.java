@@ -2,6 +2,7 @@ package BackEnd;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 
 public class Main {
 
@@ -38,8 +39,16 @@ public class Main {
 		aluno.add(aluno6);
 		
 		// Instancias de turmas
-		Turma turma1 = prof1.criarTurma("Bruxos I", "BX111");
-		Turma turma2 = prof2.criarTurma("Alquimia I", "AQ101");
+		HashMap<Integer, ArrayList<Integer>> horarios1 = new HashMap<Integer, ArrayList<Integer>>();
+		HashMap<Integer, ArrayList<Integer>> horarios2 = new HashMap<Integer, ArrayList<Integer>>();
+
+		ArrayList<Integer> aux = new ArrayList<Integer>();
+		aux.addAll(Arrays.asList(10, 11));
+		horarios1.put(1, aux);
+
+		
+		Turma turma1 = prof1.criarTurma("Bruxos I", "BX111", horarios1);
+		Turma turma2 = prof2.criarTurma("Alquimia I", "AQ101", horarios2);
 		
 		// Insercao dos alunos, peds e pads nas turmas
 		aux1.addAll(Arrays.asList(aluno2, aluno4, aluno6));
@@ -141,8 +150,8 @@ public class Main {
 		monitoria1.getConversa().enviarMensagem(aluno2, "Ola galera");
 		monitoria1.getConversa().enviarMensagem(aluno1, "Tchau");
 		monitoria1.getConversa().enviarMensagem(aluno4, "hello");
-		System.out.println(monitoria1.getConversa()); 
-		monitoria1.fecharMonitoria(aluno1);
-		System.out.println(monitoria1.getConversa()); 
+	
+		System.out.println(aluno2.visualizarFeed()); 
+
 	}
 }

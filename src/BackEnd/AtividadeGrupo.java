@@ -61,7 +61,7 @@ public class AtividadeGrupo extends Atividade{
 				return "Grupo nao pode ser adicionado. Quantidade de integrantes diferente da solicitada.";
 
 			default:
-				getSubmissoes().add(new Submissao(equipe));	// grupo adicionado ao array de submissoes
+				getSubmissoes().add(new Submissao(equipe, this));	// grupo adicionado ao array de submissoes
 				return "Grupo adicionado!";		
 		}		
 	}

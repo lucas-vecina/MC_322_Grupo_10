@@ -116,6 +116,12 @@ public class Monitoria implements Feed {
 		}
 	}
 	
+	public String exibirFeed() {
+		String out = monitor.getNome() + " iniciou uma monitoria de " + turma.getSigla();
+		
+		return out;
+	}
+	
 	@Override
 	public String toString() {
 		String out = "\nMonitor:" + getMonitor().getNome() + ", RA: " + getMonitor().getRa();

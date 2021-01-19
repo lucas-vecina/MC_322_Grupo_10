@@ -8,10 +8,8 @@ import java.util.GregorianCalendar;
 
 /* A classe Atividade e mae de duas outras especializadas, AtividadeIndividual e AtividadeGrupo.
  * Aqui sao reunidos alguns atributos e metodos comuns a elas.
- * Atividade, por conseguinte, tambem e filha de Evento, pois toda atividade instanciada e diretamente
- * associada a agenda do usuario e da turma.
- * Ainda nao utilizamos plenamente a heranca com Evento, sera melhor explorado na continuacao do projeto */
-public abstract class Atividade extends Evento implements Feed{
+ * Optou-se por interromper a heranca entre Atividade e Evento. Agora Evento eh obtida por meio das instancias agendaTurma e agendaAluno. */
+public abstract class Atividade implements Feed{
 	private Calendar dataInicio = new GregorianCalendar();
 	private int notaMaxima;
 	private Evento agendaTurma;
@@ -21,10 +19,7 @@ public abstract class Atividade extends Evento implements Feed{
 	
 	public Atividade(Turma turma, String titulo, Labels label, String descricao, int notaMaxima,
 			GregorianCalendar dataInicio, GregorianCalendar data) {
-	
-		// Como o construtor de Evento e sobrecerregado, optou-se por inicializar, por default, aquele associado a Turma
-		super(titulo, label, descricao, data, false);
-		
+
 		// Um novo objeto agendaTurma e instanciado e adicionado a agenda da turma. Versao futura anulara essa necessidade
 		this.agendaTurma = new Evento(titulo, label, descricao, data, false);
 		turma.getAgenda().add(0, agendaTurma);	
@@ -80,7 +75,7 @@ public abstract class Atividade extends Evento implements Feed{
 	
 	public void submeterAtividade(Aluno aluno, Grupo grupo, String arquivo) {
 		try {
-			Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo() + "/Submissoes/" + arquivo);
+			Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo() + "/Submissoes/" + arquivo);
 			String out;
 			if (aluno != null) {
 				out = "Nome do aluno: " + aluno.getNome() + " RA: " + aluno.getRa();
@@ -118,14 +113,22 @@ public abstract class Atividade extends Evento implements Feed{
 		}
 	}
 	
+	public String exibirFeed() {
+		String out = "Voce tem uma nova " + agendaAluno.getLabel().getDescricao() + " na turma " + turma.getSigla() + "\n";
+		out += "INFO: " + "Titulo: " + agendaAluno.getTitulo() + "\t Descricao: " + agendaAluno.getDescricao();
+		
+		return out;
+	}
+	
+	
 	private void criaArquivoAtividade() {
 		try {
-			File folder = new File("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo());
+			File folder = new File("files/" + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo());
 			folder.mkdir();
-			File folder2 = new File("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo() + "/Submissoes/");
+			File folder2 = new File("files/" + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo() + "/Submissoes/");
 			folder2.mkdir();
-			Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Atividades/" + getTitulo() + "/" + getTitulo() + ".txt");
-			file.format("%s", getDescricao()); 
+			Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo() + "/" + agendaAluno.getTitulo() + ".txt");
+			file.format("%s", agendaAluno.getDescricao()); 
 			file.flush();
 			file.close(); 
 		}

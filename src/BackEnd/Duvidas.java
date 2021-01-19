@@ -81,6 +81,13 @@ public class Duvidas implements Feed{
 		}
 	}
 	
+	public String exibirFeed() {
+		String out = "Respoderam sua duvida: " + '"' + indagacao + '"';
+		out += comentarios.get(comentarios.size() - 1);
+		
+		return out;
+	}
+	
 	public String toString() {
 		String out = "\n";
 		out+= "Indagador: " + getIndagador().getNome() + "\n";

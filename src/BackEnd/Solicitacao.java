@@ -1,41 +1,49 @@
 package BackEnd;
 
-public class Solicitacao{
-	private Usuario user;
-	private String nome;
+public class Solicitacao implements Feed{
+	private Usuario solicitante;
+	private Usuario receptor;
 	private Tipo tipo;
 	
-	public Solicitacao(Usuario user, String nome, Tipo tipo) {
-		this.user = user;
-		this.nome = nome;
+	public Solicitacao(Usuario solicitante, Usuario receptor, Tipo tipo) {
+		this.solicitante = solicitante;
+		this.receptor = receptor;
 		this.tipo = tipo;
-		//adicionarFeed();
+		adicionarFeed();
+		receptor.getNotificacoes().add(Notificacoes.NOVA_SOLICITACAO);
 	}
 
-	public Usuario getUser() {
-		return user;
+	public Usuario getSolicitante() {
+		return solicitante;
 	}
-
-	public String getNome() {
-		return nome;
+	
+	public Usuario getReceptor() {
+		return receptor;
 	}
 
 	public Tipo getTipo() {
 		return tipo;
 	}	
 	
-	/*public void adicionarFeed() {
-		if(((Aluno) user).getFeedAluno().size() == 3) {
-			((Aluno) user).getFeedAluno().remove(2);
+	public void adicionarFeed() {		
+		if(((Aluno) receptor).getFeedAluno().size() == 3) {
+			((Aluno) receptor).getFeedAluno().remove(2);
 		}
 		
-		((Aluno) user).getFeedAluno().add(0, this);
+		((Aluno) receptor).getFeedAluno().add(0, this);
+	}
+	
+	public String exibirFeed() {
+		String out = "Voce tem uma nova solicitacao de " + tipo.getDescricao() + " vinda de " 
+					+ solicitante.getNome();
 		
-	}*/
+		return out;
+	}
+	
 	
 	public String toString() {
 		String out = "";
-		out += "Solicitacao de " + tipo + " vinda de " + nome;
+		out += "Solicitacao de " + tipo + " vinda de " + solicitante.getNome();
 		return out;
 	}
 }

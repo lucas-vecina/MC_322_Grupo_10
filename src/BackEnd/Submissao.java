@@ -4,13 +4,15 @@ package BackEnd;
  * Ela possibilita um correspondencia direta entre o arquivo de envio e a nota com o aluno, seja ele individual
  * ou em grupo. */
 public class Submissao implements Feed{	
+	private Atividade atividade;
 	private Aluno aluno;
 	private Grupo equipe;
 	private String arquivo;
 	private double nota = -1.0;
 	
 	// Construtor sobrecarregado invocado por AtividadeIndividual
-	public Submissao(Aluno aluno, String arquivo) {
+	public Submissao(Aluno aluno, String arquivo, Atividade atividade) {
+		this.atividade = atividade;
 		this.aluno = aluno;
 		this.arquivo = arquivo;
 	}
@@ -18,8 +20,13 @@ public class Submissao implements Feed{
 	/* Construtor sobrecarregado invocado por AtividadeGrupo. 
 	 * Notar que arquivo nao e passado de inicio. Isso porque o grupo e estabelecido previamente e so depois a 
 	 * atividade e submetida (alterada pelo set()). */
-	public Submissao(Grupo equipe) {
+	public Submissao(Grupo equipe, Atividade atividade) {
+		this.atividade = atividade;
 		this.equipe = equipe;
+	}
+	
+	public Atividade getAtividade() {
+		return atividade;
 	}
 	
 	public Aluno getAluno() {
@@ -63,6 +70,13 @@ public class Submissao implements Feed{
 			
 			getAluno().getFeedAluno().add(0, this);
 		}
+	}
+	
+	public String exibirFeed() {
+		String out = "Docente " + atividade.getTurma().getProfessor().getNome() + " atribuiu nota " + nota
+				+ " ao seu trabalho " + atividade.getAgendaAluno().getTitulo() + " de " + atividade.getTurma().getSigla();
+
+		return out;
 	}
 
 	public String toString() {

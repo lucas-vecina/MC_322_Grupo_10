@@ -66,6 +66,31 @@ public class Conversa implements Feed{
 			}			
 		}
 	}
+	
+	public String exibirFeed() {
+		int i = 0;
+		String out = "Conversa com: ";
+		
+		for(Usuario u: pessoas.getGrupo()) {
+			out+= u.getNome();
+
+			if(i != pessoas.getGrupo().size() -1)
+				out+= ", ";
+			i++;
+		}
+		
+		out+= "\nMensagens: \n" ;
+		
+		for(int k = 1; k <= 3; k++) {
+			try {
+				out+= mensagens.get(mensagens.size() - k) + "\n";
+			} catch(Exception e){
+				break;
+			}	
+		}
+		
+		return out;
+	}
 
 	
 	@Override

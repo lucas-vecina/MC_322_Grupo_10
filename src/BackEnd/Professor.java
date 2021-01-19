@@ -1,5 +1,6 @@
 package BackEnd;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Professor extends Usuario{
 	
@@ -9,8 +10,8 @@ public class Professor extends Usuario{
 	}
 	
 	//Metodo para cada professor criar sua turma para inumeras materias
-	public Turma criarTurma(String nome, String sigla) {
-		Turma t1 = new Turma(nome,sigla,this);
+	public Turma criarTurma(String nome, String sigla, HashMap<Integer,ArrayList<Integer>> horarios) {
+		Turma t1 = new Turma(nome,sigla,this, horarios);
 		getTurmas().add(t1);
 		
 		return t1;
@@ -33,7 +34,7 @@ public class Professor extends Usuario{
 	}
 	
 	public void adicionarSolicitacao(Usuario user, Tipo tipo) {
-		user.getSolicitacoes().add(new Solicitacao(this, this.getNome(), tipo));
+		user.getSolicitacoes().add(new Solicitacao(this, user, tipo));
 	}
 	
 	public String toString() {

@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Formatter;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.io.File;
 import java.io.IOException;
 
@@ -12,6 +13,7 @@ public class Turma {
 	private Cor cor = Cor.LARANJA;	//default, possivel alterar
 	private String ementa;
 	private Professor professor;
+	private HashMap <Integer, ArrayList<Integer>> horarios;
 	private ArrayList<Aluno> ped;	// Lista contendo elementos do tipo Aluno com permissoees proximas ao do Professor
 	private ArrayList<Aluno> pad;	// Lista contendo elementos do tipo Aluno algumas permissoes a mais do que um aluno comum
 	private ArrayList<Aluno> alunos;	// Lista contendo os Alunos que de fato cursarao a disciplina
@@ -24,10 +26,11 @@ public class Turma {
 	
 	//Contrutor para ser usado na criacao de turmas pelo professor
 	
-	public Turma(String turma, String sigla, Professor professor) {
+	public Turma(String turma, String sigla, Professor professor, HashMap<Integer,ArrayList<Integer>> horarios) {
 		this.turma = turma;
 		this.sigla = sigla;
 		this.professor = professor;
+		this.horarios = horarios;
 		ped = new ArrayList<Aluno>();
 		pad = new ArrayList<Aluno>();
 		alunos = new ArrayList<Aluno>();
@@ -43,6 +46,11 @@ public class Turma {
 	public String getTurma() {
 		return turma;
 	}
+	
+	public HashMap<Integer, ArrayList<Integer>> getHorarios(){
+		return horarios;
+	}
+
 
 	public void setTurma(String turma) {
 		this.turma = turma;
@@ -296,6 +304,7 @@ public class Turma {
 		out+= "-> Disciplina: " + getTurma() + " (" + getSigla() + ", " + getCor() + ") \n";
 		out+= (ementa != null? "-> Ementa: " + getEmenta() + "\n":"");
 		out+= "-> Professor: " + getProfessor().getNome() + "\n";
+		out+= "-> Horarios: " + getHorarios() + "\n";
 		out+= "-> PED's: [";
 		
 		for(Usuario u:getPed()) {

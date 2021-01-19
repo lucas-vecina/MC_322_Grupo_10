@@ -98,24 +98,32 @@ public class Aluno extends Usuario implements Comparable<Aluno>, Feed{
 	}
 	
 	public void adicionarSolicitacao(Usuario user, Tipo tipo) {
-		user.getSolicitacoes().add(new Solicitacao(this, this.getNome(), tipo));
+		user.getSolicitacoes().add(new Solicitacao(this, user, tipo));
 		user.getNotificacoes().add(Notificacoes.NOVA_SOLICITACAO);
 	}
 	
 	public void aceitarSolicitacao() {
 		Scanner scan = new Scanner(System.in);
 		if(!(super.getSolicitacoes().isEmpty())){
-			System.out.println("Proxima solicitacao: ");
-			System.out.println(super.getSolicitacoes().get(0));
-			System.out.println("Aceitar? (Y/N) \n");
 			boolean aux = true;
 			while (aux) {
 				String resposta = scan.next();
 				if(resposta.contains("Y")) {
-					Aluno a = (Aluno) super.getSolicitacoes().get(0).getUser();
+					Aluno a = (Aluno) super.getSolicitacoes().get(0).getSolicitante();
+					
+					//Adicionando Usuario a lista de amigos
 					amigos.add(a);
 					a.getAmigos().add(this);
-					super.getSolicitacoes().remove(0);
+					
+					//Adicionando notificacao
+					a.getNotificacoes().add(Notificacoes.NOVO_AMIGO);
+					getNotificacoes().add(Notificacoes.NOVO_AMIGO);
+					
+					//Adicionando ao feed
+					a.getFeedAluno().add(this);
+					this.feedAluno.add(a);
+					
+					getSolicitacoes().remove(0);
 					aux = false;
 				}
 				
@@ -171,10 +179,28 @@ public class Aluno extends Usuario implements Comparable<Aluno>, Feed{
 	}
 	
 	public void adicionarFeed() {
-		if(((Aluno) getSolicitacoes().get(0).getUser()).getFeedAluno().size() == 3)
-			((Aluno) getSolicitacoes().get(0).getUser()).getFeedAluno().remove(2);
+		if(((Aluno) getSolicitacoes().get(0).getSolicitante()).getFeedAluno().size() == 3)
+			((Aluno) getSolicitacoes().get(0).getSolicitante()).getFeedAluno().remove(2);
 		
-		((Aluno) getSolicitacoes().get(0).getUser()).getFeedAluno().add(this);
+		((Aluno) getSolicitacoes().get(0).getSolicitante()).getFeedAluno().add(this);
+	}
+	
+	public String exibirFeed() {
+		String out;
+		out = getNome() + " te adicionou como amigo.";
+		out += "INFO: " + "RA: " + ra + "\tEmail: " + getEmail() + "\nCurso: " + curso;
+		
+		return out;
+	}
+	
+	public String visualizarFeed() {
+		String out = "";
+		for(Feed f:feedAluno) {
+			out += f.exibirFeed() + "\n";
+		}
+		
+		return out;
+		
 	}
 	
 	public String toString() {
