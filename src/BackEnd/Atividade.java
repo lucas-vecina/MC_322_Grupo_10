@@ -77,6 +77,7 @@ public abstract class Atividade implements Feed{
 		try {
 			Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo() + "/Submissoes/" + arquivo);
 			String out;
+			
 			if (aluno != null) {
 				out = "Nome do aluno: " + aluno.getNome() + " RA: " + aluno.getRa();
 			}

@@ -91,9 +91,9 @@ public abstract class Usuario {
 		return turmas;
 	}
         
-        public void setTurmas(ArrayList<Turma> turmas) {
-                this.turmas = turmas; 
-        }
+    public void setTurmas(ArrayList<Turma> turmas) {
+            this.turmas = turmas; 
+    }
 	
 	public ArrayList<Solicitacao> getSolicitacoes() {
 		return solicitacoes;
@@ -115,18 +115,18 @@ public abstract class Usuario {
 		return notificacoes;
 	}
 	
-        public ArrayList<Usuario> getUsuarios() {
-            return usuarios; 
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios; 
+    }
+    
+    public static Usuario signIn(String email, String senha) {
+        for(Usuario usuario:usuarios) {
+            if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha))
+                return usuario; 
         }
-        
-        public static Usuario signIn(String email, String senha) {
-            for(Usuario usuario:usuarios) {
-                if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha))
-                    return usuario; 
-            }
-            return null; 
-        } 
-        
+        return null; 
+    } 
+    
 	/* Esse metodo possibilita a um usuário (user) visualizar um apanhado de informações sobre outro (this).
 	 * Ele e sobrescrito em Aluno e também invocado pelo mesmo. Para Professor, esse metodo ja se faz suficiente.
 	 * Conforme a permissao do user, diferentes informacoes sao exibidas.*/
@@ -170,8 +170,6 @@ public abstract class Usuario {
 	}
 	
 	public abstract String visualizarAmigos(Usuario user);
-	
-	public abstract void adicionarSolicitacao(Usuario user, Tipo tipo);
 	
 	public Conversa iniciarConversa(ArrayList<Usuario> grupo) {
 		Conversa conversa = new Conversa(grupo);

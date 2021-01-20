@@ -3,12 +3,10 @@ package BackEnd;
 public class Solicitacao implements Feed{
 	private Usuario solicitante;
 	private Usuario receptor;
-	private Tipo tipo;
 	
-	public Solicitacao(Usuario solicitante, Usuario receptor, Tipo tipo) {
+	public Solicitacao(Usuario solicitante, Usuario receptor) {
 		this.solicitante = solicitante;
 		this.receptor = receptor;
-		this.tipo = tipo;
 		adicionarFeed();
 		receptor.getNotificacoes().add(Notificacoes.NOVA_SOLICITACAO);
 	}
@@ -21,9 +19,7 @@ public class Solicitacao implements Feed{
 		return receptor;
 	}
 
-	public Tipo getTipo() {
-		return tipo;
-	}	
+
 	
 	public void adicionarFeed() {		
 		if(((Aluno) receptor).getFeedAluno().size() == 3) {
@@ -34,8 +30,7 @@ public class Solicitacao implements Feed{
 	}
 	
 	public String exibirFeed() {
-		String out = "Voce tem uma nova solicitacao de " + tipo.getDescricao() + " vinda de " 
-					+ solicitante.getNome();
+		String out = "Voce tem uma nova solicitacao de amizade vinda de " + solicitante.getNome();
 		
 		return out;
 	}
@@ -43,7 +38,7 @@ public class Solicitacao implements Feed{
 	
 	public String toString() {
 		String out = "";
-		out += "Solicitacao de " + tipo + " vinda de " + solicitante.getNome();
+		out += "Solicitacao de amizade vinda de " + solicitante.getNome();
 		return out;
 	}
 }

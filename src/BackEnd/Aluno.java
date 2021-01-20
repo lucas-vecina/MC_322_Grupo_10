@@ -96,8 +96,8 @@ public class Aluno extends Usuario implements Comparable<Aluno>, Feed{
 				
 	}
 	
-	public void adicionarSolicitacao(Usuario user, Tipo tipo) {
-		user.getSolicitacoes().add(new Solicitacao(this, user, tipo));
+	public void adicionarSolicitacao(Usuario user) {
+		user.getSolicitacoes().add(new Solicitacao(this, user));
 		user.getNotificacoes().add(Notificacoes.NOVA_SOLICITACAO);
 	}
 	
