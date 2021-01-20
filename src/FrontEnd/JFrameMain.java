@@ -6,6 +6,8 @@
 package FrontEnd;
 import BackEnd.*; 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 /**
  *
  * @author guilh
@@ -98,11 +100,11 @@ public class JFrameMain extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(122, 122, 122)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(135, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(jLabelNotification, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(116, Short.MAX_VALUE))
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabelNotification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,6 +212,22 @@ public class JFrameMain extends javax.swing.JFrame {
         usuario.add(aluno4);
 	usuario.add(aluno5);
 	usuario.add(aluno6);
+        
+        //Teste Ciri Amigos
+        ArrayList<Usuario> amigos = new ArrayList<Usuario>(); 
+        amigos.add(aluno2); 
+        aluno1.setAmigos(amigos); 
+        
+        //Teste Ciri Turmas
+        HashMap<Integer, ArrayList<Integer>> horarios1 = new HashMap<Integer, ArrayList<Integer>>();
+        ArrayList<Integer> aux = new ArrayList<Integer>();
+	aux.addAll(Arrays.asList(10, 11));
+	horarios1.put(1, aux);
+        Turma turma1 = prof1.criarTurma("Bruxos I", "BX111", horarios1);
+        ArrayList<Turma> turmas = new ArrayList<Turma>(); 
+        turmas.add(turma1);
+        aluno1.setTurmas(turmas); 
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

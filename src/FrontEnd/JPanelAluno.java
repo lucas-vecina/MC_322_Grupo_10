@@ -5,6 +5,9 @@
  */
 package FrontEnd;
 import BackEnd.*; 
+import java.util.HashMap;
+import java.util.Set;
+import java.util.ArrayList;
 /**
  *
  * @author guilh
@@ -18,6 +21,7 @@ public class JPanelAluno extends javax.swing.JPanel {
         initComponents();
         this.aluno = aluno; 
         this.frame = frame; 
+        
         // Text field de informacao:
         String out = "Nome: " + aluno.getNome(); 
         out += "\nRA: " + aluno.getRa();
@@ -29,6 +33,52 @@ public class JPanelAluno extends javax.swing.JPanel {
                 out += ", "; 
         }
         jTextInfo.setText(out); 
+        
+        // List de amigos
+        if (aluno.getAmigos().size() != 0) {
+            String[] listaAmigos = new String[aluno.getAmigos().size()];
+            int i = 0; 
+            for(Usuario amigo:aluno.getAmigos()) {
+                listaAmigos[i] = amigo.getNome(); 
+                i++; 
+            }
+            jListAmigos.setModel(new javax.swing.AbstractListModel<String>() {
+                String[] strings = listaAmigos;
+                public int getSize() { return strings.length; } ;
+                public String getElementAt(int i) { return strings[i]; } ;
+            });
+        }
+        
+        // List de Turmas
+        if (aluno.getTurmas().size() != 0) {
+            String[] listaTurmas = new String[aluno.getTurmas().size()]; 
+            int aux = 0;
+            for(Turma turma:aluno.getTurmas()) {
+                listaTurmas[aux] = turma.getSigla(); 
+                aux++; 
+                Set<Integer> chaves = turma.getHorarios().keySet(); 
+                for (Integer chave:chaves) {
+                    ArrayList<Integer> horarios = turma.getHorarios().get(chave);
+                    for(Integer inteiro:horarios) {
+                        boolean stop = false; 
+                        for(int i = 0; i < 11 && !stop; i++) {
+                            String value = (String)jTable1.getValueAt(i, 0);  
+                            if (value.contains(Integer.toString(inteiro))) {
+                                jTable1.setValueAt(turma.getSigla(), i, chave);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            jListTurmas.setModel(new javax.swing.AbstractListModel<String>() {
+                String[] strings = listaTurmas;
+                public int getSize() { return strings.length; }
+                public String getElementAt(int i) { return strings[i]; }
+            });
+            
+            // Tabela de horarios
+        }
     }
 
     /**
@@ -42,8 +92,6 @@ public class JPanelAluno extends javax.swing.JPanel {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabelFeed = new javax.swing.JLabel();
-        jLabelTabela = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextInfo = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -63,15 +111,13 @@ public class JPanelAluno extends javax.swing.JPanel {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"08:00", null, null, null, null, null},
-                {"09:00", null, null, null, null, null},
-                {"10:00", null, null, null, null, null},
+                {"09:00", "", null, null, null, null},
+                {"10:00", "", null, null, null, null},
                 {"11:00", null, null, null, null, null},
-                {"13:00", null, null, null, null, null},
                 {"14:00", null, null, null, null, null},
                 {"15:00", null, null, null, null, null},
                 {"16:00", null, null, null, null, null},
                 {"17:00", null, null, null, null, null},
-                {"18:00", null, null, null, null, null},
                 {"20:00", null, null, null, null, null},
                 {"21:00", null, null, null, null, null},
                 {"22:00", null, null, null, null, null}
@@ -91,27 +137,22 @@ public class JPanelAluno extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        jLabelFeed.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jLabelFeed.setText("Feed");
-
-        jLabelTabela.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jLabelTabela.setText("Tabela de horarios");
-
         jTextInfo.setEditable(false);
         jTextInfo.setColumns(20);
         jTextInfo.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jTextInfo.setRows(5);
         jTextInfo.setToolTipText("");
-        jTextInfo.setBorder(null);
+        jTextInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Info de usuário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic", 0, 11))); // NOI18N
         jScrollPane3.setViewportView(jTextInfo);
 
-        jListFeed.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jListFeed.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Feed", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic", 0, 11))); // NOI18N
         jListFeed.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jListFeed.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -126,6 +167,11 @@ public class JPanelAluno extends javax.swing.JPanel {
         jPanelAmigos.setBackground(new java.awt.Color(255, 255, 255));
 
         jListAmigos.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jListAmigos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Você não tem amigos para exibir." };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         jListAmigos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jListAmigosMouseClicked(evt);
@@ -141,7 +187,7 @@ public class JPanelAluno extends javax.swing.JPanel {
         );
         jPanelAmigosLayout.setVerticalGroup(
             jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Amigos", jPanelAmigos);
@@ -150,7 +196,7 @@ public class JPanelAluno extends javax.swing.JPanel {
 
         jListTurmas.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jListTurmas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Você não tem turmas para exibir." };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -188,45 +234,31 @@ public class JPanelAluno extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabelFeed)
-                        .addGap(101, 101, 101))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jLabelTabela)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(jLabelTabela)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelFeed)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Amigos");
@@ -239,8 +271,6 @@ public class JPanelAluno extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabelFeed;
-    private javax.swing.JLabel jLabelTabela;
     private javax.swing.JList<String> jListAmigos;
     private javax.swing.JList<String> jListFeed;
     private javax.swing.JList<String> jListTurmas;
