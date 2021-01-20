@@ -1,7 +1,6 @@
 package BackEnd;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Aluno extends Usuario implements Comparable<Aluno>, Feed{
 	private ArrayList<Usuario> amigos;
@@ -102,52 +101,32 @@ public class Aluno extends Usuario implements Comparable<Aluno>, Feed{
 		user.getNotificacoes().add(Notificacoes.NOVA_SOLICITACAO);
 	}
 	
-	public void aceitarSolicitacao() {
-		Scanner scan = new Scanner(System.in);
-		if(!(super.getSolicitacoes().isEmpty())){
-			boolean aux = true;
-			while (aux) {
-				String resposta = scan.next();
-				if(resposta.contains("Y")) {
-					Aluno a = (Aluno) super.getSolicitacoes().get(0).getSolicitante();
-					
-					//Adicionando Usuario a lista de amigos
-					amigos.add(a);
-					a.getAmigos().add(this);
-					
-					//Adicionando notificacao
-					a.getNotificacoes().add(Notificacoes.NOVO_AMIGO);
-					getNotificacoes().add(Notificacoes.NOVO_AMIGO);
-					
-					//Adicionando ao feed
-					a.getFeedAluno().add(this);
-					this.feedAluno.add(a);
-					
-					getSolicitacoes().remove(0);
-					aux = false;
-				}
+	public void aceitarSolicitacao(Solicitacao solicitacao, boolean resposta) {
+		if(getSolicitacoes().contains(solicitacao)){
+			Aluno a = (Aluno) super.getSolicitacoes().get(0).getSolicitante();
+
+			if(resposta) {
 				
-				if(resposta.contains("N")) {
-					super.getSolicitacoes().remove(0);
-					aux = false;
-				}
+				//Adicionando Usuario a lista de amigos
+				amigos.add(a);
+				a.getAmigos().add(this);
+				
+				//Adicionando notificacao
+				a.getNotificacoes().add(Notificacoes.NOVO_AMIGO);
+				getNotificacoes().add(Notificacoes.NOVO_AMIGO);
+				
+				//Adicionando ao feed
+				a.getFeedAluno().add(this);
+				this.feedAluno.add(a);
+				
+				getSolicitacoes().remove(0);
 			}
 			
-			if(!(super.getSolicitacoes().isEmpty())) {
-				System.out.println("Proxima solicitacao? (Y/N) \n");
-				while (true) {
-					String resposta = scan.next();
-					if(resposta.contains("Y")) {
-						this.aceitarSolicitacao();
-						break;
-					}
-					if(resposta.contains("N")) {
-						break;
-					}
-				}
+			else {
+				a.getNotificacoes().add(Notificacoes.SOLICITACAO_RECUSADA);
+				getSolicitacoes().remove(0);
 			}
 		}
-		scan.close();
 	}
 	
 	 //Verifica permissoes do usuario (this) e exibe as turmas
