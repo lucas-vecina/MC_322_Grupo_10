@@ -30,6 +30,9 @@ public class JPanelAluno extends javax.swing.JPanel {
         
         // List de Turmas
         criaRelacionadoTurma(); 
+        
+        // List de solicitacoes
+        criaSolicitacoes(); 
     }
 
     /**
@@ -55,6 +58,8 @@ public class JPanelAluno extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         jListTurmas = new javax.swing.JList<>();
         jPanelSolicitacoes = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jListSolicitacoes = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -78,7 +83,7 @@ public class JPanelAluno extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -134,11 +139,11 @@ public class JPanelAluno extends javax.swing.JPanel {
         jPanelAmigos.setLayout(jPanelAmigosLayout);
         jPanelAmigosLayout.setHorizontalGroup(
             jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
         );
         jPanelAmigosLayout.setVerticalGroup(
             jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Amigos", jPanelAmigos);
@@ -151,32 +156,50 @@ public class JPanelAluno extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jListTurmas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListTurmasMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(jListTurmas);
 
         javax.swing.GroupLayout jPanelTurmasLayout = new javax.swing.GroupLayout(jPanelTurmas);
         jPanelTurmas.setLayout(jPanelTurmasLayout);
         jPanelTurmasLayout.setHorizontalGroup(
             jPanelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
         );
         jPanelTurmasLayout.setVerticalGroup(
             jPanelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Turmas", jPanelTurmas);
 
         jPanelSolicitacoes.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelSolicitacoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelSolicitacoesMouseClicked(evt);
+            }
+        });
+
+        jListSolicitacoes.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jListSolicitacoes.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Você não tem solicitações pendentes." };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane6.setViewportView(jListSolicitacoes);
 
         javax.swing.GroupLayout jPanelSolicitacoesLayout = new javax.swing.GroupLayout(jPanelSolicitacoes);
         jPanelSolicitacoes.setLayout(jPanelSolicitacoesLayout);
         jPanelSolicitacoesLayout.setHorizontalGroup(
             jPanelSolicitacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
         );
         jPanelSolicitacoesLayout.setVerticalGroup(
             jPanelSolicitacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 163, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Solicitações", jPanelSolicitacoes);
@@ -185,37 +208,36 @@ public class JPanelAluno extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jTabbedPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 29, Short.MAX_VALUE))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Amigos");
         jTabbedPane1.getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
-    
+   
     private void criaListaAmigos() {
         if (aluno.getAmigos().size() != 0) {
             String[] listaAmigos = new String[aluno.getAmigos().size()];
@@ -224,11 +246,7 @@ public class JPanelAluno extends javax.swing.JPanel {
                 listaAmigos[i] = amigo.getNome(); 
                 i++; 
             }
-            jListAmigos.setModel(new javax.swing.AbstractListModel<String>() {
-                String[] strings = listaAmigos;
-                public int getSize() { return strings.length; } ;
-                public String getElementAt(int i) { return strings[i]; } ;
-            });
+            jListAmigos.setListData(listaAmigos);
         }
     }
     
@@ -254,13 +272,7 @@ public class JPanelAluno extends javax.swing.JPanel {
                     }
                 }
             }
-            
-            jListTurmas.setModel(new javax.swing.AbstractListModel<String>() {
-                String[] strings = listaTurmas;
-                public int getSize() { return strings.length; }
-                public String getElementAt(int i) { return strings[i]; }
-            });
-            
+            jListTurmas.setListData(listaTurmas);
         }
     }
     
@@ -277,14 +289,47 @@ public class JPanelAluno extends javax.swing.JPanel {
         jTextInfo.setText(out); 
     }
     
+    private void criaSolicitacoes() {
+        if (aluno.getSolicitacoes().size() != 0) {
+            String[] listaSolicitacoes = new String[aluno.getSolicitacoes().size()];
+            int i = 0;
+            for (Solicitacao solicitacao:aluno.getSolicitacoes()) {
+                listaSolicitacoes[i] = solicitacao.getTipo().getDescricao() + ":" + solicitacao.getSolicitante().getNome() + ((Aluno)solicitacao.getSolicitante()).getRa(); 
+                i++; 
+            }
+            jListSolicitacoes.setListData(listaSolicitacoes); 
+        }
+    }
+    
     private void jListAmigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListAmigosMouseClicked
         // TODO add your handling code here:
+        if (evt.getClickCount() == 2 && aluno.getAmigos().size() != 0) {
+            int index = jListAmigos.getSelectedIndex(); 
+            Usuario amigo = aluno.getAmigos().get(index); 
+            JFrameAmigo frameAmigo = new JFrameAmigo((Aluno)amigo); 
+            frameAmigo.setVisible(true); 
+        }
     }//GEN-LAST:event_jListAmigosMouseClicked
+
+    private void jListTurmasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListTurmasMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2 && aluno.getTurmas().size() != 0) {
+            int index = jListTurmas.getSelectedIndex();
+            Turma turma = aluno.getTurmas().get(index); 
+            JFrameTurma frameTurma = new JFrameTurma(turma, aluno); 
+            frameTurma.setVisible(true);
+        }
+    }//GEN-LAST:event_jListTurmasMouseClicked
+
+    private void jPanelSolicitacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelSolicitacoesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanelSolicitacoesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> jListAmigos;
     private javax.swing.JList<String> jListFeed;
+    private javax.swing.JList<String> jListSolicitacoes;
     private javax.swing.JList<String> jListTurmas;
     private javax.swing.JPanel jPanelAmigos;
     private javax.swing.JPanel jPanelSolicitacoes;
@@ -294,6 +339,7 @@ public class JPanelAluno extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextInfo;

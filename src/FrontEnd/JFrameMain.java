@@ -19,6 +19,7 @@ public class JFrameMain extends javax.swing.JFrame {
      */
     public JFrameMain() {
         initComponents();
+        this.setTitle("EADuca");
     }
 
     /**
