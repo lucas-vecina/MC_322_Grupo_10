@@ -225,15 +225,20 @@ public class JFrameMain extends javax.swing.JFrame {
         amigos.add(aluno2); 
         aluno1.setAmigos(amigos); 
         
-        //Teste Ciri Turmas
+        //Teste Turma
         HashMap<Integer, ArrayList<Integer>> horarios1 = new HashMap<Integer, ArrayList<Integer>>();
         ArrayList<Integer> aux = new ArrayList<Integer>();
 	aux.addAll(Arrays.asList(10, 11));
 	horarios1.put(1, aux);
         Turma turma1 = prof1.criarTurma("Bruxos I", "BX111", horarios1);
-        ArrayList<Turma> turmas = new ArrayList<Turma>(); 
-        turmas.add(turma1);
-        aluno1.setTurmas(turmas); 
+        turma1.setEmenta("Vamos conhecer os bruxos.");
+        turma1.adicionaAluno(prof1, aluno6);
+        aux1.addAll(Arrays.asList(aluno2, aluno4, aluno6));
+        turma1.adicionaAluno(prof1, aux1);
+        turma1.adicionaPed(prof1, aluno1);
+        turma1.adicionaPad(prof1, aluno3);
+        
+        //Teste solicitacoes
         aluno3.adicionarSolicitacao(aluno1);
         aluno4.adicionarSolicitacao(aluno1);
         
