@@ -44,7 +44,8 @@ public class JFrameTurma extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextPaneInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações gerais"));
+        jTextPaneInfo.setEditable(false);
+        jTextPaneInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informações gerais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic", 0, 11))); // NOI18N
         jTextPaneInfo.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jScrollPane1.setViewportView(jTextPaneInfo);
 
