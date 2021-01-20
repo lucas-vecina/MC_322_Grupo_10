@@ -144,8 +144,8 @@ public class Main {
 		// Saida de um professor
 		System.out.println("Professor 1: " + prof1 + "---------------------------------------------------------\n");
 		
-		turma1.tirarMedia();
-		turma2.tirarMedia();		
+		turma1.tirarMedia(prof1);
+		turma2.tirarMedia(prof2);		
 		
 		monitoria1.getConversa().enviarMensagem(aluno2, "Ola galera");
 		monitoria1.getConversa().enviarMensagem(aluno1, "Tchau");
