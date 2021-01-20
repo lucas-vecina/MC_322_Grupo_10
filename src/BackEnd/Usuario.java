@@ -132,8 +132,11 @@ public abstract class Usuario implements Comparable<Usuario>{
 	 * Conforme a permissao do user, diferentes informacoes sao exibidas.*/
 	public String visualizarInfo(Usuario user) {
 		String out;
+		int aux = getPermissao().getChave();
 		
-		switch(getPermissao().getChave()) {	// Verifica a permissao do user
+		if(user == this) {aux = 1;}
+		
+		switch(aux) {	// Verifica a permissao do user
 			case 1:	// Permissao Publica
 				out= "-Id: " + getId() + "\n";
 				out+= "-Nome: " + getNome() + "\n";
