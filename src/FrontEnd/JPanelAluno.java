@@ -34,6 +34,9 @@ public class JPanelAluno extends javax.swing.JPanel {
         
         // List de solicitacoes
         criaSolicitacoes(); 
+        
+        // List de feed
+        criaFeed(); 
     }
 
     /**
@@ -114,7 +117,7 @@ public class JPanelAluno extends javax.swing.JPanel {
         jListFeed.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Feed", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic", 0, 11))); // NOI18N
         jListFeed.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jListFeed.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Você não tem nada novo." };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -319,6 +322,18 @@ public class JPanelAluno extends javax.swing.JPanel {
                 i++; 
             }
             jListSolicitacoes.setListData(listaSolicitacoes); 
+        }
+    }
+    
+    private void criaFeed() {
+        if (aluno.getFeedAluno().size() != 0) {
+            String[] listaFeed = new String[aluno.getFeedAluno().size()];
+            int i = 0; 
+            for(Feed feed:aluno.getFeedAluno()) {
+                listaFeed[i] = feed.exibirFeed(); 
+                i++; 
+            }
+            jListFeed.setListData(listaFeed); 
         }
     }
     

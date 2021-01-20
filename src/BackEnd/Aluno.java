@@ -117,9 +117,7 @@ public class Aluno extends Usuario implements Feed{
 				getNotificacoes().add(Notificacoes.NOVO_AMIGO);
 				
 				//Adicionando ao feed
-				a.getFeedAluno().add(this);
-				this.feedAluno.add(a);
-				
+				adicionarFeed(solicitacao);
 				getSolicitacoes().remove(solicitacao);
 			}
 			
@@ -154,12 +152,17 @@ public class Aluno extends Usuario implements Feed{
 		}
 	}
 	
-	public void adicionarFeed() {
-		if(((Aluno) getSolicitacoes().get(0).getSolicitante()).getFeedAluno().size() == 3)
-			((Aluno) getSolicitacoes().get(0).getSolicitante()).getFeedAluno().remove(2);
-		
-		((Aluno) getSolicitacoes().get(0).getSolicitante()).getFeedAluno().add(this);
-	}
+	public void adicionarFeed() {}
+        
+        public void adicionarFeed(Solicitacao solicitacao) {
+            if(((Aluno) solicitacao.getSolicitante()).getFeedAluno().size() == 3)
+		((Aluno) solicitacao.getSolicitante()).getFeedAluno().remove(2);
+            ((Aluno) solicitacao.getSolicitante()).getFeedAluno().add(0, this);
+            
+            if(this.getFeedAluno().size() == 3)
+                this.getFeedAluno().remove(2);
+            this.getFeedAluno().add(0, (Aluno)solicitacao.getSolicitante()); 
+        }
 	
 	public String exibirFeed() {
 		String out;
