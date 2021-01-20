@@ -2,7 +2,7 @@ package BackEnd;
 
 import java.util.ArrayList;
 
-public class Aluno extends Usuario implements Comparable<Aluno>, Feed{
+public class Aluno extends Usuario implements Feed{
 	private ArrayList<Usuario> amigos;
 	private ArrayList<Feed> feedAluno;
 	private String curso;
@@ -146,15 +146,6 @@ public class Aluno extends Usuario implements Comparable<Aluno>, Feed{
 			turma.getAlunos().remove(this);
 			getTurmas().remove(turma);
 		}
-	}
-	
-	public int compareTo(Aluno outro) {
-		if (getNome().compareTo(outro.getNome()) == 1)
-			return 1;
-		else if (getNome().compareTo(outro.getNome()) == 0)
-			return 0;
-		else
-			return -1; 
 	}
 	
 	public void adicionarFeed() {

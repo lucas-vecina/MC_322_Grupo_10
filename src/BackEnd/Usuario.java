@@ -1,7 +1,7 @@
 package BackEnd;
 import java.util.ArrayList;
 
-public abstract class Usuario {
+public abstract class Usuario implements Comparable<Usuario>{
         private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>(); 
 	private static int numeroUsuarios = 0;
 	private final int id;
@@ -192,6 +192,14 @@ public abstract class Usuario {
 		return grupo;
 	}
 	
+	public int compareTo(Usuario outro) {
+		if (getNome().compareTo(outro.getNome()) == 1)
+			return 1;
+		else if (getNome().compareTo(outro.getNome()) == 0)
+			return 0;
+		else
+			return -1; 
+	}
 	
 	public String exibirNotificacoes(Usuario user) {
 		if(user == this) {
