@@ -130,6 +130,11 @@ public class Aluno extends Usuario implements Feed{
 		}
 	}
 	
+	public void removerAmigo(Aluno amigo) {
+		amigos.remove(amigo);
+		amigo.getAmigos().remove(this);
+	}
+	
 	 //Verifica permissoes do usuario (this) e exibe as turmas
 	@Override
 	public String visualizarTurma(Usuario user) {
