@@ -51,8 +51,11 @@ public class Aluno extends Usuario implements Feed{
 	@Override
 	public String visualizarInfo(Usuario user) {
 		String out;
+		int aux = getPermissao().getChave();
 		
-		switch(getPermissao().getChave()) {
+		if(user == this) {aux = 1;}
+		
+		switch(aux) {
 			case 1:
 				out = super.visualizarInfo(user);
 				out += "-Curso: " + getCurso() + "\n";
@@ -136,7 +139,7 @@ public class Aluno extends Usuario implements Feed{
 	 //Verifica permissoes do usuario (this) e exibe as turmas
 	@Override
 	public String visualizarTurma(Usuario user) {
-		if(this.getPermissao().getChave() != 3 || getAmigos().contains(user)) {
+		if(this.getPermissao().getChave() != 3 || getAmigos().contains(user) || user == this) {
 			String out = super.visualizarTurma(user);
 			return out;
 		}
