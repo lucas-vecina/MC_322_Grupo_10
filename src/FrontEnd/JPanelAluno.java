@@ -23,16 +23,7 @@ public class JPanelAluno extends javax.swing.JPanel {
         this.frame = frame; 
         
         // Text field de informacao:
-        String out = "Nome: " + aluno.getNome(); 
-        out += "\nRA: " + aluno.getRa();
-        out += "\nCurso: " + aluno.getCurso(); 
-        out += "\nMatriculas:\n"; 
-        for (Turma turma:aluno.getTurmas()) {
-            out += turma.getSigla();
-            if (aluno.getTurmas().indexOf(turma) != aluno.getTurmas().size()-1)
-                out += ", "; 
-        }
-        jTextInfo.setText(out); 
+        criaTextInfo();
         
         // List de amigos
         criaListaAmigos();
@@ -272,6 +263,20 @@ public class JPanelAluno extends javax.swing.JPanel {
             
         }
     }
+    
+    private void criaTextInfo() { 
+        String out = "Nome: " + aluno.getNome(); 
+        out += "\nRA: " + aluno.getRa();
+        out += "\nCurso: " + aluno.getCurso(); 
+        out += "\nMatriculas:\n"; 
+        for (Turma turma:aluno.getTurmas()) {
+            out += turma.getSigla();
+            if (aluno.getTurmas().indexOf(turma) != aluno.getTurmas().size()-1)
+                out += ", "; 
+        }
+        jTextInfo.setText(out); 
+    }
+    
     private void jListAmigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListAmigosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jListAmigosMouseClicked
