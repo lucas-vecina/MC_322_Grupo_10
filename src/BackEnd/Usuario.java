@@ -95,10 +95,6 @@ public abstract class Usuario {
                 this.turmas = turmas; 
         }
 	
-	public void setTurmas(ArrayList<Turma> turmas) {
-		this.turmas = turmas;
-	}
-	
 	public ArrayList<Solicitacao> getSolicitacoes() {
 		return solicitacoes;
 	}
