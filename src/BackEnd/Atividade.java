@@ -80,11 +80,13 @@ public abstract class Atividade implements Feed{
 			
 			if (aluno != null) {
 				out = "Nome do aluno: " + aluno.getNome() + " RA: " + aluno.getRa();
+				aluno.getAgenda().remove(agendaAluno);
 			}
 			else {
 				out = "Grupo :";
 				for (Usuario membro:grupo.getGrupo()) {
 					out += "\n- Nome: " + membro.getNome() + " RA: " + ((Aluno)membro).getRa(); 
+					membro.getAgenda().remove(agendaAluno);
 				}
 			}
 			file.format("%s", out);
