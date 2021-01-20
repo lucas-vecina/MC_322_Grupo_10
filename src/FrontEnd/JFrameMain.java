@@ -155,6 +155,11 @@ public class JFrameMain extends javax.swing.JFrame {
               jPanel1.setVisible(false);
               setContentPane(panel);  
           }
+           if (usuario instanceof Professor) {
+        	  JPanelProf panel = new JPanelProf((Professor)usuario,this);
+        	  jPanel1.setVisible(false);
+              setContentPane(panel);  
+          }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
