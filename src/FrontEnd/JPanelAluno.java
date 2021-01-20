@@ -8,6 +8,7 @@ import BackEnd.*;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.ArrayList;
+import java.util.Collections; 
 /**
  *
  * @author guilh
@@ -141,7 +142,7 @@ public class JPanelAluno extends javax.swing.JPanel {
         jPanelAmigos.setLayout(jPanelAmigosLayout);
         jPanelAmigosLayout.setHorizontalGroup(
             jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
         jPanelAmigosLayout.setVerticalGroup(
             jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +170,7 @@ public class JPanelAluno extends javax.swing.JPanel {
         jPanelTurmas.setLayout(jPanelTurmasLayout);
         jPanelTurmasLayout.setHorizontalGroup(
             jPanelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
         jPanelTurmasLayout.setVerticalGroup(
             jPanelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,11 +180,6 @@ public class JPanelAluno extends javax.swing.JPanel {
         jTabbedPane1.addTab("Turmas", jPanelTurmas);
 
         jPanelSolicitacoes.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelSolicitacoes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanelSolicitacoesMouseClicked(evt);
-            }
-        });
 
         jListSolicitacoes.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jListSolicitacoes.setModel(new javax.swing.AbstractListModel<String>() {
@@ -191,13 +187,18 @@ public class JPanelAluno extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jListSolicitacoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jListSolicitacoesMousePressed(evt);
+            }
+        });
         jScrollPane6.setViewportView(jListSolicitacoes);
 
         javax.swing.GroupLayout jPanelSolicitacoesLayout = new javax.swing.GroupLayout(jPanelSolicitacoes);
         jPanelSolicitacoes.setLayout(jPanelSolicitacoesLayout);
         jPanelSolicitacoesLayout.setHorizontalGroup(
             jPanelSolicitacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
         jPanelSolicitacoesLayout.setVerticalGroup(
             jPanelSolicitacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,10 +225,10 @@ public class JPanelAluno extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3)
-                            .addComponent(jTabbedPane1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -314,7 +315,7 @@ public class JPanelAluno extends javax.swing.JPanel {
             String[] listaSolicitacoes = new String[aluno.getSolicitacoes().size()];
             int i = 0;
             for (Solicitacao solicitacao:aluno.getSolicitacoes()) {
-                listaSolicitacoes[i] = solicitacao.getTipo().getDescricao() + ":" + solicitacao.getSolicitante().getNome() + ((Aluno)solicitacao.getSolicitante()).getRa(); 
+                listaSolicitacoes[i] = solicitacao.toString();
                 i++; 
             }
             jListSolicitacoes.setListData(listaSolicitacoes); 
@@ -341,17 +342,30 @@ public class JPanelAluno extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jListTurmasMouseClicked
 
-    private void jPanelSolicitacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelSolicitacoesMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanelSolicitacoesMouseClicked
-
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
         // TODO add your handling code here:
         JFrameExit exit = new JFrameExit(frameMain);
         exit.setVisible(true); 
     }//GEN-LAST:event_jButtonExitActionPerformed
 
+    private void jListSolicitacoesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSolicitacoesMousePressed
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2 && aluno.getSolicitacoes().size() != 0) { 
+            int index = jListSolicitacoes.getSelectedIndex(); 
+            Solicitacao solicitacao = aluno.getSolicitacoes().get(index); 
+            JFrameSolicitacao frameSolicitacao = new JFrameSolicitacao(this, frameMain, solicitacao, aluno);
+            frameSolicitacao.setVisible(true); 
+        }
+    }//GEN-LAST:event_jListSolicitacoesMousePressed
 
+    public javax.swing.JPanel getJPanelAmigos() {
+        return jPanelAmigos;
+    }
+    
+    public javax.swing.JPanel getJPanelSolicitacoes() {
+        return jPanelSolicitacoes; 
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonExit;
     private javax.swing.JList<String> jListAmigos;

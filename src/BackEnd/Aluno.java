@@ -1,6 +1,7 @@
 package BackEnd;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Aluno extends Usuario implements Feed{
 	private ArrayList<Usuario> amigos;
@@ -103,7 +104,7 @@ public class Aluno extends Usuario implements Feed{
 	
 	public void aceitarSolicitacao(Solicitacao solicitacao, boolean resposta) {
 		if(getSolicitacoes().contains(solicitacao)){
-			Aluno a = (Aluno) super.getSolicitacoes().get(0).getSolicitante();
+			Aluno a = (Aluno) solicitacao.getSolicitante();
 
 			if(resposta) {
 				
@@ -119,12 +120,12 @@ public class Aluno extends Usuario implements Feed{
 				a.getFeedAluno().add(this);
 				this.feedAluno.add(a);
 				
-				getSolicitacoes().remove(0);
+				getSolicitacoes().remove(solicitacao);
 			}
 			
 			else {
 				a.getNotificacoes().add(Notificacoes.SOLICITACAO_RECUSADA);
-				getSolicitacoes().remove(0);
+				getSolicitacoes().remove(solicitacao);
 			}
 		}
 	}

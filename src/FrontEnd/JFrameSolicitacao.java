@@ -4,20 +4,23 @@
  * and open the template in the editor.
  */
 package FrontEnd;
+import BackEnd.*; 
 
 /**
  *
  * @author guilh
  */
-public class JFrameExit extends javax.swing.JFrame {
+public class JFrameSolicitacao extends javax.swing.JFrame {
 
     /**
-     * Creates new form JFrameExit
+     * Creates new form JFrameSolicitacao
      */
-    public JFrameExit(JFrameMain frame) {
-        this.setTitle("Saia, saia agora!"); 
+    public JFrameSolicitacao(JPanelAluno panel, JFrameMain frameMain, Solicitacao solicitacao, Aluno receptor) {
         initComponents();
-        this.frameMain = frame; 
+        this.panel = panel;
+        this.frameMain = frameMain; 
+        this.receptor = receptor; 
+        this.solicitacao = solicitacao; 
     }
 
     /**
@@ -30,23 +33,25 @@ public class JFrameExit extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel = new javax.swing.JLabel();
         jButtonSim = new javax.swing.JButton();
         jButtonNao = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Tem certeza que quer sair?");
+        jLabel.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel.setText("Aceitar solicitação?");
 
         jButtonSim.setBackground(new java.awt.Color(201, 23, 48));
-        jButtonSim.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
+        jButtonSim.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
         jButtonSim.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSim.setText("Sim");
         jButtonSim.setBorder(null);
+        jButtonSim.setMaximumSize(new java.awt.Dimension(51, 26));
+        jButtonSim.setMinimumSize(new java.awt.Dimension(51, 26));
         jButtonSim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSimActionPerformed(evt);
@@ -54,7 +59,7 @@ public class JFrameExit extends javax.swing.JFrame {
         });
 
         jButtonNao.setBackground(new java.awt.Color(201, 23, 48));
-        jButtonNao.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
+        jButtonNao.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
         jButtonNao.setForeground(new java.awt.Color(255, 255, 255));
         jButtonNao.setText("Não");
         jButtonNao.setBorder(null);
@@ -69,34 +74,34 @@ public class JFrameExit extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(jButtonSim, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(45, 45, 45)
                 .addComponent(jButtonNao, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(61, 61, 61))
+            .addComponent(jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonNao, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(jButtonNao, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                     .addComponent(jButtonSim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -104,14 +109,22 @@ public class JFrameExit extends javax.swing.JFrame {
 
     private void jButtonSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSimActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        frameMain.setContentPane(frameMain.getJPanelMain()); 
-        frameMain.getJPanelMain().setVisible(true); 
+        receptor.aceitarSolicitacao(solicitacao, true);
+        this.setVisible(false); 
+        JPanelAluno panel = new JPanelAluno(receptor, frameMain);
+        frameMain.setContentPane(panel); 
+        panel.revalidate();
+        panel.repaint(); 
     }//GEN-LAST:event_jButtonSimActionPerformed
 
     private void jButtonNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNaoActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        receptor.aceitarSolicitacao(solicitacao, false); 
+        this.setVisible(false);  
+        JPanelAluno panel = new JPanelAluno(receptor, frameMain); 
+        frameMain.setContentPane(panel); 
+        panel.revalidate();
+        panel.repaint(); 
     }//GEN-LAST:event_jButtonNaoActionPerformed
 
     /**
@@ -121,8 +134,11 @@ public class JFrameExit extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonNao;
     private javax.swing.JButton jButtonSim;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    private Solicitacao solicitacao; 
+    private Aluno receptor; 
     private JFrameMain frameMain; 
+    private JPanelAluno panel;
 }

@@ -64,7 +64,8 @@ public class JFrameMain extends javax.swing.JFrame {
         jLabelEmail.setText("Email");
 
         jPasswordField1.setFont(new java.awt.Font("Yu Gothic", 0, 8)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.setText("321senha");
+        jPasswordField1.setToolTipText("");
 
         jLabelSenha.setFont(new java.awt.Font("Yu Gothic", 0, 18)); // NOI18N
         jLabelSenha.setText("Senha");
@@ -233,6 +234,8 @@ public class JFrameMain extends javax.swing.JFrame {
         ArrayList<Turma> turmas = new ArrayList<Turma>(); 
         turmas.add(turma1);
         aluno1.setTurmas(turmas); 
+        aluno3.adicionarSolicitacao(aluno1);
+        aluno4.adicionarSolicitacao(aluno1);
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

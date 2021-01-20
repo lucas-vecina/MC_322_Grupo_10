@@ -194,11 +194,11 @@ public abstract class Usuario implements Comparable<Usuario>{
 	
 	public int compareTo(Usuario outro) {
 		if (getNome().compareTo(outro.getNome()) == 1)
-			return 1;
+			return -1;
 		else if (getNome().compareTo(outro.getNome()) == 0)
 			return 0;
 		else
-			return -1; 
+			return 1; 
 	}
 	
 	public String exibirNotificacoes(Usuario user) {
