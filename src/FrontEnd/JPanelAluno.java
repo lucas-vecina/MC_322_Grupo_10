@@ -35,50 +35,10 @@ public class JPanelAluno extends javax.swing.JPanel {
         jTextInfo.setText(out); 
         
         // List de amigos
-        if (aluno.getAmigos().size() != 0) {
-            String[] listaAmigos = new String[aluno.getAmigos().size()];
-            int i = 0; 
-            for(Usuario amigo:aluno.getAmigos()) {
-                listaAmigos[i] = amigo.getNome(); 
-                i++; 
-            }
-            jListAmigos.setModel(new javax.swing.AbstractListModel<String>() {
-                String[] strings = listaAmigos;
-                public int getSize() { return strings.length; } ;
-                public String getElementAt(int i) { return strings[i]; } ;
-            });
-        }
+        criaListaAmigos();
         
         // List de Turmas
-        if (aluno.getTurmas().size() != 0) {
-            String[] listaTurmas = new String[aluno.getTurmas().size()]; 
-            int aux = 0;
-            for(Turma turma:aluno.getTurmas()) {
-                listaTurmas[aux] = turma.getSigla(); 
-                aux++; 
-                Set<Integer> chaves = turma.getHorarios().keySet(); 
-                for (Integer chave:chaves) {
-                    ArrayList<Integer> horarios = turma.getHorarios().get(chave);
-                    for(Integer inteiro:horarios) {
-                        boolean stop = false; 
-                        for(int i = 0; i < 11 && !stop; i++) {
-                            String value = (String)jTable1.getValueAt(i, 0);  
-                            if (value.contains(Integer.toString(inteiro))) {
-                                jTable1.setValueAt(turma.getSigla(), i, chave);
-                            }
-                        }
-                    }
-                }
-            }
-            
-            jListTurmas.setModel(new javax.swing.AbstractListModel<String>() {
-                String[] strings = listaTurmas;
-                public int getSize() { return strings.length; }
-                public String getElementAt(int i) { return strings[i]; }
-            });
-            
-            // Tabela de horarios
-        }
+        criaRelacionadoTurma(); 
     }
 
     /**
@@ -264,7 +224,54 @@ public class JPanelAluno extends javax.swing.JPanel {
         jTabbedPane1.getAccessibleContext().setAccessibleName("Amigos");
         jTabbedPane1.getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void criaListaAmigos() {
+        if (aluno.getAmigos().size() != 0) {
+            String[] listaAmigos = new String[aluno.getAmigos().size()];
+            int i = 0; 
+            for(Usuario amigo:aluno.getAmigos()) {
+                listaAmigos[i] = amigo.getNome(); 
+                i++; 
+            }
+            jListAmigos.setModel(new javax.swing.AbstractListModel<String>() {
+                String[] strings = listaAmigos;
+                public int getSize() { return strings.length; } ;
+                public String getElementAt(int i) { return strings[i]; } ;
+            });
+        }
+    }
+    
+    private void criaRelacionadoTurma() {
+        if (aluno.getTurmas().size() != 0) {
+            String[] listaTurmas = new String[aluno.getTurmas().size()]; 
+            int aux = 0;
+            for(Turma turma:aluno.getTurmas()) {
+                listaTurmas[aux] = turma.getSigla(); 
+                aux++; 
+                Set<Integer> chaves = turma.getHorarios().keySet(); 
+                for (Integer chave:chaves) {
+                    ArrayList<Integer> horarios = turma.getHorarios().get(chave);
+                    for(Integer inteiro:horarios) {
+                        boolean stop = false; 
+                        for(int i = 0; i < 11 && !stop; i++) {
+                            String value = (String)jTable1.getValueAt(i, 0);  
+                            if (value.contains(Integer.toString(inteiro))) {
+                                stop = true;
+                                jTable1.setValueAt(turma.getSigla(), i, chave);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            jListTurmas.setModel(new javax.swing.AbstractListModel<String>() {
+                String[] strings = listaTurmas;
+                public int getSize() { return strings.length; }
+                public String getElementAt(int i) { return strings[i]; }
+            });
+            
+        }
+    }
     private void jListAmigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListAmigosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jListAmigosMouseClicked
