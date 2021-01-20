@@ -142,14 +142,12 @@ public abstract class Usuario implements Comparable<Usuario>{
 				out+= "-Nome: " + getNome() + "\n";
 				out+= "-Genero: " + getGenero().getDescricao() + "\n";
 				out+= "-Email: " + getEmail() + "\n";
-				out+= visualizarTurma(user);
 				
 				return out;
 			
 			case 2: case 3:	//Permissao Privada e Default. Nesse escopo, sao equivalentes
 				out= "-Nome: " + getNome() + "\n";
 				out+= "-Email: " + getEmail() + "\n";
-				out+= visualizarTurma(user);
 				
 				return out;
 		}

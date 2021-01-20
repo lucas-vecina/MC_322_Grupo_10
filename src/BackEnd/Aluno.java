@@ -60,13 +60,12 @@ public class Aluno extends Usuario implements Feed{
 				out = super.visualizarInfo(user);
 				out += "-Curso: " + getCurso() + "\n";
 				out += "-RA: " + getRa() + "\n";
-				out += "-Amigos: " + visualizarAmigos(user);
 				
 				return out;
 				
 			case 2:
 				out = super.visualizarInfo(user);
-				out += "-Curso: " + getCurso() + "\n";
+				out += "\n-Curso: " + getCurso() + "\n";
 				return out;
 			
 			case 3:
@@ -85,7 +84,7 @@ public class Aluno extends Usuario implements Feed{
 	// Verifica permissoes do usuario (this) e exibe sua lista de amigos
 	@Override
 	public String visualizarAmigos(Usuario user) {
-		if(this.getPermissao().getChave() == 1) {
+		if(this.getPermissao().getChave() == 1 || user == this) {
 			String out;
 			out = "-Amigos: [";
 			for(Usuario u:getAmigos())
