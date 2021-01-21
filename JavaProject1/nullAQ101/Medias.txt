@@ -1,0 +1,4 @@
+Medias: 
+ -Dandelion, RA: 54321, Nota: 50.0. Aprovado: Sim
+ -Ciri, RA: 12345, Nota: 49.5. Aprovado: Sim
+ -Zoltan, RA: 00012, Nota: 50.0. Aprovado: Sim

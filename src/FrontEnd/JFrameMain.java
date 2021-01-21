@@ -58,13 +58,13 @@ public class JFrameMain extends javax.swing.JFrame {
         );
 
         jTextFieldLogin.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
-        jTextFieldLogin.setText("geraldo@hotmail.com");
+        jTextFieldLogin.setText("dan@uol.com");
 
         jLabelEmail.setFont(new java.awt.Font("Yu Gothic", 0, 18)); // NOI18N
         jLabelEmail.setText("Email");
 
         jPasswordField1.setFont(new java.awt.Font("Yu Gothic", 0, 8)); // NOI18N
-        jPasswordField1.setText("senha123");
+        jPasswordField1.setText("senha321");
         jPasswordField1.setToolTipText("");
 
         jLabelSenha.setFont(new java.awt.Font("Yu Gothic", 0, 18)); // NOI18N

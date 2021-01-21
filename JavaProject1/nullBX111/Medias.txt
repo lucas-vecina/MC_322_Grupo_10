@@ -1,0 +1,4 @@
+Medias: 
+ -Dandelion, RA: 54321, Nota: 0.05. Aprovado: Nao
+ -Triss, RA: 00044, Nota: 5.0. Aprovado: Sim
+ -Emhyr, RA: 99666, Nota: 0.0. Aprovado: Nao

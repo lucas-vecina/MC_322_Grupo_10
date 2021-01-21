@@ -52,17 +52,17 @@ public class AtividadeGrupo extends Atividade{
 		// Acoes de saida personalizadas conforme o cenario
 		switch(verif) {
 			case -2:
-				return "Grupo nao pode ser adicionado. Um ou mais alunos nao pertencem a essa turma."; 
+				return "1"; 
 				
 			case -1:
-				return "Grupo nao pode ser adicionado. um ou mais integrantes ja pertencem a um outro grupo dessa atividade"; 
+				return "2"; 
 			
 			case 0:
-				return "Grupo nao pode ser adicionado. Quantidade de integrantes diferente da solicitada.";
+				return "3";
 
 			default:
 				getSubmissoes().add(new Submissao(equipe, this));	// grupo adicionado ao array de submissoes
-				return "Grupo adicionado!";		
+				return "4";		
 		}		
 	}
 	
