@@ -52,7 +52,7 @@ public class JFrameAtividade extends javax.swing.JFrame {
                 if(sub.getAluno() != null){
                     listaSub[i] = sub.getAluno().getNome();
                 } else {
-                    listaSub[i] = sub.getEquipe().getGrupo().toString();
+                    listaSub[i] = sub.getEquipe().nomes();
                 }
                 i++; 
             }

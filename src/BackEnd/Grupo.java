@@ -91,4 +91,12 @@ public class Grupo {
 		out = out + "\nStatus:" + status + "\n"; 
 		return out; 
 	}
+        
+        public String nomes(){
+            String out = "";
+            for(Usuario a: grupo){
+                out += a.getNome() + " ";
+            }
+            return out;
+        }
 }
