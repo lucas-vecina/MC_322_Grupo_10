@@ -130,9 +130,14 @@ public class Aluno extends Usuario implements Feed{
 		}
 	}
 	
-	public void removerAmigo(Aluno amigo) {
-		amigos.remove(amigo);
-		amigo.getAmigos().remove(this);
+	public void removerAmigo(Usuario amigo) {
+            boolean aux = true;
+            if(amigo instanceof Aluno && amigos.contains(amigo)) {
+                amigos.remove(amigo);
+                ((Aluno)amigo).getAmigos().remove(this);
+            } else {
+                throw new Excecao();
+            }
 	}
 	
 	 //Verifica permissoes do usuario (this) e exibe as turmas
@@ -148,10 +153,16 @@ public class Aluno extends Usuario implements Feed{
 	}
 	
 	public void trancarDisciplina(Turma turma) {
+            try{
 		if(getTurmas().contains(turma)) {
 			turma.getAlunos().remove(this);
 			getTurmas().remove(turma);
-		}
+		} else {
+                    throw new Excecao();
+                }
+            } catch(Excecao e) {
+                e.popup();
+            }
 	}
 	
 	public void adicionarFeed() {}

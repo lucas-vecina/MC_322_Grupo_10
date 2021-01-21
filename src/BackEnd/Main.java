@@ -125,6 +125,7 @@ public class Main {
 	
 		//Trancando disciplinas
 		//aluno1.trancarDisciplina(turma2);
+                //aluno1.trancarDisciplina(turma2);
 		
 		turma1.tirarMedia(prof1);
 		turma2.tirarMedia(prof2);		

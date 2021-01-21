@@ -5,6 +5,8 @@
  */
 package BackEnd;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
@@ -12,7 +14,7 @@ package BackEnd;
 public class Excecao extends IllegalArgumentException{
 
     public Excecao() {
-        super("Argumento errado");
+        super("Pedido impossivel de ser executado");
     }
 
     public Excecao(String s) {
@@ -25,5 +27,9 @@ public class Excecao extends IllegalArgumentException{
 
     public Excecao(Throwable cause) {
         super(cause);
+    }
+    
+    public void popup() {
+        JOptionPane.showMessageDialog(null, "Pedido impossivel de ser executado");
     }
 }
