@@ -22,13 +22,17 @@ public class JFrameDuvida extends javax.swing.JFrame {
         setTitle("Duvida " + duvida.getIndagador().getNome());
         criaIndagacao();
         criaRespostas(); 
+        jButtonRetomar.setVisible(false);
         if (!duvida.getIndagador().equals(aluno)) {
             jButtonResolver.setVisible(false);
         }
         if (duvida.isResolvido()) {
             jTextFieldResponder.setVisible(false);
             jButtonResponder.setVisible(false); 
+            if (!duvida.getIndagador().equals(aluno))
+                jButtonRetomar.setVisible(true);
         }
+        
     }
     
     public void criaIndagacao() {
@@ -67,6 +71,13 @@ public class JFrameDuvida extends javax.swing.JFrame {
         jButtonResponder = new javax.swing.JButton();
         jTextFieldResponder = new javax.swing.JTextField();
         jButtonResolver = new javax.swing.JButton();
+        jButtonRetomar = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -106,6 +117,17 @@ public class JFrameDuvida extends javax.swing.JFrame {
             }
         });
 
+        jButtonRetomar.setBackground(new java.awt.Color(201, 23, 48));
+        jButtonRetomar.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
+        jButtonRetomar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRetomar.setText("Retomar");
+        jButtonRetomar.setBorder(null);
+        jButtonRetomar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetomarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -122,23 +144,47 @@ public class JFrameDuvida extends javax.swing.JFrame {
                             .addComponent(jButtonResponder, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                             .addComponent(jButtonResolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonRetomar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(189, 189, 189))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jButtonRetomar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonResolver, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonResponder, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
-                    .addComponent(jTextFieldResponder))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonResponder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTextFieldResponder, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("jMenu3");
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,7 +215,24 @@ public class JFrameDuvida extends javax.swing.JFrame {
     private void jButtonResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResolverActionPerformed
         // TODO add your handling code here:
         duvida.resolver();
+        jButtonResolver.setVisible(false);
+        jTextFieldResponder.setVisible(false);
+        jButtonResponder.setVisible(false);
+        jButtonRetomar.setVisible(true); 
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_jButtonResolverActionPerformed
+
+    private void jButtonRetomarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetomarActionPerformed
+        // TODO add your handling code here:
+        duvida.setResolvido(false);
+        jButtonRetomar.setVisible(false);
+        jButtonResolver.setVisible(true);
+        jTextFieldResponder.setVisible(true);
+        jButtonResponder.setVisible(true);
+        this.revalidate();
+        this.repaint(); 
+    }//GEN-LAST:event_jButtonRetomarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +241,13 @@ public class JFrameDuvida extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonResolver;
     private javax.swing.JButton jButtonResponder;
+    private javax.swing.JButton jButtonRetomar;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

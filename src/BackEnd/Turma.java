@@ -166,12 +166,9 @@ public class Turma {
 	}
 	
 	// Possibilita um aluno criar uma nova duvida
-	public Duvidas criarDuvida(Aluno aluno, String indagacao) {
-		if(!getAlunos().contains(aluno))
-			return null;
-		
+	public Duvidas criarDuvida(Aluno aluno, String indagacao) {		
 		Duvidas duvida = new Duvidas(aluno, indagacao, this);
-		return duvida;
+                return duvida;
 	}
 	
 	public Teoria criarTeoria(Usuario user, String descricao, String arquivos) {
