@@ -47,10 +47,11 @@ public class Turma {
         
         public static void setarCWD(){
             String absolutPath = new File("").getAbsolutePath();
-            String busca = "MC_322_Grupo_10/";
+            String busca = "MC_322_Grupo_10";
             int i = absolutPath.indexOf(busca) + busca.length();
             
-            rd = absolutPath.substring(0, i) + "files/";
+            rd = absolutPath.substring(0, i) + "\\files\\";
+            System.out.println(rd);
         }
 	
 	public String getTurma() {
