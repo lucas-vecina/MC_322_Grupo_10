@@ -20,11 +20,18 @@ public class Professor extends Usuario{
 	//Remove uma turma especifica de um professor e de todos os alunos matriculados
 	public void removeTurma(Turma turma) {
 	
-		for(int i = 0; i < turma.getAlunos().size(); i++ ) {
+		for(int i = 0; i < turma.getAlunos().size(); i++) {
 			ArrayList<Turma> turmaAluno = turma.getAlunos().get(i).getTurmas();
 			turmaAluno.remove(turma);
 		}
-			
+                for(int i = 0; i < turma.getPed().size(); i++) { 
+                        ArrayList<Turma> turmaPed = turma.getPed().get(i).getTurmas(); 
+                        turmaPed.remove(turma); 
+                }
+                for(int i = 0; i < turma.getPad().size(); i++) {
+                    ArrayList<Turma> turmaPad = turma.getPad().get(i).getTurmas();
+                    turmaPad.remove(turma); 
+                }
 		this.getTurmas().remove(turma);
 	}
 	
