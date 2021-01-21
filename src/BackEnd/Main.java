@@ -47,8 +47,8 @@ public class Main {
 		horarios1.put(1, aux);
 
 		
-		Turma turma1 = prof1.criarTurma("Bruxos I", "BX111", horarios1);
-		Turma turma2 = prof2.criarTurma("Alquimia I", "AQ101", horarios2);
+		Turma turma1 = prof1.criarTurma("Bruxos I", "BX111", horarios1,"");
+		Turma turma2 = prof2.criarTurma("Alquimia I", "AQ101", horarios2, "");
 		
 		// Insercao dos alunos, peds e pads nas turmas
 		aux1.addAll(Arrays.asList(aluno2, aluno4, aluno6));

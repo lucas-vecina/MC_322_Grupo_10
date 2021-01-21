@@ -10,8 +10,8 @@ public class Professor extends Usuario{
 	}
 	
 	//Metodo para cada professor criar sua turma para inumeras materias
-	public Turma criarTurma(String nome, String sigla, HashMap<Integer,ArrayList<Integer>> horarios) {
-		Turma t1 = new Turma(nome,sigla,this, horarios);
+	public Turma criarTurma(String nome, String sigla, HashMap<Integer,ArrayList<Integer>> horarios, String ementa) {
+		Turma t1 = new Turma(nome,sigla,this, horarios, ementa);
 		getTurmas().add(t1);
 		
 		return t1;

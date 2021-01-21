@@ -26,11 +26,12 @@ public class Turma {
 	
 	//Contrutor para ser usado na criacao de turmas pelo professor
 	
-	public Turma(String turma, String sigla, Professor professor, HashMap<Integer,ArrayList<Integer>> horarios) {
+	public Turma(String turma, String sigla, Professor professor, HashMap<Integer,ArrayList<Integer>> horarios, String ementa) {
 		this.turma = turma;
 		this.sigla = sigla;
 		this.professor = professor;
 		this.horarios = horarios;
+                this.ementa = ementa;
 		ped = new ArrayList<Aluno>();
 		pad = new ArrayList<Aluno>();
 		alunos = new ArrayList<Aluno>();
