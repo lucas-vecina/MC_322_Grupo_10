@@ -38,7 +38,7 @@ public class JFrameMensagem extends javax.swing.JFrame {
         jTextPane1 = new javax.swing.JTextPane();
         jButtonEnviar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextAreaHistorico.setEditable(false);
         jTextAreaHistorico.setColumns(20);
