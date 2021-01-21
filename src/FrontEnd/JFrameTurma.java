@@ -83,7 +83,7 @@ public class JFrameTurma extends javax.swing.JFrame {
         jButtonEmenta.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
         jButtonEmenta.setForeground(new java.awt.Color(255, 255, 255));
         jButtonEmenta.setText("Ver ementa");
-        jButtonEmenta.setBorder(null);
+        jButtonEmenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonEmenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEmentaActionPerformed(evt);
@@ -96,7 +96,7 @@ public class JFrameTurma extends javax.swing.JFrame {
         jButtonDuvida.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
         jButtonDuvida.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDuvida.setText("Criar Duvida");
-        jButtonDuvida.setBorder(null);
+        jButtonDuvida.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonDuvida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDuvidaActionPerformed(evt);
@@ -107,7 +107,7 @@ public class JFrameTurma extends javax.swing.JFrame {
         jButtonVoltar.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
         jButtonVoltar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonVoltar.setText("Voltar");
-        jButtonVoltar.setBorder(null);
+        jButtonVoltar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVoltarActionPerformed(evt);
@@ -171,11 +171,8 @@ public class JFrameTurma extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jTextFieldDuvida, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                             .addGap(109, 109, 109))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButtonDuvida, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jButtonDuvida, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)

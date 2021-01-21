@@ -65,27 +65,41 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        nomeDaMateria.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         nomeDaMateria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jTextInfo.setBackground(new java.awt.Color(153, 153, 153));
+        jTextInfo.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jTextInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTextInfo.setText("Nome da materia");
 
+        jLabel1.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sigla");
 
+        siglaDaMateria.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         siglaDaMateria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jLabel2.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Ementa");
 
+        ementaDaMateria.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Horarios");
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
+        diaSemana.setBackground(new java.awt.Color(201, 23, 48));
+        diaSemana.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
+        diaSemana.setForeground(new java.awt.Color(255, 255, 255));
         diaSemana.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Segunda", "Terca", "Quarta", "Quinta", "Sexta" }));
 
+        adicionarHora.setBackground(new java.awt.Color(201, 23, 48));
+        adicionarHora.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
+        adicionarHora.setForeground(new java.awt.Color(255, 255, 255));
         adicionarHora.setText("Adicionar");
         adicionarHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +107,7 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
             }
         });
 
+        listaHorario.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         listaHorario.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Horario selecionados" };
             public int getSize() { return strings.length; }
@@ -100,6 +115,9 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(listaHorario);
 
+        removerHora.setBackground(new java.awt.Color(201, 23, 48));
+        removerHora.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
+        removerHora.setForeground(new java.awt.Color(255, 255, 255));
         removerHora.setText("Remover");
         removerHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +130,9 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
 
         jLabel5.setText("h");
 
+        hora.setBackground(new java.awt.Color(201, 23, 48));
+        hora.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
+        hora.setForeground(new java.awt.Color(255, 255, 255));
         hora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "9", "10", "11", "14", "15", "16", "17", "20", "21", "22" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -121,7 +142,7 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(diaSemana, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(diaSemana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -132,7 +153,7 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
                         .addComponent(adicionarHora))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(removerHora)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -153,6 +174,9 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        fechar.setBackground(new java.awt.Color(201, 23, 48));
+        fechar.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
+        fechar.setForeground(new java.awt.Color(255, 255, 255));
         fechar.setText("Fechar");
         fechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +184,9 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
             }
         });
 
+        criar.setBackground(new java.awt.Color(201, 23, 48));
+        criar.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
+        criar.setForeground(new java.awt.Color(255, 255, 255));
         criar.setText("Criar");
         criar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +252,7 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
                     .addComponent(ementaDaMateria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCriada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelCriada, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(fechar)
                         .addComponent(criar)))
@@ -240,7 +267,7 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

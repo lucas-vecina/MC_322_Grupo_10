@@ -61,11 +61,14 @@ public class JFrameAlunoProf extends javax.swing.JFrame {
     private void criaInfo() {
         String out = "Nome: " + aluno.getNome();
         out += "\n RA: " + aluno.getRa();
+        out += "\n Curso: " + aluno.getCurso(); 
         out += "\n Matriculas: \n";
         for (Turma turma:aluno.getTurmas()) {
-            out += turma.getSigla(); 
-            if (aluno.getTurmas().indexOf(turma) != aluno.getTurmas().size() - 1) {
-                out += ", "; 
+            if (!turma.getPed().contains(aluno) && !turma.getPad().contains(aluno)) {
+                out += turma.getSigla(); 
+                if (aluno.getTurmas().indexOf(turma) != aluno.getTurmas().size() - 1) {
+                    out += ", "; 
+                }
             }
         }
         jTextAreaInfo.setText(out);

@@ -69,6 +69,11 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
         jButtonAdicionarAluno.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAdicionarAluno.setText("Adicionar aluno");
         jButtonAdicionarAluno.setToolTipText("");
+        jButtonAdicionarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarAlunoActionPerformed(evt);
+            }
+        });
 
         jButtonAdicionarPed.setBackground(new java.awt.Color(201, 23, 48));
         jButtonAdicionarPed.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
@@ -94,6 +99,11 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
         jButtonAdicionarPad.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
         jButtonAdicionarPad.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAdicionarPad.setText("Adicionar PAD");
+        jButtonAdicionarPad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarPadActionPerformed(evt);
+            }
+        });
 
         jButtonRemoverPed.setBackground(new java.awt.Color(201, 23, 48));
         jButtonRemoverPed.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
@@ -136,6 +146,11 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jListPeds.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListPedsMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jListPeds);
 
         jListPads.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PADs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic", 0, 11))); // NOI18N
@@ -144,6 +159,11 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
             String[] strings = { "Não há PADs nessa turma." };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        jListPads.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListPadsMouseClicked(evt);
+            }
         });
         jScrollPane4.setViewportView(jListPads);
 
@@ -242,7 +262,7 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void criaInfo() {
+    public void criaInfo() {
         String out = "Nome: " + turma.getTurma();
         out += "\n Sigla: " + turma.getSigla();
         out += "\n Número de alunos: " + turma.getAlunos().size(); 
@@ -250,7 +270,7 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
         jTextPaneInfo.setText(out); 
     }
     
-    private void criaListaAlunos() {
+    public void criaListaAlunos() {
         if(turma.getAlunos().size() != 0) {
             String[] listaAlunos = new String[turma.getAlunos().size()]; 
             int i = 0; 
@@ -266,7 +286,7 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
         } 
     }
     
-    private void criaListaPeds() {
+    public void criaListaPeds() {
         if(turma.getPed().size() != 0) {
             String[] listaPed = new String[turma.getPed().size()]; 
             int i = 0; 
@@ -282,7 +302,7 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
         } 
     }
     
-    private void criaListaPads() {
+    public void criaListaPads() {
         if(turma.getPad().size() != 0) {
             String[] listaPad = new String[turma.getPad().size()]; 
             int i = 0; 
@@ -300,6 +320,8 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
     
     private void jButtonAdicionarPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarPedActionPerformed
         // TODO add your handling code here:
+        JFrameAdicionar frameAdicionar = new JFrameAdicionar(this, turma, professor, "PED");
+        frameAdicionar.setVisible(true);
     }//GEN-LAST:event_jButtonAdicionarPedActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
@@ -365,6 +387,41 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonRemoverPadActionPerformed
 
+    private void jButtonAdicionarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarAlunoActionPerformed
+        // TODO add your handling code here:
+        JFrameAdicionar frameAdicionar = new JFrameAdicionar(this, turma, professor, "ALUNO");
+        frameAdicionar.setVisible(true);
+    }//GEN-LAST:event_jButtonAdicionarAlunoActionPerformed
+
+    private void jButtonAdicionarPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarPadActionPerformed
+        // TODO add your handling code here:
+        JFrameAdicionar frameAdicionar = new JFrameAdicionar(this, turma, professor, "PAD");
+        frameAdicionar.setVisible(true);
+    }//GEN-LAST:event_jButtonAdicionarPadActionPerformed
+
+    private void jListPedsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListPedsMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2 && turma.getPed().size() != 0) {
+            int index = jListPeds.getSelectedIndex();
+            Usuario ped = turma.getPed().get(index);
+            JFrameAlunoProf frameAlunoProf = new JFrameAlunoProf((Aluno)ped);
+            frameAlunoProf.setVisible(true);
+        }
+    }//GEN-LAST:event_jListPedsMouseClicked
+
+    private void jListPadsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListPadsMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2 && turma.getPad().size() != 0) {
+            int index = jListPads.getSelectedIndex();
+            Usuario pad = turma.getPad().get(index);
+            JFrameAlunoProf frameAlunoProf = new JFrameAlunoProf((Aluno)pad);
+            frameAlunoProf.setVisible(true);
+        }
+    }//GEN-LAST:event_jListPadsMouseClicked
+
+    public javax.swing.JPanel getJPanel() {
+        return jPanel1; 
+    }
     /**
      * @param args the command line arguments
      */

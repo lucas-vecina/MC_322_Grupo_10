@@ -15,10 +15,13 @@ public class JFrameAdicionar extends javax.swing.JFrame {
     /**
      * Creates new form JFrameAdicionar
      */
-    public JFrameAdicionar(JFrameMain frameMain, Turma turma, Professor professor, String tipo) {
+    public JFrameAdicionar(JFrameTurmaProfessor frame,Turma turma, Professor professor, String tipo) {
         initComponents();
         this.turma = turma;
         this.professor = professor;
+        this.tipo = tipo;
+        setTitle("Adicionar " + tipo);
+        this.frame = frame;
     }
 
     /**
@@ -32,22 +35,72 @@ public class JFrameAdicionar extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jTextFieldNome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldRa = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jButtonAdicionar = new javax.swing.JButton();
+        jLabelAchou = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jLabel2.setText("Nome");
+
+        jTextFieldRa.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jLabel3.setText("RA");
+
+        jButtonAdicionar.setBackground(new java.awt.Color(201, 23, 48));
+        jButtonAdicionar.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
+        jButtonAdicionar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAdicionar.setText("Adicionar");
+        jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarActionPerformed(evt);
+            }
+        });
+
+        jLabelAchou.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 369, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAdicionar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldRa, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelAchou))
+                .addGap(60, 60, 60))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 162, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldRa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonAdicionar)
+                    .addComponent(jLabelAchou))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -64,15 +117,60 @@ public class JFrameAdicionar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
+        // TODO add your handling code here:
+        if(!jTextFieldNome.getText().equals("") && !jTextFieldRa.getText().equals("")) {
+            boolean achou = false;
+            for(Usuario aluno:Usuario.getUsuarios()) {
+                if((aluno instanceof Aluno) && aluno.getNome().equals(jTextFieldNome.getText()) && ((Aluno)aluno).getRa().equals(jTextFieldRa.getText())) {
+                    achou = true;
+                    switch(tipo) {
+                        case "ALUNO":
+                            turma.adicionaAluno(professor, (Aluno)aluno);
+                            break;
+                        case "PED":
+                            turma.adicionaPed(professor, (Aluno)aluno); 
+                            break;
+                        case "PAD":
+                            turma.adicionaPad(professor, (Aluno)aluno); 
+                            break;
+                    }
+                    break;
+                }
+            }
+            if(achou == false) {
+                jLabelAchou.setText("Nome e/ou RA não encontrados.");
+            }
+            else
+                jLabelAchou.setText("Adicionado");
+            jTextFieldNome.setText("");
+            jTextFieldRa.setText("");
+            frame.criaListaAlunos();
+            frame.criaListaPads();
+            frame.criaListaPeds();
+            frame.getJPanel().revalidate();
+            frame.getJPanel().repaint();
+            jPanel1.revalidate();
+            jPanel1.repaint(); 
+        }
+    }//GEN-LAST:event_jButtonAdicionarActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelAchou;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JTextField jTextFieldRa;
     // End of variables declaration//GEN-END:variables
     private Turma turma; 
     private Professor professor;
-    private JFrameMain frameMain; 
+    private String tipo;
+    private JFrameTurmaProfessor frame;
 }

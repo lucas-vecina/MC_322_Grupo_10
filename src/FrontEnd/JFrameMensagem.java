@@ -20,9 +20,23 @@ public class JFrameMensagem extends javax.swing.JFrame {
         initComponents();
         this.remetente = remetente;
         this.conversa = conversa;
-        jTextAreaHistorico.setText((conversa.getMensagens().isEmpty() ? "" : conversa.getMensagens().toString()));
+        criaAreaHistorico();
     }
-
+    
+    private void criaAreaHistorico() {
+        String out = "";
+        if (!conversa.getMensagens().isEmpty()) {
+            for(Mensagem mensagem:conversa.getMensagens()) {
+                out += mensagem.getSujeito().getNome() + ": " + mensagem.getTexto();
+                if (!(conversa.getMensagens().indexOf(mensagem) == conversa.getMensagens().size() - 1)) {
+                    out += "\n";
+                }
+            }
+        }
+        else 
+            out += "Ainda não há mensagens.";
+        jTextAreaHistorico.setText(out); 
+    }   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,11 +102,12 @@ public class JFrameMensagem extends javax.swing.JFrame {
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
         // TODO add your handling code here:
-        Mensagem mensagem = new Mensagem(remetente, jTextPane1.getText());
-        String out = jTextAreaHistorico.getText() + mensagem;
-        jTextAreaHistorico.setText(out);
+        String out = jTextPane1.getText(); 
+        conversa.enviarMensagem(remetente, out);
+        criaAreaHistorico(); 
         jTextPane1.setText("");
-        
+        this.revalidate(); 
+        this.repaint();
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
     /**

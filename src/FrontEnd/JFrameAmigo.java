@@ -33,7 +33,7 @@ public class JFrameAmigo extends javax.swing.JFrame {
         criaListaAmigos();
         
         if(aluno.getAmigos().contains(amigo)){
-            jButton2.setVisible(false);
+            jButtonAdicionar.setVisible(false);
         }
         
     }
@@ -60,8 +60,8 @@ public class JFrameAmigo extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelAmigo = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonMensagem = new javax.swing.JButton();
+        jButtonAdicionar = new javax.swing.JButton();
         jTextAreaInfo = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         JListAmigos = new javax.swing.JList<>();
@@ -72,17 +72,17 @@ public class JFrameAmigo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
 
-        jButton1.setText("Enviar Mensagem");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMensagem.setText("Enviar Mensagem");
+        jButtonMensagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonMensagemActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Adicionar Amigo");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdicionar.setText("Adicionar Amigo");
+        jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonAdicionarActionPerformed(evt);
             }
         });
 
@@ -139,8 +139,8 @@ public class JFrameAmigo extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAmigoLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addComponent(jButtonAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                             .addComponent(jTextField1))
                         .addGap(71, 71, 71))))
         );
@@ -154,9 +154,9 @@ public class JFrameAmigo extends javax.swing.JFrame {
                         .addGap(32, 32, 32))
                     .addGroup(jPanelAmigoLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13)))
@@ -193,7 +193,7 @@ public class JFrameAmigo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JListAmigosMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMensagemActionPerformed
         // TODO add your handling code here:
         boolean verif = false;
         Conversa conversa = null;
@@ -217,9 +217,9 @@ public class JFrameAmigo extends javax.swing.JFrame {
         
         JFrameMensagem frameMensagem = new JFrameMensagem(conversa, aluno);
         frameMensagem.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonMensagemActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         // TODO add your handling code here:
         jTextField1.setVisible(true);
         
@@ -229,7 +229,7 @@ public class JFrameAmigo extends javax.swing.JFrame {
             jTextField1.setText("Solicitação enviada!");
         }
         jTextField1.setText("Solicitação já enviada!");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -241,8 +241,8 @@ public class JFrameAmigo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> JListAmigos;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonAdicionar;
+    private javax.swing.JButton jButtonMensagem;
     private javax.swing.JPanel jPanelAmigo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

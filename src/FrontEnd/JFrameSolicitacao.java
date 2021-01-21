@@ -49,7 +49,7 @@ public class JFrameSolicitacao extends javax.swing.JFrame {
         jButtonSim.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
         jButtonSim.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSim.setText("Sim");
-        jButtonSim.setBorder(null);
+        jButtonSim.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonSim.setMaximumSize(new java.awt.Dimension(51, 26));
         jButtonSim.setMinimumSize(new java.awt.Dimension(51, 26));
         jButtonSim.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +62,7 @@ public class JFrameSolicitacao extends javax.swing.JFrame {
         jButtonNao.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
         jButtonNao.setForeground(new java.awt.Color(255, 255, 255));
         jButtonNao.setText("Não");
-        jButtonNao.setBorder(null);
+        jButtonNao.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonNao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNaoActionPerformed(evt);
