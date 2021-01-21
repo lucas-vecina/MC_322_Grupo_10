@@ -23,6 +23,7 @@ public class Turma {
 	private ArrayList<Monitoria> monitorias;	// Ambiente simbolico para atendimento sincrono do aluno
 	private ArrayList<Duvidas> duvidas;		// Ambiente para retirada de duvidas. Visivel a todos os alunos que cursam a disciplina
 	private ArrayList<Feed> mural;		// Feed da turma
+        private static String rd;         // Reference directory
 	
 	//Contrutor para ser usado na criacao de turmas pelo professor
 	
@@ -41,8 +42,16 @@ public class Turma {
 		monitorias = new ArrayList<Monitoria>();
 		duvidas = new ArrayList<Duvidas>();
 		mural = new ArrayList<Feed>();
-		criarPastas();
-	}
+                criarPastas();
+        }
+        
+        public static void setarCWD(){
+            String absolutPath = new File("").getAbsolutePath();
+            String busca = "MC_322_Grupo_10/";
+            int i = absolutPath.indexOf(busca) + busca.length();
+            
+            rd = absolutPath.substring(0, i) + "files/";
+        }
 	
 	public String getTurma() {
 		return turma;
@@ -136,6 +145,10 @@ public class Turma {
 	public ArrayList<Feed> getMural() {
 		return mural;
 	}
+        
+        public static String getRd(){
+            return rd;
+        }
 	
 	/* Um professor ou ped podem criar uma nova atividade.
 	 * E feita uma diferenciacao entre duas atividades, individual e em grupo. O parametro labels as segrega.
@@ -254,11 +267,11 @@ public class Turma {
 	}
 	
 	private void criarPastas() {
-		File dirTurma = new File("files/" + getSigla()); 
+		File dirTurma = new File(rd + getSigla()); 
 		dirTurma.mkdir();
-		File dirAtividades = new File("files/" + getSigla() + "/Atividades/"); 
+		File dirAtividades = new File(rd + getSigla() + "/Atividades/"); 
 		dirAtividades.mkdir();
-		File dirTeoria = new File("files/" + getSigla() + "/Teoria");
+		File dirTeoria = new File(rd + getSigla() + "/Teoria");
 		dirTeoria.mkdir(); 
 	}
 	
@@ -293,7 +306,7 @@ public class Turma {
 			}
 			
 			try {
-				Formatter file = new Formatter("files/" + getSigla() + "/Medias.txt"); 
+				Formatter file = new Formatter(rd + getSigla() + "/Medias.txt"); 
 				String out = "Medias: ";
 				for (int i=0; i<alunos.size(); i+=1) {
 					Aluno aluno = alunos.get(i);

@@ -64,7 +64,7 @@ public class Teoria implements Feed{
 	
 	private void criarArquivoTeoria() {
 		try {
-			Formatter file = new Formatter("files/" + getTurma().getSigla() + "/Teoria/" + arquivos);
+			Formatter file = new Formatter(Turma.getRd() + getTurma().getSigla() + "/Teoria/" + arquivos);
 			file.format("%s", descricao); 
 			file.flush();
 			file.close(); 
