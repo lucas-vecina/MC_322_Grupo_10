@@ -5,8 +5,11 @@
  */
 package FrontEnd;
 
+import BackEnd.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  *
@@ -17,8 +20,15 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
     /**
      * Creates new form JPanelCriarTurma
      */
-    public JPanelCriarTurma() {
+    public JPanelCriarTurma(Professor professor, JFrameCriarTurma frame ,JPanelProf panelProfessor) {
         initComponents();
+        
+        horarios = new HashMap<Integer,ArrayList<Integer>>();
+        haux = new ArrayList<String>();
+        this.professor = professor;
+        auxiliar = new ArrayList<ArrayList<Integer>>();
+        this.frame = frame;
+        this.panelProfessor = panelProfessor;
     }
 
     /**
@@ -80,13 +90,18 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
         });
 
         listaHorario.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Horario selecionados" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(listaHorario);
 
         removerHora.setText("Remover");
+        removerHora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerHoraActionPerformed(evt);
+            }
+        });
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("as");
@@ -135,6 +150,11 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
         );
 
         fechar.setText("Fechar");
+        fechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fecharActionPerformed(evt);
+            }
+        });
 
         criar.setText("Criar");
         criar.addActionListener(new java.awt.event.ActionListener() {
@@ -210,23 +230,99 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void putMod(Integer i, ArrayList<Integer> aI){
+        
+        Set<Integer> chaves = horarios.keySet();
+        for(Integer chave: chaves){
+            if(Objects.equals(chave, i)){
+                ArrayList<Integer> valores = horarios.get(chave);
+                valores.add(aI.get(0));
+                horarios.put(i, valores);
+                return;
+            }
+        }
+        horarios.put(i, aI);
+        return;
+    }
+    
     private void criarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarActionPerformed
         // TODO add your handling code here:
         String nome = nomeDaMateria.getText();
         String sigla = siglaDaMateria.getText();
         String ementa = ementaDaMateria.getText();
-
+        Turma turma = professor.criarTurma(nome, sigla, horarios, ementa);
+        
     }//GEN-LAST:event_criarActionPerformed
 
     private void adicionarHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarHoraActionPerformed
-        // TODO add your handling code here:
-        diaSemana.get
+        // TODO add your handling cgetSelectedIndexode here:
+
+        int dia = diaSemana.getSelectedIndex() + 1;
+        String h = (String) hora.getSelectedItem();
+        ArrayList<Integer> horario = new ArrayList<Integer>();
+        horario.add(Integer.valueOf(h));
+        
+        ArrayList<Integer> aux = new ArrayList<Integer>();
+        aux.add(Integer.valueOf(dia));
+        aux.add(Integer.valueOf(h));
+
+        auxiliar.add(aux);
+        
+        putMod(Integer.valueOf(dia), horario);
+        haux.add((String)diaSemana.getSelectedItem() + " as " + h + " h");
+        criarListaHorario();
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_adicionarHoraActionPerformed
 
+    private void removerHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerHoraActionPerformed
+        // TODO add your handling code here:
+        if(haux.size() != 0){
+            int index = listaHorario.getSelectedIndex();
+            
+            Integer chave = auxiliar.get(index).get(0);
+            Integer valorq = auxiliar.get(index).get(1);
+            
+            Set<Integer> chaves = horarios.keySet();
+            for(Integer chav: chaves){
+                if(chav == chave){
+                    
+                    horarios.get(chave).remove(valorq);
+                    
+                }
+            }
+            haux.remove(index);
+            criarListaHorario();
+            this.revalidate();
+            this.repaint();
+        }
+    }//GEN-LAST:event_removerHoraActionPerformed
+
+    private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed
+        // TODO add your handling code here:
+        frame.dispose();
+    }//GEN-LAST:event_fecharActionPerformed
+
+    private void criarListaHorario(){
+        if(haux.size() != 0){
+            String[] str = new String[haux.size()];
+            int i = 0;
+            for(String s : haux){
+                str[i] = s;
+                i++;
+            }
+            listaHorario.setListData(str);
+        } else {
+            String[] str = new String[1];
+            str[0] = "Horarios selecionados";
+            listaHorario.setListData(str);
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarHora;
@@ -249,5 +345,10 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
     private javax.swing.JButton removerHora;
     private javax.swing.JTextField siglaDaMateria;
     // End of variables declaration//GEN-END:variables
-    private HashMap<Integer,ArrayList<Integer>> horarios = new HashMap<Integer,ArrayList<Integer>>();
+    private HashMap<Integer,ArrayList<Integer>> horarios; 
+    private ArrayList<String> haux;
+    private Professor professor;
+    private ArrayList<ArrayList<Integer>> auxiliar;
+    private JFrameCriarTurma frame;
+    private JPanelProf panelProfessor;
 }
