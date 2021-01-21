@@ -22,11 +22,10 @@ public class JPanelAluno extends javax.swing.JPanel {
         initComponents();
         this.aluno = aluno; 
         this.frameMain = frame; 
-        
-        //jTextFieldBusca.setVisible(false);
-        
-        // Text field de informacao:
-        criaTextInfo();
+        this.perfil = new JPanelPerfil(aluno.visualizarInfo(aluno));
+        this.grade = new JPanelGrade(aluno);
+        this.agenda = new JPanelAgenda(aluno.getAgenda().toString());
+
         
         // List de amigos
         criaListaAmigos();
@@ -39,6 +38,9 @@ public class JPanelAluno extends javax.swing.JPanel {
         
         // List de feed
         criaFeed(); 
+        
+        panelBusca.setVisible(false);
+
     }
 
     /**
@@ -50,12 +52,16 @@ public class JPanelAluno extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextInfo = new javax.swing.JTextArea();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jListFeed = new javax.swing.JList<>();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        panelColuna = new javax.swing.JPanel();
+        jButtonExit = new javax.swing.JButton();
+        jButtonBusca = new javax.swing.JButton();
+        jButtonNotificacoes = new javax.swing.JButton();
+        jButtonAgenda = new javax.swing.JButton();
+        jButtonGrade = new javax.swing.JButton();
+        jButtonPerfil = new javax.swing.JButton();
+        jButtonHome = new javax.swing.JButton();
+        panelHome = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelAmigos = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -66,67 +72,123 @@ public class JPanelAluno extends javax.swing.JPanel {
         jPanelSolicitacoes = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jListSolicitacoes = new javax.swing.JList<>();
-        jPanel1 = new javax.swing.JPanel();
-        jButtonExit = new javax.swing.JButton();
-        jButtonBusca = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jListFeed = new javax.swing.JList<>();
+        panelBusca = new javax.swing.JPanel();
         jTextFieldBusca = new javax.swing.JTextField();
 
         setBackground(java.awt.Color.white);
         setPreferredSize(new java.awt.Dimension(700, 521));
 
-        jTable1.setFont(new java.awt.Font("Yu Gothic", 0, 10)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"08:00", null, null, null, null, null},
-                {"09:00", "", null, null, null, null},
-                {"10:00", "", null, null, null, null},
-                {"11:00", null, null, null, null, null},
-                {"14:00", null, null, null, null, null},
-                {"15:00", null, null, null, null, null},
-                {"16:00", null, null, null, null, null},
-                {"17:00", null, null, null, null, null},
-                {"20:00", null, null, null, null, null},
-                {"21:00", null, null, null, null, null},
-                {"22:00", null, null, null, null, null}
-            },
-            new String [] {
-                "", "Segunda", "Terça", "Quarta", "Quinta", "Sexta"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
+        jSplitPane1.setBackground(java.awt.Color.white);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        panelColuna.setBackground(new java.awt.Color(201, 23, 48));
+        panelColuna.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jButtonExit.setBackground(java.awt.SystemColor.activeCaptionBorder);
+        jButtonExit.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
+        jButtonExit.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/setas-flechas (2) (1).png"))); // NOI18N
+        jButtonExit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonExit.setContentAreaFilled(false);
+        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExitActionPerformed(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-        }
 
-        jTextInfo.setEditable(false);
-        jTextInfo.setColumns(20);
-        jTextInfo.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
-        jTextInfo.setRows(5);
-        jTextInfo.setToolTipText("");
-        jTextInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Info de usuário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic", 0, 11))); // NOI18N
-        jScrollPane3.setViewportView(jTextInfo);
-
-        jListFeed.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Feed", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic", 0, 11))); // NOI18N
-        jListFeed.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
-        jListFeed.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Você não tem nada novo." };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jButtonBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png-transparent-preview (1).png"))); // NOI18N
+        jButtonBusca.setToolTipText("");
+        jButtonBusca.setAutoscrolls(true);
+        jButtonBusca.setBorder(null);
+        jButtonBusca.setContentAreaFilled(false);
+        jButtonBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscaActionPerformed(evt);
+            }
         });
-        jScrollPane4.setViewportView(jListFeed);
+
+        jButtonNotificacoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sino__1_-removebg-preview (2).png"))); // NOI18N
+        jButtonNotificacoes.setBorder(null);
+        jButtonNotificacoes.setContentAreaFilled(false);
+        jButtonNotificacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNotificacoesActionPerformed(evt);
+            }
+        });
+
+        jButtonAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/calendario-removebg-preview (1) (1).png"))); // NOI18N
+        jButtonAgenda.setBorder(null);
+        jButtonAgenda.setContentAreaFilled(false);
+        jButtonAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgendaActionPerformed(evt);
+            }
+        });
+
+        jButtonGrade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sketchbook-removebg-preview (1).png"))); // NOI18N
+        jButtonGrade.setBorder(null);
+        jButtonGrade.setContentAreaFilled(false);
+        jButtonGrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGradeActionPerformed(evt);
+            }
+        });
+
+        jButtonPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/do-utilizador-removebg-preview (2).png"))); // NOI18N
+        jButtonPerfil.setBorder(null);
+        jButtonPerfil.setContentAreaFilled(false);
+        jButtonPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPerfilActionPerformed(evt);
+            }
+        });
+
+        jButtonHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/botao-home-para-interface-removebg-preview (1).png"))); // NOI18N
+        jButtonHome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonHome.setContentAreaFilled(false);
+        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHomeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelColunaLayout = new javax.swing.GroupLayout(panelColuna);
+        panelColuna.setLayout(panelColunaLayout);
+        panelColunaLayout.setHorizontalGroup(
+            panelColunaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButtonExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonNotificacoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonGrade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panelColunaLayout.setVerticalGroup(
+            panelColunaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelColunaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jButtonBusca)
+                .addGap(28, 28, 28)
+                .addComponent(jButtonAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jButtonGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jButtonNotificacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonHome, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jSplitPane1.setLeftComponent(panelColuna);
+
+        panelHome.setBackground(java.awt.Color.white);
+        panelHome.setOpaque(false);
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
@@ -150,21 +212,15 @@ public class JPanelAluno extends javax.swing.JPanel {
         jPanelAmigos.setLayout(jPanelAmigosLayout);
         jPanelAmigosLayout.setHorizontalGroup(
             jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 293, Short.MAX_VALUE)
+            .addGap(0, 288, Short.MAX_VALUE)
             .addGroup(jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelAmigosLayout.createSequentialGroup()
-                    .addGap(24, 24, 24)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(24, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
         );
         jPanelAmigosLayout.setVerticalGroup(
             jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 248, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
             .addGroup(jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelAmigosLayout.createSequentialGroup()
-                    .addGap(28, 28, 28)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGap(28, 28, 28)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Amigos", jPanelAmigos);
@@ -188,11 +244,11 @@ public class JPanelAluno extends javax.swing.JPanel {
         jPanelTurmas.setLayout(jPanelTurmasLayout);
         jPanelTurmasLayout.setHorizontalGroup(
             jPanelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
         );
         jPanelTurmasLayout.setVerticalGroup(
             jPanelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Turmas", jPanelTurmas);
@@ -216,111 +272,98 @@ public class JPanelAluno extends javax.swing.JPanel {
         jPanelSolicitacoes.setLayout(jPanelSolicitacoesLayout);
         jPanelSolicitacoesLayout.setHorizontalGroup(
             jPanelSolicitacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
         );
         jPanelSolicitacoesLayout.setVerticalGroup(
             jPanelSolicitacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Solicitações", jPanelSolicitacoes);
 
-        jPanel1.setBackground(new java.awt.Color(201, 23, 48));
-
-        jButtonExit.setBackground(java.awt.SystemColor.activeCaptionBorder);
-        jButtonExit.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
-        jButtonExit.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/setas-flechas (2) (1).png"))); // NOI18N
-        jButtonExit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButtonExit.setContentAreaFilled(false);
-        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExitActionPerformed(evt);
-            }
+        jListFeed.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Feed", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic", 0, 11))); // NOI18N
+        jListFeed.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jListFeed.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Você não tem nada novo." };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
+        jScrollPane4.setViewportView(jListFeed);
 
-        jButtonBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png-transparent-preview (1).png"))); // NOI18N
-        jButtonBusca.setToolTipText("");
-        jButtonBusca.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButtonBusca.setContentAreaFilled(false);
-        jButtonBusca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButtonExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButtonBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124)
-                .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        panelBusca.setBackground(java.awt.Color.white);
+        panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jTextFieldBusca.setText("Busca...");
+        jTextFieldBusca.setActionCommand("<Not Set>");
         jTextFieldBusca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldBuscaMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout panelBuscaLayout = new javax.swing.GroupLayout(panelBusca);
+        panelBusca.setLayout(panelBuscaLayout);
+        panelBuscaLayout.setHorizontalGroup(
+            panelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextFieldBusca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        panelBuscaLayout.setVerticalGroup(
+            panelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextFieldBusca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        javax.swing.GroupLayout panelHomeLayout = new javax.swing.GroupLayout(panelHome);
+        panelHome.setLayout(panelHomeLayout);
+        panelHomeLayout.setHorizontalGroup(
+            panelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHomeLayout.createSequentialGroup()
+                .addGroup(panelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelHomeLayout.createSequentialGroup()
+                        .addComponent(panelBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHomeLayout.createSequentialGroup()
+                        .addGap(0, 66, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 305, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addComponent(jTextFieldBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(112, Short.MAX_VALUE))))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        panelHomeLayout.setVerticalGroup(
+            panelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHomeLayout.createSequentialGroup()
+                .addGroup(panelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelHomeLayout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(panelBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelHomeLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Amigos");
         jTabbedPane1.getAccessibleContext().setAccessibleDescription("");
+
+        jSplitPane1.setRightComponent(panelHome);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 659, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 109, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 487, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jSplitPane1))
+        );
     }// </editor-fold>//GEN-END:initComponents
    
     private void criaListaAmigos() {
@@ -336,44 +379,17 @@ public class JPanelAluno extends javax.swing.JPanel {
     }
     
     private void criaRelacionadoTurma() {
-        if (aluno.getTurmas().size() != 0) {
+         if (aluno.getTurmas().size() != 0) {
             String[] listaTurmas = new String[aluno.getTurmas().size()]; 
             int aux = 0;
             for(Turma turma:aluno.getTurmas()) {
                 listaTurmas[aux] = turma.getSigla(); 
                 aux++; 
-                Set<Integer> chaves = turma.getHorarios().keySet(); 
-                for (Integer chave:chaves) {
-                    ArrayList<Integer> horarios = turma.getHorarios().get(chave);
-                    for(Integer inteiro:horarios) {
-                        boolean stop = false; 
-                        for(int i = 0; i < 11 && !stop; i++) {
-                            String value = (String)jTable1.getValueAt(i, 0);  
-                            if (value.contains(Integer.toString(inteiro))) {
-                                stop = true;
-                                jTable1.setValueAt(turma.getSigla(), i, chave);
-                            }
-                        }
-                    }
-                }
             }
             jListTurmas.setListData(listaTurmas);
-        }
+         }      
     }
-    
-    private void criaTextInfo() { 
-        String out = "Nome: " + aluno.getNome(); 
-        out += "\nRA: " + aluno.getRa();
-        out += "\nCurso: " + aluno.getCurso(); 
-        out += "\nMatriculas:\n"; 
-        for (Turma turma:aluno.getTurmas()) {
-            out += turma.getSigla();
-            if (aluno.getTurmas().indexOf(turma) != aluno.getTurmas().size()-1)
-                out += ", "; 
-        }
-        jTextInfo.setText(out); 
-    }
-    
+
     private void criaSolicitacoes() {
         if (aluno.getSolicitacoes().size() != 0) {
             String[] listaSolicitacoes = new String[aluno.getSolicitacoes().size()];
@@ -437,20 +453,34 @@ public class JPanelAluno extends javax.swing.JPanel {
 
     private void jButtonBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaActionPerformed
         // TODO add your handling code here:
-        if(!jTextFieldBusca.isVisible()){
-           jTextFieldBusca.setVisible(true);
+        if(jSplitPane1.getRightComponent() != panelHome){
+            jSplitPane1.setRightComponent(panelHome);
         }
-        else if(jTextFieldBusca.getText().equals("Busca...") || jTextFieldBusca.getText().equals("")){
-            jTextFieldBusca.setVisible(false);
+        
+        if(!panelBusca.isVisible()){
+           panelBusca.setVisible(true);
+        }
+        else if(jTextFieldBusca.getText().equals("Busca...") || jTextFieldBusca.getText().equals("")
+                || jTextFieldBusca.getText().equals("Usuário não encontrado")){
+            panelBusca.setVisible(false);
         }
         else{
-            String out = jTextFieldBusca.getText();
+            String out = jTextFieldBusca.getText();                
+
+            boolean verif = false;
             for(Usuario u : Usuario.getUsuarios()){
                 if(u.getNome().equals(out)){
                     JFrameAmigo busca = new JFrameAmigo(aluno, (Aluno) u);
                     busca.setVisible(true);
                     jTextFieldBusca.setText("Busca...");
+                    jTextFieldBusca.setVisible(false);
+                    verif = true;
                 }
+            }
+            
+            if(!verif){
+                jTextFieldBusca.setForeground(java.awt.Color.red);
+                jTextFieldBusca.setText("Usuário não encontrado");
             }
         }
     }//GEN-LAST:event_jButtonBuscaActionPerformed
@@ -458,7 +488,51 @@ public class JPanelAluno extends javax.swing.JPanel {
     private void jTextFieldBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldBuscaMouseClicked
         // TODO add your handling code here:
         jTextFieldBusca.setText("");
+        jTextFieldBusca.setForeground(new java.awt.Color(93, 93, 93));
     }//GEN-LAST:event_jTextFieldBuscaMouseClicked
+
+    private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
+        // TODO add your handling code here:
+        if(jSplitPane1.getRightComponent() != panelHome){
+            jSplitPane1.setRightComponent(panelHome);
+        }
+    }//GEN-LAST:event_jButtonHomeActionPerformed
+
+    private void jButtonNotificacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNotificacoesActionPerformed
+        // TODO add your handling code here:
+        JFrameNotificacoes notificacao = new JFrameNotificacoes(aluno.exibirNotificacoes(aluno));
+        notificacao.setVisible(true);
+    }//GEN-LAST:event_jButtonNotificacoesActionPerformed
+
+    private void jButtonPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPerfilActionPerformed
+        // TODO add your handling code here:
+        if(jSplitPane1.getRightComponent() != perfil){
+            jSplitPane1.setRightComponent(perfil);
+        }
+        else{
+            jSplitPane1.setRightComponent(panelHome);
+        }
+    }//GEN-LAST:event_jButtonPerfilActionPerformed
+
+    private void jButtonGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGradeActionPerformed
+        // TODO add your handling code here:
+         if(jSplitPane1.getRightComponent() != grade){
+            jSplitPane1.setRightComponent(grade);
+        }
+        else{
+            jSplitPane1.setRightComponent(panelHome);
+        }
+    }//GEN-LAST:event_jButtonGradeActionPerformed
+
+    private void jButtonAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgendaActionPerformed
+        // TODO add your handling code here:
+         if(jSplitPane1.getRightComponent() != agenda){
+            jSplitPane1.setRightComponent(agenda);
+        }
+        else{
+            jSplitPane1.setRightComponent(panelHome);
+        }
+    }//GEN-LAST:event_jButtonAgendaActionPerformed
 
     public javax.swing.JPanel getJPanelAmigos() {
         return jPanelAmigos;
@@ -469,27 +543,35 @@ public class JPanelAluno extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAgenda;
     private javax.swing.JButton jButtonBusca;
     private javax.swing.JButton jButtonExit;
+    private javax.swing.JButton jButtonGrade;
+    private javax.swing.JButton jButtonHome;
+    private javax.swing.JButton jButtonNotificacoes;
+    private javax.swing.JButton jButtonPerfil;
     private javax.swing.JList<String> jListAmigos;
     private javax.swing.JList<String> jListFeed;
     private javax.swing.JList<String> jListSolicitacoes;
     private javax.swing.JList<String> jListTurmas;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelAmigos;
     private javax.swing.JPanel jPanelSolicitacoes;
     private javax.swing.JPanel jPanelTurmas;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldBusca;
-    private javax.swing.JTextArea jTextInfo;
+    private javax.swing.JPanel panelBusca;
+    private javax.swing.JPanel panelColuna;
+    private javax.swing.JPanel panelHome;
     // End of variables declaration//GEN-END:variables
     private Aluno aluno; 
     private JFrameMain frameMain; 
+    private JPanelPerfil perfil;
+    private JPanelGrade grade;
+    private JPanelAgenda agenda;
+
 }

@@ -12,10 +12,7 @@ public class Main {
 		// Instancias de professores
 		Professor prof1 = new Professor("Geraldo", Genero.NAO_BINARIO, "geraldo@hotmail.com", "senha123");
 		Professor prof2 = new Professor("Yennefer", Genero.FEMININO, "yen@gmail.com", "123senha");
-		ArrayList<Professor> professores = new ArrayList<Professor>();
-		professores.add(prof1);
-		professores.add(prof2); 
-		
+
 		// Instancias de alunos
 		Aluno aluno1 = new Aluno("Ciri", Genero.NAO_BINARIO, "ciri@yahoo.com", "321senha", Permissoes.PUBLIC,
 				"Eng. Alimentos", "12345");
@@ -30,22 +27,17 @@ public class Main {
 		Aluno aluno6 = new Aluno("Emhyr", Genero.MASCULINO, "emhyr@unesp.br", "senha000", Permissoes.PUBLIC,
 				"Economia", "99666");
 		
-		ArrayList<Aluno> aluno = new ArrayList<Aluno>();
-		aluno.add(aluno1);
-		aluno.add(aluno2);
-		aluno.add(aluno3);
-		aluno.add(aluno4);
-		aluno.add(aluno5);
-		aluno.add(aluno6);
-		
 		// Instancias de turmas
 		HashMap<Integer, ArrayList<Integer>> horarios1 = new HashMap<Integer, ArrayList<Integer>>();
 		HashMap<Integer, ArrayList<Integer>> horarios2 = new HashMap<Integer, ArrayList<Integer>>();
 
+		ArrayList<Integer> aux00 = new ArrayList<Integer>();
+		aux00.addAll(Arrays.asList(10, 11));
+		horarios1.put(1, aux00);
+                
 		ArrayList<Integer> aux = new ArrayList<Integer>();
-		aux.addAll(Arrays.asList(10, 11));
-		horarios1.put(1, aux);
-
+                aux.addAll(Arrays.asList(19, 20));
+                horarios2.put(3, aux);
 		
 		Turma turma1 = prof1.criarTurma("Bruxos I", "BX111", horarios1,"");
 		Turma turma2 = prof2.criarTurma("Alquimia I", "AQ101", horarios2, "");
