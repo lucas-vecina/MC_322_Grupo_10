@@ -33,6 +33,7 @@ public class JFrameAmigo extends javax.swing.JFrame {
         criaListaAmigos();
         
         if(aluno.getAmigos().contains(amigo)){
+            jButton2.setVisible(false);
         }
         
     }
@@ -61,9 +62,12 @@ public class JFrameAmigo extends javax.swing.JFrame {
         jPanelAmigo = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        JListAmigos = new javax.swing.JList<>();
         jTextAreaInfo = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JListAmigos = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaTurmas = new javax.swing.JTextArea();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -82,6 +86,12 @@ public class JFrameAmigo extends javax.swing.JFrame {
             }
         });
 
+        jTextAreaInfo.setEditable(false);
+        jTextAreaInfo.setColumns(20);
+        jTextAreaInfo.setRows(5);
+        jTextAreaInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("INFO"));
+
+        JListAmigos.setBorder(javax.swing.BorderFactory.createTitledBorder("AMIGOS"));
         JListAmigos.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         JListAmigos.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Você não tem permissão para visualização" };
@@ -94,15 +104,23 @@ public class JFrameAmigo extends javax.swing.JFrame {
                 JListAmigosMouseClicked(evt);
             }
         });
-
-        jTextAreaInfo.setEditable(false);
-        jTextAreaInfo.setColumns(20);
-        jTextAreaInfo.setRows(5);
-        jTextAreaInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("INFO"));
+        jScrollPane1.setViewportView(JListAmigos);
 
         jTextAreaTurmas.setEditable(false);
         jTextAreaTurmas.setColumns(20);
         jTextAreaTurmas.setRows(5);
+        jTextAreaTurmas.setBorder(javax.swing.BorderFactory.createTitledBorder("TURMAS"));
+        jScrollPane2.setViewportView(jTextAreaTurmas);
+
+        jTextField1.setEditable(false);
+        jTextField1.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        jTextField1.setForeground(java.awt.Color.red);
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelAmigoLayout = new javax.swing.GroupLayout(jPanelAmigo);
         jPanelAmigo.setLayout(jPanelAmigoLayout);
@@ -110,50 +128,55 @@ public class JFrameAmigo extends javax.swing.JFrame {
             jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAmigoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JListAmigos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextAreaInfo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAmigoLayout.createSequentialGroup()
-                        .addComponent(jTextAreaTurmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextAreaInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAmigoLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelAmigoLayout.createSequentialGroup()
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAmigoLayout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(55, 55, 55)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAmigoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addComponent(jTextField1))
+                        .addGap(71, 71, 71))))
         );
         jPanelAmigoLayout.setVerticalGroup(
             jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanelAmigoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelAmigoLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jTextAreaInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(JListAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32))
                     .addGroup(jPanelAmigoLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(30, 30, 30)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(jTextAreaTurmas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)))
+                .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanelAmigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelAmigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,8 +186,10 @@ public class JFrameAmigo extends javax.swing.JFrame {
         if (evt.getClickCount() == 2 && amigo.getAmigos().size() != 0) {
             int index = JListAmigos.getSelectedIndex();
             Usuario colega = amigo.getAmigos().get(index);
-            JFrameAmigo frameAmigo = new JFrameAmigo(amigo, (Aluno)colega);
-            frameAmigo.setVisible(true);
+            if(colega != aluno){
+                JFrameAmigo frameAmigo = new JFrameAmigo(amigo, (Aluno)colega);
+                frameAmigo.setVisible(true);
+            }
         }
     }//GEN-LAST:event_JListAmigosMouseClicked
 
@@ -192,13 +217,23 @@ public class JFrameAmigo extends javax.swing.JFrame {
         
         JFrameMensagem frameMensagem = new JFrameMensagem(conversa, aluno);
         frameMensagem.setVisible(true);
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        aluno.adicionarSolicitacao(amigo);
+        jTextField1.setVisible(true);
+        
+        if(!amigo.getSolicitacoes().contains(aluno)){
+            aluno.adicionarSolicitacao(amigo);
+            jTextField1.setVisible(true);
+            jTextField1.setText("Solicitação enviada!");
+        }
+        jTextField1.setText("Solicitação já enviada!");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,8 +244,11 @@ public class JFrameAmigo extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanelAmigo;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextAreaInfo;
     private javax.swing.JTextArea jTextAreaTurmas;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     private Aluno amigo; 
     private Aluno aluno;

@@ -62,6 +62,11 @@ public class Main {
 		turma2.adicionaPed(prof2, aluno5);
 		turma2.adicionaPad(prof2, aluno4);
                 
+                //Pre setagem amigos aluno1
+                ArrayList<Usuario> aux0 = new ArrayList<Usuario>();
+                aux0.addAll(Arrays.asList(aluno2, aluno6));
+                aluno1.setAmigos(aux0);
+
                 //Teste solicitacoes
                 aluno3.adicionarSolicitacao(aluno1);
                 aluno4.adicionarSolicitacao(aluno1);
