@@ -32,6 +32,9 @@ public class JFrameAmigo extends javax.swing.JFrame {
         
         criaListaAmigos();
         
+        if(aluno.getAmigos().contains(amigo)){
+        }
+        
     }
     
     private void criaListaAmigos() {
@@ -73,6 +76,11 @@ public class JFrameAmigo extends javax.swing.JFrame {
         });
 
         jButton2.setText("Adicionar Amigo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         JListAmigos.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         JListAmigos.setModel(new javax.swing.AbstractListModel<String>() {
@@ -90,6 +98,7 @@ public class JFrameAmigo extends javax.swing.JFrame {
         jTextAreaInfo.setEditable(false);
         jTextAreaInfo.setColumns(20);
         jTextAreaInfo.setRows(5);
+        jTextAreaInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("INFO"));
 
         jTextAreaTurmas.setEditable(false);
         jTextAreaTurmas.setColumns(20);
@@ -104,17 +113,18 @@ public class JFrameAmigo extends javax.swing.JFrame {
                 .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(JListAmigos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextAreaInfo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAmigoLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(75, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAmigoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextAreaTurmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelAmigoLayout.createSequentialGroup()
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAmigoLayout.createSequentialGroup()
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(55, 55, 55)))))
         );
         jPanelAmigoLayout.setVerticalGroup(
             jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -122,15 +132,17 @@ public class JFrameAmigo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAmigoLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelAmigoLayout.createSequentialGroup()
                         .addComponent(jTextAreaInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(JListAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextAreaTurmas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addGroup(jPanelAmigoLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(jTextAreaTurmas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -159,30 +171,34 @@ public class JFrameAmigo extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         boolean verif = false;
-        String out = "";
-        ArrayList<Usuario> grupo = new ArrayList<Usuario>();
+        Conversa conversa = null;
         
         for(Conversa c:aluno.getConversas()){
             
             // Verifica se ja nao existe uma conversa entre os usuarios
             if(c.getPessoas().getGrupo().contains(aluno) && c.getPessoas().getGrupo().contains(amigo) 
                && c.getPessoas().getGrupo().size() == 2){
-                out = c.getMensagens().toString();
                 verif = true;
-                grupo = c.getPessoas().getGrupo();
+                conversa = c;
 
             }
         }
         
         if(!verif){
+            ArrayList<Usuario> grupo = new ArrayList<Usuario>();
             grupo.add(aluno); grupo.add(amigo);
-            aluno.iniciarConversa(grupo);
+            conversa = aluno.iniciarConversa(grupo);
         }
         
-        JFrameMensagem frameMensagem = new JFrameMensagem(out, grupo);
+        JFrameMensagem frameMensagem = new JFrameMensagem(conversa, aluno);
         frameMensagem.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        aluno.adicionarSolicitacao(amigo);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

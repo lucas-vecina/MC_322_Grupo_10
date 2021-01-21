@@ -16,11 +16,11 @@ public class JFrameMensagem extends javax.swing.JFrame {
     /**
      * Creates new form JFrameMensagem
      */
-    public JFrameMensagem(String message, ArrayList<Usuario> pessoas) {
+    public JFrameMensagem(Conversa conversa, Usuario remetente) {
         initComponents();
-        this.message = message;
-        this.pessoas = pessoas;
-        jTextAreaHistorico.setText(message);
+        this.remetente = remetente;
+        this.conversa = conversa;
+        jTextAreaHistorico.setText((conversa.getMensagens().isEmpty() ? "" : conversa.getMensagens().toString()));
     }
 
     /**
@@ -32,21 +32,16 @@ public class JFrameMensagem extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaHistorico = new javax.swing.JTextArea();
+        jButtonEnviar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jButtonEnviar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaHistorico = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jTextAreaHistorico.setEditable(false);
-        jTextAreaHistorico.setColumns(20);
-        jTextAreaHistorico.setRows(5);
-        jTextAreaHistorico.setToolTipText("");
-        jScrollPane1.setViewportView(jTextAreaHistorico);
-
-        jScrollPane2.setViewportView(jTextPane1);
+        setTitle("Mensagem");
+        setSize(new java.awt.Dimension(300, 0));
+        setType(java.awt.Window.Type.POPUP);
 
         jButtonEnviar.setText("Enviar");
         jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
@@ -55,33 +50,37 @@ public class JFrameMensagem extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane2.setViewportView(jTextPane1);
+
+        jTextAreaHistorico.setEditable(false);
+        jTextAreaHistorico.setColumns(20);
+        jTextAreaHistorico.setRows(5);
+        jTextAreaHistorico.setToolTipText("");
+        jScrollPane1.setViewportView(jTextAreaHistorico);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(jButtonEnviar)
-                        .addGap(24, 24, 24))))
+                        .addGap(15, 15, 15)
+                        .addComponent(jButtonEnviar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -89,8 +88,10 @@ public class JFrameMensagem extends javax.swing.JFrame {
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
         // TODO add your handling code here:
-        String out = jTextAreaHistorico.getText() + "\n" + jTextPane1.getText();
+        Mensagem mensagem = new Mensagem(remetente, jTextPane1.getText());
+        String out = jTextAreaHistorico.getText() + mensagem;
         jTextAreaHistorico.setText(out);
+        jTextPane1.setText("");
         
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
@@ -136,6 +137,6 @@ public class JFrameMensagem extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaHistorico;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
-    private String message;
-    private ArrayList<Usuario> pessoas;
+    private Conversa conversa;
+    private Usuario remetente;
 }

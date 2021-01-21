@@ -7,7 +7,7 @@ public class Mensagem {
 		this.sujeito = sujeito;
 		this.texto = texto;
 	}
-
+      
 	public Usuario getSujeito() {
 		return sujeito;
 	}
@@ -26,8 +26,8 @@ public class Mensagem {
 	
 	@Override
 	public String toString() {
-		String out = sujeito.getNome()+": "; 
-		out = out + texto;
+		String out = sujeito.getNome()+": ";
+		out = out + texto + "\n";
 		return out;
 	}
 }

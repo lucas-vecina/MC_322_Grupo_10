@@ -99,9 +99,9 @@ public class Conversa implements Feed{
 		for(Usuario pessoa:pessoas.getGrupo()) {
 			out = out + "\n" + pessoa.getNome() + " - id:" + pessoa.getId();
 		}
-		out = out + "\nMensagens:"; 
+		out = out + "\nMensagens: \n"; 
 		for(Mensagem mensagem:mensagens) {
-			out = out + "\n" + mensagem; 
+			out += mensagem; 
 		}
 		return out + "\n"; 
 	}
