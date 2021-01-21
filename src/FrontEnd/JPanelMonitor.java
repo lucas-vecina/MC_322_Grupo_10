@@ -249,6 +249,11 @@ public class JPanelMonitor extends javax.swing.JPanel {
             }
             jListFila.setListData(listaAlunos);
         }
+        else {
+            String[] listaAmigos = new String[1]; 
+            listaAmigos[0] = "Não há pessoas na fila."; 
+            jListFila.setListData(listaAmigos); 
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

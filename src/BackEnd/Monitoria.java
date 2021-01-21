@@ -75,8 +75,8 @@ public class Monitoria implements Feed {
 	
 	public void fecharMonitoria(Aluno monitor) {
 		if (status && monitor == this.monitor) {
-			for (Usuario aluno:fila) 
-				fila.remove(aluno); 
+                        while (fila.size() != 0) 
+				fila.remove(0); 
 			Usuario aluno; 
 			while (conversa.getPessoas().getGrupo().size() != 1) {
 				aluno = conversa.getPessoas().getGrupo().get(1);
