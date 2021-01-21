@@ -282,22 +282,26 @@ public class JPanelAluno extends javax.swing.JPanel {
             String[] listaTurmas = new String[aluno.getTurmas().size()]; 
             int aux = 0;
             for(Turma turma:aluno.getTurmas()) {
-                listaTurmas[aux] = turma.getSigla(); 
-                aux++; 
-                Set<Integer> chaves = turma.getHorarios().keySet(); 
-                for (Integer chave:chaves) {
-                    ArrayList<Integer> horarios = turma.getHorarios().get(chave);
-                    for(Integer inteiro:horarios) {
-                        boolean stop = false; 
-                        for(int i = 0; i < 11 && !stop; i++) {
-                            String value = (String)jTable1.getValueAt(i, 0);  
-                            if (value.contains(Integer.toString(inteiro))) {
-                                stop = true;
-                                jTable1.setValueAt(turma.getSigla(), i, chave);
+                if(!turma.getPed().contains(aluno) && !turma.getPad().contains(aluno)) {
+                    listaTurmas[aux] = turma.getSigla(); 
+                    aux++; 
+                    Set<Integer> chaves = turma.getHorarios().keySet(); 
+                    for (Integer chave:chaves) {
+                        ArrayList<Integer> horarios = turma.getHorarios().get(chave);
+                        for(Integer inteiro:horarios) {
+                            boolean stop = false; 
+                            for(int i = 0; i < 11 && !stop; i++) {
+                                String value = (String)jTable1.getValueAt(i, 0);  
+                                if (value.contains(Integer.toString(inteiro))) {
+                                    stop = true;
+                                    jTable1.setValueAt(turma.getSigla(), i, chave);
+                                }
                             }
                         }
                     }
                 }
+                else
+                    listaTurmas[aux] = turma.getSigla() + "(Monitor)";
             }
             jListTurmas.setListData(listaTurmas);
         }
@@ -355,10 +359,9 @@ public class JPanelAluno extends javax.swing.JPanel {
         if (evt.getClickCount() == 2 && aluno.getTurmas().size() != 0) {
             int index = jListTurmas.getSelectedIndex();
             Turma turma = aluno.getTurmas().get(index); 
-            JPanelTurma panelTurma = new JPanelTurma(frameMain, turma, aluno); 
-            frameMain.setContentPane(panelTurma);
-            panelTurma.revalidate();
-            panelTurma.repaint(); 
+            JFrameTurma frameTurma = new JFrameTurma(frameMain, turma, aluno); 
+            frameTurma.setVisible(true);
+            frameMain.setVisible(false);
         }
     }//GEN-LAST:event_jListTurmasMouseClicked
 

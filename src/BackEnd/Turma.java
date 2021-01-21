@@ -185,8 +185,7 @@ public class Turma {
 	
 	public Monitoria criarMonitoria(Aluno monitor) {
 		if (ped.contains(monitor) || pad.contains(monitor)) {
-			Monitoria monitoria = new Monitoria(monitor, this);
-			
+			Monitoria monitoria = new Monitoria(monitor, this);			
 			return monitoria;
 		} else {
 			return null;
@@ -197,6 +196,7 @@ public class Turma {
 		if(user == professor && ped.contains(aluno)) {
 			ped.remove(aluno);
                         aluno.getTurmas().remove(this); 
+                        criarMonitoria(aluno); 
 		}
 	}
 	
@@ -204,6 +204,7 @@ public class Turma {
 		if(user == professor) {
 			ped.add(aluno);
                         aluno.getTurmas().add(this); 
+                        criarMonitoria(aluno); 
 		}
 	}
 	
