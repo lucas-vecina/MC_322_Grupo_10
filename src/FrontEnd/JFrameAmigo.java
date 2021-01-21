@@ -5,6 +5,7 @@
  */
 package FrontEnd;
 import BackEnd.*; 
+import java.util.ArrayList;
 
 /**
  *
@@ -129,7 +130,7 @@ public class JFrameAmigo extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(JListAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextAreaTurmas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,7 +141,7 @@ public class JFrameAmigo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanelAmigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -157,7 +158,30 @@ public class JFrameAmigo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        boolean verif = false;
+        String out = "";
+        ArrayList<Usuario> grupo = new ArrayList<Usuario>();
         
+        for(Conversa c:aluno.getConversas()){
+            
+            // Verifica se ja nao existe uma conversa entre os usuarios
+            if(c.getPessoas().getGrupo().contains(aluno) && c.getPessoas().getGrupo().contains(amigo) 
+               && c.getPessoas().getGrupo().size() == 2){
+                out = c.getMensagens().toString();
+                verif = true;
+                grupo = c.getPessoas().getGrupo();
+
+            }
+        }
+        
+        if(!verif){
+            grupo.add(aluno); grupo.add(amigo);
+            aluno.iniciarConversa(grupo);
+        }
+        
+        JFrameMensagem frameMensagem = new JFrameMensagem(out, grupo);
+        frameMensagem.setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
