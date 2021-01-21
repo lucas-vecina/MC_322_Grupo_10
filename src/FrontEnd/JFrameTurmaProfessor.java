@@ -84,6 +84,11 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
         jButtonRemoverAluno.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
         jButtonRemoverAluno.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRemoverAluno.setText("Remover Aluno");
+        jButtonRemoverAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverAlunoActionPerformed(evt);
+            }
+        });
 
         jButtonAdicionarPad.setBackground(new java.awt.Color(201, 23, 48));
         jButtonAdicionarPad.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
@@ -104,6 +109,11 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
         jButtonRemoverPad.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
         jButtonRemoverPad.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRemoverPad.setText("Remover PAD");
+        jButtonRemoverPad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverPadActionPerformed(evt);
+            }
+        });
 
         jListAlunos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alunos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic", 0, 11))); // NOI18N
         jListAlunos.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
@@ -292,10 +302,6 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAdicionarPedActionPerformed
 
-    private void jButtonRemoverPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverPedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRemoverPedActionPerformed
-
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         // TODO add your handling code here:
         JPanelProf panel = new JPanelProf(professor, frameMain);
@@ -325,6 +331,39 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
             frameAlunoProf.setVisible(true);
         }
     }//GEN-LAST:event_jListAlunosMouseClicked
+
+    private void jButtonRemoverAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverAlunoActionPerformed
+        // TODO add your handling code here:
+        if (turma.getAlunos().size() != 0) {
+            int index = jListAlunos.getSelectedIndex(); 
+            turma.removeAluno(professor, turma.getAlunos().get(index));
+            criaListaAlunos(); 
+            jPanel1.revalidate();
+            jPanel1.repaint(); 
+        }
+    }//GEN-LAST:event_jButtonRemoverAlunoActionPerformed
+
+    private void jButtonRemoverPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverPedActionPerformed
+        // TODO add your handling code here:
+        if (turma.getPed().size() != 0) {
+            int index = jListPeds.getSelectedIndex(); 
+            turma.removePed(professor, turma.getPed().get(index));
+            criaListaPeds(); 
+            jPanel1.revalidate();
+            jPanel1.repaint(); 
+        }
+    }//GEN-LAST:event_jButtonRemoverPedActionPerformed
+
+    private void jButtonRemoverPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverPadActionPerformed
+        // TODO add your handling code here:
+        if (turma.getPad().size() != 0) {
+            int index = jListPads.getSelectedIndex(); 
+            turma.removePad(professor, turma.getPad().get(index));
+            criaListaPads(); 
+            jPanel1.revalidate();
+            jPanel1.repaint(); 
+        }
+    }//GEN-LAST:event_jButtonRemoverPadActionPerformed
 
     /**
      * @param args the command line arguments

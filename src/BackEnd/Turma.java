@@ -228,6 +228,10 @@ public class Turma {
 		if(user == professor && alunos.contains(aluno)) {
 			alunos.remove(aluno);
 			aluno.getTurmas().remove(this);
+                        for(Monitoria monitoria:getMonitorias()) {
+                            if(monitoria.getMonitor().equals(aluno))
+                                getMonitorias().remove(monitoria);
+                        }
 		}
 	}
 	
@@ -235,6 +239,10 @@ public class Turma {
 		if(user == professor && pad.contains(aluno)) {
 			pad.remove(aluno);
                         aluno.getTurmas().remove(this); 
+                        for(Monitoria monitoria:getMonitorias()) {
+                            if(monitoria.getMonitor().equals(aluno))
+                                getMonitorias().remove(monitoria);
+                        }
 		}
 	}
 	
