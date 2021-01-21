@@ -115,7 +115,7 @@ public abstract class Usuario implements Comparable<Usuario>{
 		return notificacoes;
 	}
 	
-    public ArrayList<Usuario> getUsuarios() {
+    public static ArrayList<Usuario> getUsuarios() {
         return usuarios; 
     }
     

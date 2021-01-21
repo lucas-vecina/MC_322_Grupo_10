@@ -23,6 +23,8 @@ public class JPanelAluno extends javax.swing.JPanel {
         this.aluno = aluno; 
         this.frameMain = frame; 
         
+        //jTextFieldBusca.setVisible(false);
+        
         // Text field de informacao:
         criaTextInfo();
         
@@ -56,17 +58,20 @@ public class JPanelAluno extends javax.swing.JPanel {
         jListFeed = new javax.swing.JList<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelAmigos = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListAmigos = new javax.swing.JList<>();
         jPanelTurmas = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jListTurmas = new javax.swing.JList<>();
         jPanelSolicitacoes = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jListSolicitacoes = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
         jButtonExit = new javax.swing.JButton();
+        jButtonBusca = new javax.swing.JButton();
+        jTextFieldBusca = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListAmigos = new javax.swing.JList<>();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(java.awt.Color.white);
         setPreferredSize(new java.awt.Dimension(700, 521));
 
         jTable1.setFont(new java.awt.Font("Yu Gothic", 0, 10)); // NOI18N
@@ -128,28 +133,15 @@ public class JPanelAluno extends javax.swing.JPanel {
 
         jPanelAmigos.setBackground(new java.awt.Color(255, 255, 255));
 
-        jListAmigos.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
-        jListAmigos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Você não tem amigos para exibir." };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jListAmigos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListAmigosMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jListAmigos);
-
         javax.swing.GroupLayout jPanelAmigosLayout = new javax.swing.GroupLayout(jPanelAmigos);
         jPanelAmigos.setLayout(jPanelAmigosLayout);
         jPanelAmigosLayout.setHorizontalGroup(
             jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+            .addGap(0, 293, Short.MAX_VALUE)
         );
         jPanelAmigosLayout.setVerticalGroup(
             jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+            .addGap(0, 248, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Amigos", jPanelAmigos);
@@ -210,55 +202,116 @@ public class JPanelAluno extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Solicitações", jPanelSolicitacoes);
 
-        jButtonExit.setBackground(new java.awt.Color(201, 23, 48));
+        jPanel1.setBackground(new java.awt.Color(201, 23, 48));
+
+        jButtonExit.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jButtonExit.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jButtonExit.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExit.setText("Sair");
-        jButtonExit.setBorder(null);
+        jButtonExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/setas-flechas (2) (1).png"))); // NOI18N
+        jButtonExit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonExit.setContentAreaFilled(false);
         jButtonExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExitActionPerformed(evt);
             }
         });
 
+        jButtonBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png-transparent-preview (1).png"))); // NOI18N
+        jButtonBusca.setToolTipText("");
+        jButtonBusca.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonBusca.setContentAreaFilled(false);
+        jButtonBusca.setOpaque(false);
+        jButtonBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButtonExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(124, 124, 124)
+                .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTextFieldBusca.setText("Busca...");
+        jTextFieldBusca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldBuscaMouseClicked(evt);
+            }
+        });
+
+        jListAmigos.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jListAmigos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Você não tem amigos para exibir." };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jListAmigos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListAmigosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jListAmigos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addGap(84, 84, 84)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(29, 29, 29))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addComponent(jTextFieldBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(112, Short.MAX_VALUE))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Amigos");
@@ -361,12 +414,6 @@ public class JPanelAluno extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jListTurmasMouseClicked
 
-    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
-        // TODO add your handling code here:
-        JFrameExit exit = new JFrameExit(frameMain);
-        exit.setVisible(true); 
-    }//GEN-LAST:event_jButtonExitActionPerformed
-
     private void jListSolicitacoesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSolicitacoesMousePressed
         // TODO add your handling code here:
         if (evt.getClickCount() == 2 && aluno.getSolicitacoes().size() != 0) { 
@@ -377,6 +424,37 @@ public class JPanelAluno extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jListSolicitacoesMousePressed
 
+    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
+        // TODO add your handling code here:
+        JFrameExit exit = new JFrameExit(frameMain);
+        exit.setVisible(true);
+    }//GEN-LAST:event_jButtonExitActionPerformed
+
+    private void jButtonBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaActionPerformed
+        // TODO add your handling code here:
+        if(!jTextFieldBusca.isVisible()){
+           jTextFieldBusca.setVisible(true);
+        }
+        else if(jTextFieldBusca.getText().equals("Busca...") || jTextFieldBusca.getText().equals("")){
+            jTextFieldBusca.setVisible(false);
+        }
+        else{
+            String out = jTextFieldBusca.getText();
+            for(Usuario u : Usuario.getUsuarios()){
+                if(u.getNome().equals(out)){
+                    JFrameAmigo busca = new JFrameAmigo(aluno, (Aluno) u);
+                    busca.setVisible(true);
+                    jTextFieldBusca.setText("Busca...");
+                }
+            }
+        }
+    }//GEN-LAST:event_jButtonBuscaActionPerformed
+
+    private void jTextFieldBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldBuscaMouseClicked
+        // TODO add your handling code here:
+        jTextFieldBusca.setText("");
+    }//GEN-LAST:event_jTextFieldBuscaMouseClicked
+
     public javax.swing.JPanel getJPanelAmigos() {
         return jPanelAmigos;
     }
@@ -386,11 +464,13 @@ public class JPanelAluno extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBusca;
     private javax.swing.JButton jButtonExit;
     private javax.swing.JList<String> jListAmigos;
     private javax.swing.JList<String> jListFeed;
     private javax.swing.JList<String> jListSolicitacoes;
     private javax.swing.JList<String> jListTurmas;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelAmigos;
     private javax.swing.JPanel jPanelSolicitacoes;
     private javax.swing.JPanel jPanelTurmas;
@@ -402,6 +482,7 @@ public class JPanelAluno extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldBusca;
     private javax.swing.JTextArea jTextInfo;
     // End of variables declaration//GEN-END:variables
     private Aluno aluno; 
