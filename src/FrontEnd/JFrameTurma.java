@@ -333,7 +333,7 @@ public class JFrameTurma extends javax.swing.JFrame {
 
     private void jListAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListAlunosMouseClicked
         // TODO add your handling code here:
-        if (evt.getClickCount() == 2 && aluno.getAmigos().size() != 0) {
+        if (evt.getClickCount() == 2 && turma.getAlunos().size() != 0) {
             int index = jListAlunos.getSelectedIndex();
             Usuario amigo = turma.getAlunos().get(index);
             JFrameAmigo frameAmigo = new JFrameAmigo(aluno, (Aluno)amigo);

@@ -29,6 +29,7 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
         auxiliar = new ArrayList<ArrayList<Integer>>();
         this.frame = frame;
         this.panelProfessor = panelProfessor;
+        jLabelCriada.setVisible(false);
     }
 
     /**
@@ -59,6 +60,7 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
         hora = new javax.swing.JComboBox<>();
         fechar = new javax.swing.JButton();
         criar = new javax.swing.JButton();
+        jLabelCriada = new javax.swing.JLabel();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -79,6 +81,8 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Horarios");
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         diaSemana.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Segunda", "Terca", "Quarta", "Quinta", "Sexta" }));
 
@@ -163,6 +167,9 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
             }
         });
 
+        jLabelCriada.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        jLabelCriada.setText("Turma criada!");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -186,14 +193,15 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fechar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ementaDaMateria))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(fechar)
+                                .addComponent(jLabelCriada, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(criar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(criar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ementaDaMateria))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -218,8 +226,9 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fechar)
-                    .addComponent(criar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(criar)
+                    .addComponent(jLabelCriada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -254,8 +263,11 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
         String nome = nomeDaMateria.getText();
         String sigla = siglaDaMateria.getText();
         String ementa = ementaDaMateria.getText();
-        Turma turma = professor.criarTurma(nome, sigla, horarios, ementa);
-        
+        professor.criarTurma(nome, sigla, horarios, ementa);
+        jLabelCriada.setVisible(true); 
+        panelProfessor.criaListaTurmas(); 
+        panelProfessor.revalidate();
+        panelProfessor.repaint(); 
     }//GEN-LAST:event_criarActionPerformed
 
     private void adicionarHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarHoraActionPerformed
@@ -336,6 +348,7 @@ public class JPanelCriarTurma extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelCriada;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
