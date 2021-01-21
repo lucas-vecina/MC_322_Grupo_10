@@ -232,7 +232,6 @@ public class JFrameMain extends javax.swing.JFrame {
 	horarios1.put(1, aux);
         Turma turma1 = prof1.criarTurma("Bruxos I", "BX111", horarios1);
         turma1.setEmenta("Vamos conhecer os bruxos.");
-        turma1.adicionaAluno(prof1, aluno6);
         aux1.addAll(Arrays.asList(aluno2, aluno4, aluno6));
         turma1.adicionaAluno(prof1, aux1);
         turma1.adicionaPed(prof1, aluno1);
@@ -241,6 +240,10 @@ public class JFrameMain extends javax.swing.JFrame {
         //Teste solicitacoes
         aluno3.adicionarSolicitacao(aluno1);
         aluno4.adicionarSolicitacao(aluno1);
+        
+        //Teste duvidas
+        Duvidas duvida1 = turma1.criarDuvida(aluno2, "Quais sao as propriedades fisicas de um Lobisomem?");
+	duvida1.replicar(aluno4, "Tambem to na duvida");
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

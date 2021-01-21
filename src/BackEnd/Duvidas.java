@@ -59,7 +59,7 @@ public class Duvidas implements Feed{
 	
 	// Responde a uma duvida ja feita analisando algumas condicoes
 	public void replicar(Usuario replicador, String comentario) {
-		if (!resolvido && (replicador instanceof Professor || this.turma.getAlunos().contains(replicador))) {
+		if (!resolvido && (replicador instanceof Professor || this.turma.getAlunos().contains(replicador)) || turma.getPed().contains(replicador) || turma.getPad().contains(replicador)) {
 			Mensagem mensagem = new Mensagem(replicador, comentario);
 			comentarios.add(mensagem); 
 			

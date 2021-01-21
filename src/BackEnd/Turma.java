@@ -198,12 +198,14 @@ public class Turma {
 	public void removePed(Usuario user, Aluno aluno) {
 		if(user == professor && ped.contains(aluno)) {
 			ped.remove(aluno);
+                        aluno.getTurmas().remove(this); 
 		}
 	}
 	
 	public void adicionaPed(Usuario user, Aluno aluno) {
 		if(user == professor) {
 			ped.add(aluno);
+                        aluno.getTurmas().add(this); 
 		}
 	}
 	
@@ -233,12 +235,14 @@ public class Turma {
 	public void removePad(Usuario user, Aluno aluno) {
 		if(user == professor && pad.contains(aluno)) {
 			pad.remove(aluno);
+                        aluno.getTurmas().remove(this); 
 		}
 	}
 	
 	public void adicionaPad(Usuario user, Aluno aluno) {
 		if(user == professor) {
 			pad.add(aluno);
+                        aluno.getTurmas().add(this); 
 		}
 	}
 	

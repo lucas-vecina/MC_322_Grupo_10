@@ -24,7 +24,8 @@ public class JPanelTurma extends javax.swing.JPanel {
         out += "\nSigla: " + turma.getSigla();
         out += "\nProfessor: " + turma.getProfessor().getNome(); 
         jTextPaneInfo.setText(out); 
-        criaListaAlunos(); 
+        criaListaAlunos();
+        criaListaDuvidas(); 
     }
 
     /**
@@ -47,6 +48,7 @@ public class JPanelTurma extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        jTextPaneInfo.setEditable(false);
         jTextPaneInfo.setColumns(20);
         jTextPaneInfo.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jTextPaneInfo.setRows(5);
@@ -95,6 +97,11 @@ public class JPanelTurma extends javax.swing.JPanel {
             String[] strings = { "Não há dúvidas nessa turma." };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        jListDuvidas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListDuvidasMouseClicked(evt);
+            }
         });
         jScrollPane3.setViewportView(jListDuvidas);
 
@@ -184,6 +191,16 @@ public class JPanelTurma extends javax.swing.JPanel {
         JFrameEmenta frameEmenta = new JFrameEmenta(turma); 
         frameEmenta.setVisible(true); 
     }//GEN-LAST:event_jButtonEmentaActionPerformed
+
+    private void jListDuvidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListDuvidasMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2 && turma.getDuvidas().size() != 0) {
+            int index = jListDuvidas.getSelectedIndex();
+            Duvidas duvida = turma.getDuvidas().get(index);
+            JFrameDuvida frameDuvida = new JFrameDuvida(duvida, aluno);
+            frameDuvida.setVisible(true);
+        }
+    }//GEN-LAST:event_jListDuvidasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
