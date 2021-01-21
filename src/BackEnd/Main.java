@@ -8,6 +8,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		ArrayList<Aluno> aux1 = new ArrayList<Aluno>();
+                Turma.setarCWD();
 		
 		// Instancias de professores
 		Professor prof1 = new Professor("Geraldo", Genero.NAO_BINARIO, "geraldo@hotmail.com", "senha123");
