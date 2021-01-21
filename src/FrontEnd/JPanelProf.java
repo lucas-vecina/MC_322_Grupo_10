@@ -44,6 +44,11 @@ public class JPanelProf extends javax.swing.JPanel {
         jButton2.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Remover turma");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButtonCriar.setBackground(new java.awt.Color(201, 23, 48));
         jButtonCriar.setFont(new java.awt.Font("Yu Gothic", 1, 11)); // NOI18N
@@ -142,6 +147,15 @@ public class JPanelProf extends javax.swing.JPanel {
             frameMain.setVisible(false); 
         }
     }//GEN-LAST:event_jListTurmasMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int index = jListTurmas.getSelectedIndex();
+        professor.removeTurma(professor.getTurmas().get(index));
+        this.criaListaTurmas();
+        this.revalidate();
+        this.repaint();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
