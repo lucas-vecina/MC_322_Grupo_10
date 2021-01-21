@@ -75,7 +75,7 @@ public abstract class Atividade implements Feed{
 	
 	public void submeterAtividade(Aluno aluno, Grupo grupo, String arquivo) {
 		try {
-			Formatter file = new Formatter(Turma.getRd() + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo() + "/Submissoes/" + arquivo);
+			Formatter file = new Formatter(Turma.getRd() + "/" + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo() + "/Submissoes/" + arquivo);
 			String out;
 			
 			if (aluno != null) {
@@ -126,11 +126,11 @@ public abstract class Atividade implements Feed{
 	
 	private void criaArquivoAtividade() {
 		try {
-			File folder = new File(Turma.getRd() + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo());
+			File folder = new File(Turma.getRd() + "/" + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo());
 			folder.mkdir();
-			File folder2 = new File(Turma.getRd() + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo() + "/Submissoes/");
+			File folder2 = new File(Turma.getRd() + "/" + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo() + "/Submissoes/");
 			folder2.mkdir();
-			Formatter file = new Formatter(Turma.getRd() + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo() + "/" + agendaAluno.getTitulo() + ".txt");
+			Formatter file = new Formatter(Turma.getRd() + "/" + getTurma().getSigla() + "/Atividades/" + agendaAluno.getTitulo() + "/" + agendaAluno.getTitulo() + ".txt");
 			file.format("%s", agendaAluno.getDescricao()); 
 			file.flush();
 			file.close(); 

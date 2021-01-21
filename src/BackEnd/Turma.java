@@ -6,6 +6,8 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.*;
+
 
 public class Turma {
 	private String turma;
@@ -50,7 +52,9 @@ public class Turma {
             String busca = "MC_322_Grupo_10";
             int i = absolutPath.indexOf(busca) + busca.length();
             
-            rd = absolutPath.substring(0, i) + "\\files\\";
+            Path path = Paths.get(absolutPath.substring(0, i) + "/files");
+            path.toAbsolutePath();
+            rd = path.toString();
             System.out.println(rd);
         }
 	
@@ -268,11 +272,11 @@ public class Turma {
 	}
 	
 	private void criarPastas() {
-		File dirTurma = new File(rd + getSigla()); 
+		File dirTurma = new File(rd + "/" + getSigla()); 
 		dirTurma.mkdir();
-		File dirAtividades = new File(rd + getSigla() + "/Atividades/"); 
+		File dirAtividades = new File(rd + "/" + getSigla() + "/Atividades/"); 
 		dirAtividades.mkdir();
-		File dirTeoria = new File(rd + getSigla() + "/Teoria");
+		File dirTeoria = new File(rd + "/" + getSigla() + "/Teoria");
 		dirTeoria.mkdir(); 
 	}
 	
@@ -307,7 +311,7 @@ public class Turma {
 			}
 			
 			try {
-				Formatter file = new Formatter(rd + getSigla() + "/Medias.txt"); 
+				Formatter file = new Formatter(rd + "/" + getSigla() + "/Medias.txt"); 
 				String out = "Medias: ";
 				for (int i=0; i<alunos.size(); i+=1) {
 					Aluno aluno = alunos.get(i);
