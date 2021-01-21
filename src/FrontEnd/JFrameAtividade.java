@@ -6,6 +6,8 @@
 package FrontEnd;
 
 import BackEnd.*;
+import java.io.File;
+import java.util.Scanner;
 
 /**
  *
@@ -84,6 +86,11 @@ public class JFrameAtividade extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jButton3.setText("Avaliar");
@@ -94,6 +101,11 @@ public class JFrameAtividade extends javax.swing.JFrame {
         });
 
         jTextField1.setText("nota");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -162,6 +174,33 @@ public class JFrameAtividade extends javax.swing.JFrame {
         }
         jTextField1.setText("nota");
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+                                
+        if(evt.getClickCount() == 2 && atividade.getSubmissoes().size() > 0){
+            int index = jList1.getSelectedIndex();
+            String arquivo = atividade.getSubmissoes().get(index).getArquivo();
+            String path = Turma.getRd() + "/" + atividade.getTurma().getSigla() + "/Atividades/" 
+                        + atividade.getAgendaAluno().getTitulo() + "/Submissoes/" + arquivo;
+            
+            try{
+                String out = "";
+                Scanner scan = new Scanner(new File(path));
+                while(scan.hasNext()){
+                    out += scan.nextLine();
+                }
+                jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder(arquivo));
+                jTextArea1.setText(out);
+            } catch (Exception ex) {
+			ex.printStackTrace();
+            }
+        }    
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        // TODO add your handling code here:
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;

@@ -19,6 +19,7 @@ public class JFrameAmigo extends javax.swing.JFrame {
     public JFrameAmigo(Aluno aluno, Aluno amigo) {
         this.amigo = amigo; 
         this.aluno = aluno;
+        this.cont = 0;
         initComponents();
         
         this.setTitle("Perfil " + amigo.getNome());
@@ -29,6 +30,7 @@ public class JFrameAmigo extends javax.swing.JFrame {
         out = amigo.visualizarTurma(aluno);
         
         jTextAreaTurmas.setText(out);
+        jTextField1.setVisible(false);
         
         criaListaAmigos();
         
@@ -72,13 +74,22 @@ public class JFrameAmigo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
 
+        jPanelAmigo.setBackground(java.awt.Color.white);
+
+        jButtonMensagem.setBackground(new java.awt.Color(176, 31, 50));
+        jButtonMensagem.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButtonMensagem.setForeground(java.awt.Color.white);
         jButtonMensagem.setText("Enviar Mensagem");
+        jButtonMensagem.setOpaque(true);
         jButtonMensagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMensagemActionPerformed(evt);
             }
         });
 
+        jButtonAdicionar.setBackground(new java.awt.Color(176, 31, 50));
+        jButtonAdicionar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButtonAdicionar.setForeground(java.awt.Color.white);
         jButtonAdicionar.setText("Adicionar Amigo");
         jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,15 +231,16 @@ public class JFrameAmigo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonMensagemActionPerformed
 
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
-        // TODO add your handling code here:
-        jTextField1.setVisible(true);
-        
-        if(!amigo.getSolicitacoes().contains(aluno)){
+        // TODO add your handling code here:       
+        if(cont == 0){
             aluno.adicionarSolicitacao(amigo);
             jTextField1.setVisible(true);
             jTextField1.setText("Solicitação enviada!");
         }
-        jTextField1.setText("Solicitação já enviada!");
+        else{
+            jTextField1.setVisible(true);
+            jTextField1.setText("Solicitação já enviada!");
+        }
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -252,4 +264,5 @@ public class JFrameAmigo extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private Aluno amigo; 
     private Aluno aluno;
+    private int cont;
 }
