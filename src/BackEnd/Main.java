@@ -61,6 +61,11 @@ public class Main {
 		turma2.adicionaAluno(prof2, aux1);
 		turma2.adicionaPed(prof2, aluno5);
 		turma2.adicionaPad(prof2, aluno4);
+                
+                //Teste solicitacoes
+                aluno3.adicionarSolicitacao(aluno1);
+                aluno4.adicionarSolicitacao(aluno1);
+        
 
 		// Criando um grupo
 		ArrayList<Usuario> aux2 = new ArrayList<Usuario>(aux1);
@@ -90,12 +95,6 @@ public class Main {
 		
 		AtividadeGrupo atividade2 = (AtividadeGrupo) turma1.criarAtividade(prof1, "Relatorio_1", Labels.ATIVIDADE_GRUPO, 
 				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
-		
-		// Testando uma condicional. Integrantes da equipe nao fazem parte da turma.
-		System.out.println(atividade2.adicionarGrupo(equipe1) + "\n");
-		
-		// Saida
-		System.out.println("Turma 1: " + turma1 + "---------------------------------------------------------");
 	
 		// Criacao de nova aula para turma2
 		turma2.criarTeoria(prof2, "Introcao a alquimia", "aula1.txt");
@@ -121,28 +120,14 @@ public class Main {
 		atividade4.submeterAtividade(null, equipe1, "Eles_podem.txt");
 		atividade4.atribuirNota(prof1, null, equipe1, 100);
 		
-		// Saida
-		System.out.println("Turma 2: " + turma2 + "---------------------------------------------------------");
-		
-		//Mostrando notificacoes para aluno 2
-		System.out.println(aluno2.exibirNotificacoes(aluno2) + "---------------------------------------------------------");
-		
 		// Demonstrando conversa
 		aux2.add(aluno5);
 		Conversa conversa1 = aluno2.iniciarConversa(aux2);
 		conversa1.enviarMensagem(aluno1, "oi");
 		conversa1.enviarMensagem(aluno3, "ola");
-		System.out.println(conversa1 + "\n---------------------------------------------------------\n");
-		
-		//Trancando disciplinas
-		aluno1.trancarDisciplina(turma2);
-		System.out.println("Turma 2: " + turma2 + "---------------------------------------------------------\n");		
 	
-		// Saida de um aluno
-		System.out.println("Aluno 2: " + aluno2 + "---------------------------------------------------------\n");
-		
-		// Saida de um professor
-		System.out.println("Professor 1: " + prof1 + "---------------------------------------------------------\n");
+		//Trancando disciplinas
+		//aluno1.trancarDisciplina(turma2);
 		
 		turma1.tirarMedia(prof1);
 		turma2.tirarMedia(prof2);		
@@ -150,8 +135,5 @@ public class Main {
 		monitoria1.getConversa().enviarMensagem(aluno2, "Ola galera");
 		monitoria1.getConversa().enviarMensagem(aluno1, "Tchau");
 		monitoria1.getConversa().enviarMensagem(aluno4, "hello");
-	
-		System.out.println(aluno2.visualizarFeed()); 
-
 	}
 }

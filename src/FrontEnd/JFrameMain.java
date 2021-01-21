@@ -189,62 +189,9 @@ public class JFrameMain extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JFrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        ArrayList<Aluno> aux1 = new ArrayList<Aluno>();
-		
-	// Instancias de professores
-	Professor prof1 = new Professor("Geraldo", Genero.NAO_BINARIO, "geraldo@hotmail.com", "senha123");
-	Professor prof2 = new Professor("Yennefer", Genero.FEMININO, "yen@gmail.com", "123senha");
-	ArrayList<Professor> professores = new ArrayList<Professor>();
-	professores.add(prof1);
-	professores.add(prof2); 
-		
-	// Instancias de alunos
-	Aluno aluno1 = new Aluno("Ciri", Genero.NAO_BINARIO, "ciri@yahoo.com", "321senha", Permissoes.PUBLIC,
-		"Eng. Alimentos", "12345");
-	Aluno aluno2 = new Aluno("Dandelion", Genero.MASCULINO, "dan@uol.com", "senha321", Permissoes.DEFAULT,
-			"Musica", "54321");
-	Aluno aluno3 = new Aluno("Zoltan", Genero.NAO_IDENTIFICADO, "zoltan@dac.unicamp.br", "sen321ha", Permissoes.PRIVATE,
-				"Eng. Mecanica", "00012");
-        Aluno aluno4 = new Aluno("Triss", Genero.FEMININO, "triss@apple.mail.com", "sen123ha", Permissoes.DEFAULT,
-                        "Eng. Quimica", "00044");
-        Aluno aluno5 = new Aluno("Fringila", Genero.NAO_BINARIO, "frin@usp.br", "sen000ha", Permissoes.PRIVATE,
-                        "Quimica", "00055");
-        Aluno aluno6 = new Aluno("Emhyr", Genero.MASCULINO, "emhyr@unesp.br", "senha000", Permissoes.PUBLIC,
-                        "Economia", "99666");
+        
+        Main.main(null);
 
-        ArrayList<Usuario> usuario = new ArrayList<Usuario>(professores);
-        usuario.add(aluno1);
-        usuario.add(aluno2);
-        usuario.add(aluno3);
-        usuario.add(aluno4);
-	usuario.add(aluno5);
-	usuario.add(aluno6);
-        
-        //Teste Ciri Amigos
-        ArrayList<Usuario> amigos = new ArrayList<Usuario>(); 
-        amigos.add(aluno2); 
-        aluno1.setAmigos(amigos); 
-        
-        //Teste Turma
-        HashMap<Integer, ArrayList<Integer>> horarios1 = new HashMap<Integer, ArrayList<Integer>>();
-        ArrayList<Integer> aux = new ArrayList<Integer>();
-	aux.addAll(Arrays.asList(10, 11));
-	horarios1.put(1, aux);
-        Turma turma1 = prof1.criarTurma("Bruxos I", "BX111", horarios1);
-        turma1.setEmenta("Vamos conhecer os bruxos.");
-        aux1.addAll(Arrays.asList(aluno2, aluno4, aluno6));
-        turma1.adicionaAluno(prof1, aux1);
-        turma1.adicionaPed(prof1, aluno1);
-        turma1.adicionaPad(prof1, aluno3);
-        
-        //Teste solicitacoes
-        aluno3.adicionarSolicitacao(aluno1);
-        aluno4.adicionarSolicitacao(aluno1);
-        
-        //Teste duvidas
-        Duvidas duvida1 = turma1.criarDuvida(aluno2, "Quais sao as propriedades fisicas de um Lobisomem?");
-	duvida1.replicar(aluno4, "Tambem to na duvida");
-        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
