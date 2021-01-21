@@ -282,26 +282,22 @@ public class JPanelAluno extends javax.swing.JPanel {
             String[] listaTurmas = new String[aluno.getTurmas().size()]; 
             int aux = 0;
             for(Turma turma:aluno.getTurmas()) {
-                if(!turma.getPed().contains(aluno) && !turma.getPad().contains(aluno)) {
-                    listaTurmas[aux] = turma.getSigla(); 
-                    aux++; 
-                    Set<Integer> chaves = turma.getHorarios().keySet(); 
-                    for (Integer chave:chaves) {
-                        ArrayList<Integer> horarios = turma.getHorarios().get(chave);
-                        for(Integer inteiro:horarios) {
-                            boolean stop = false; 
-                            for(int i = 0; i < 11 && !stop; i++) {
-                                String value = (String)jTable1.getValueAt(i, 0);  
-                                if (value.contains(Integer.toString(inteiro))) {
-                                    stop = true;
-                                    jTable1.setValueAt(turma.getSigla(), i, chave);
-                                }
+                listaTurmas[aux] = turma.getSigla(); 
+                aux++; 
+                Set<Integer> chaves = turma.getHorarios().keySet(); 
+                for (Integer chave:chaves) {
+                    ArrayList<Integer> horarios = turma.getHorarios().get(chave);
+                    for(Integer inteiro:horarios) {
+                        boolean stop = false; 
+                        for(int i = 0; i < 11 && !stop; i++) {
+                            String value = (String)jTable1.getValueAt(i, 0);  
+                            if (value.contains(Integer.toString(inteiro))) {
+                                stop = true;
+                                jTable1.setValueAt(turma.getSigla(), i, chave);
                             }
                         }
                     }
                 }
-                else
-                    listaTurmas[aux] = turma.getSigla() + "(Monitor)";
             }
             jListTurmas.setListData(listaTurmas);
         }
