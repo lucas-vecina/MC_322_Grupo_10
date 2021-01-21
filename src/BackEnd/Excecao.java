@@ -32,4 +32,8 @@ public class Excecao extends IllegalArgumentException{
     public void popup() {
         JOptionPane.showMessageDialog(null, "Pedido impossivel de ser executado");
     }
+    
+    public void popupUsuarioOuSenha() {
+        JOptionPane.showMessageDialog(null, "Usuario ou senha incorretos");
+    }
 }

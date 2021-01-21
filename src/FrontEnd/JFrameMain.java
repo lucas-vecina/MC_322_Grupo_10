@@ -148,7 +148,8 @@ public class JFrameMain extends javax.swing.JFrame {
         String senha = String.valueOf(jPasswordField1.getPassword()); 
         Usuario usuario = Usuario.signIn(email, senha); 
         if (usuario == null) {
-          jLabelNotification.setText("Email ou senha incorretos.");
+          Excecao e = new Excecao();
+          e.popupUsuarioOuSenha();
         }
         else {
             if (usuario instanceof Aluno) {
