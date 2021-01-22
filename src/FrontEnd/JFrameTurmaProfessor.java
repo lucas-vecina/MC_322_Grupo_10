@@ -325,7 +325,7 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
         } 
     }
     
-    private void criaListaAtv() {
+    public void criaListaAtv() {
         if (turma.getAtividades().size() != 0) {
             String[] listaAtv = new String[turma.getAtividades().size()];
             int i = 0; 
@@ -482,6 +482,8 @@ public class JFrameTurmaProfessor extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        JFrameNovaAtividade novatv = new JFrameNovaAtividade(turma, this, professor);
+        novatv.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public javax.swing.JPanel getJPanel() {
