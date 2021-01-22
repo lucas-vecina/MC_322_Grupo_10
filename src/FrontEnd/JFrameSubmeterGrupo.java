@@ -23,6 +23,7 @@ public class JFrameSubmeterGrupo extends javax.swing.JFrame {
         this.atividade = atividade;
         this.aluno = aluno;  
         this.panelAtividade = panelAtividade;
+        this.arquivo = arquivo; 
         alunos = new ArrayList<Aluno>();
     }
 
@@ -215,7 +216,7 @@ public class JFrameSubmeterGrupo extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Grupo nao pode ser adicionado. Quantidade de integrantes diferente da solicitada."); 
                 break; 
             case "4":
-                atividade.submeterAtividade(null, grupo, arquivo);
+                atividade.submeterAtividade(null, grupo, arquivo + ".txt");
                 JOptionPane.showMessageDialog(null, "Atividade submetida!");
                 panelAtividade.criaAtividades();
                 panelAtividade.revalidate();
