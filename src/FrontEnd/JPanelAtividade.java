@@ -141,7 +141,7 @@ public class JPanelAtividade extends javax.swing.JPanel {
             atividadesPen = new ArrayList<Atividade>(turma.getAtividades());
     }
     
-    private void criaAtividades() {
+    public void criaAtividades() {
         if(!(atividadesPen.isEmpty() && atividadesEnv.isEmpty())) {
             if(!atividadesPen.isEmpty()) {
                 String[] listaAtividadesPenN = new String[atividadesPen.size()];
@@ -189,7 +189,7 @@ public class JPanelAtividade extends javax.swing.JPanel {
                 this.repaint();
             }
             else {
-                JFrameSubmeterGrupo frameSubmeterGrupo = new JFrameSubmeterGrupo((AtividadeGrupo)atividade, aluno, jTextFieldArquivo.getText());
+                JFrameSubmeterGrupo frameSubmeterGrupo = new JFrameSubmeterGrupo(this, (AtividadeGrupo)atividade, aluno, jTextFieldArquivo.getText());
                 frameSubmeterGrupo.setVisible(true);
             }
         }
@@ -208,8 +208,8 @@ public class JPanelAtividade extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextFieldArquivo;
     // End of variables declaration//GEN-END:variables
-    Turma turma;
-    Aluno aluno; 
-    ArrayList<Atividade> atividadesPen;
-    ArrayList<Atividade> atividadesEnv;
+    private Turma turma;
+    private Aluno aluno; 
+    private ArrayList<Atividade> atividadesPen;
+    private ArrayList<Atividade> atividadesEnv;
 }

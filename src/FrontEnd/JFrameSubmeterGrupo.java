@@ -17,11 +17,12 @@ public class JFrameSubmeterGrupo extends javax.swing.JFrame {
     /**
      * Creates new form JFrameSubtmeterGrupo
      */
-    public JFrameSubmeterGrupo(AtividadeGrupo atividade, Aluno aluno, String arquivo) {
+    public JFrameSubmeterGrupo(JPanelAtividade panelAtividade, AtividadeGrupo atividade, Aluno aluno, String arquivo) {
         initComponents();
         setTitle("Adicionar pessoas ao grupo"); 
         this.atividade = atividade;
         this.aluno = aluno;  
+        this.panelAtividade = panelAtividade;
         alunos = new ArrayList<Aluno>();
     }
 
@@ -216,6 +217,9 @@ public class JFrameSubmeterGrupo extends javax.swing.JFrame {
             case "4":
                 atividade.submeterAtividade(null, grupo, arquivo);
                 JOptionPane.showMessageDialog(null, "Atividade submetida!");
+                panelAtividade.criaAtividades();
+                panelAtividade.revalidate();
+                panelAtividade.repaint();
                 break; 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -236,6 +240,7 @@ public class JFrameSubmeterGrupo extends javax.swing.JFrame {
         }
     }
     
+    
     /**
      * @param args the command line arguments
      */
@@ -252,8 +257,9 @@ public class JFrameSubmeterGrupo extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldRa;
     private javax.swing.JTextField jTextFieldUser;
     // End of variables declaration//GEN-END:variables
-    ArrayList<Aluno> alunos; 
-    Aluno aluno; 
-    AtividadeGrupo atividade;
-    String arquivo;
+    private ArrayList<Aluno> alunos; 
+    private Aluno aluno; 
+    private AtividadeGrupo atividade;
+    private String arquivo;
+    private JPanelAtividade panelAtividade;
 }

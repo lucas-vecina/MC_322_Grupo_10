@@ -71,7 +71,7 @@ public class AtividadeGrupo extends Atividade{
 	@Override
 	public void submeterAtividade(Aluno aluno, Grupo grupo, String arquivo) {
 		for(Submissao s: getSubmissoes()) {
-			if(s.getEquipe() == grupo) {
+			if(s.getEquipe().equals(grupo)) {
 				s.setArquivo(arquivo);
 				super.submeterAtividade(aluno, grupo, arquivo); 
 				break;
