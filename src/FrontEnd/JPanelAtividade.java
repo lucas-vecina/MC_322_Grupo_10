@@ -179,7 +179,7 @@ public class JPanelAtividade extends javax.swing.JPanel {
             int index = jListAtividadesPen.getSelectedIndex(); 
             Atividade atividade = atividadesPen.get(index); 
             if(atividade instanceof AtividadeIndividual) {
-                atividade.submeterAtividade(aluno, null, jTextFieldArquivo.getText());
+                atividade.submeterAtividade(aluno, null, jTextFieldArquivo.getText() + ".txt");
                 JOptionPane.showMessageDialog(null, "Atividade enviada!");
                 jTextFieldArquivo.setText("");
                 atividadesPen.remove(atividade);
