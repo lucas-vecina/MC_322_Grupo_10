@@ -33,6 +33,9 @@ public class JFrameMain extends javax.swing.JFrame {
 
         jPanelMain = new javax.swing.JPanel();
         jPanelPreto = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jTextFieldLogin = new javax.swing.JTextField();
         jLabelEmail = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
@@ -46,15 +49,39 @@ public class JFrameMain extends javax.swing.JFrame {
 
         jPanelPreto.setBackground(new java.awt.Color(51, 51, 51));
 
+        jLabel1.setFont(new java.awt.Font("Umpush", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(201, 23, 48));
+        jLabel1.setText("EADUCA");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/17-5 (1).png"))); // NOI18N
+
+        jLabel3.setForeground(java.awt.Color.white);
+        jLabel3.setText("for brazilian students");
+
         javax.swing.GroupLayout jPanelPretoLayout = new javax.swing.GroupLayout(jPanelPreto);
         jPanelPreto.setLayout(jPanelPretoLayout);
         jPanelPretoLayout.setHorizontalGroup(
             jPanelPretoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 363, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelPretoLayout.createSequentialGroup()
+                .addGroup(jPanelPretoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelPretoLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelPretoLayout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelPretoLayout.setVerticalGroup(
             jPanelPretoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPretoLayout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(40, 40, 40)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTextFieldLogin.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
@@ -91,23 +118,25 @@ public class JFrameMain extends javax.swing.JFrame {
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
                 .addComponent(jPanelPreto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(102, 102, 102))
                     .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelSenha)
-                            .addComponent(jTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelEmail))
-                        .addContainerGap())))
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(364, 364, 364)
-                .addComponent(jLabelNotification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
+                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(102, 102, 102))
+                            .addGroup(jPanelMainLayout.createSequentialGroup()
+                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelSenha)
+                                    .addComponent(jTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelEmail))
+                                .addContainerGap())))
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabelNotification, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))))
         );
         jPanelMainLayout.setVerticalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +153,7 @@ public class JFrameMain extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(jLabelNotification, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
             .addComponent(jPanelPreto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -207,6 +236,9 @@ public class JFrameMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelNotification;
     private javax.swing.JLabel jLabelSenha;
