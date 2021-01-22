@@ -88,8 +88,6 @@ public class Main {
 				"Matem um grifo", 10, new GregorianCalendar(2020, 03, 25, 22, 30), new GregorianCalendar(2020, 03, 31, 23, 59));
 		atividade1.submeterAtividade(aluno4, null, "Triss.txt");
 		atividade1.atribuirNota(prof1, aluno4, null, 10);
-		atividade1.submeterAtividade(aluno2, null, "Dandelion.txt");
-		atividade1.atribuirNota(prof1, aluno2, null,  0.1);
 		
 		AtividadeGrupo atividade2 = (AtividadeGrupo) turma1.criarAtividade(prof1, "Relatorio_1", Labels.ATIVIDADE_GRUPO, 
 				"Facam a fusao de diferentes Runas", 10, new GregorianCalendar(2020, 04, 15, 22, 30), new GregorianCalendar(2020, 04, 29, 23, 59));
