@@ -121,6 +121,8 @@ public class JPanelAtividade extends javax.swing.JPanel {
                 if (submissao.getAluno() == null) 
                     if (submissao.getEquipe().getGrupo().contains(aluno))
                         atividadesEnv.add(atividade);
+                    else
+                        atividadesPen.add(atividade); 
                 else 
                     if(submissao.getAluno().equals(aluno))
                         atividadesEnv.add(atividade);      
